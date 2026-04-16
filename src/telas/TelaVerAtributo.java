@@ -1,4 +1,4 @@
-package telasjogo;
+package telas;
 
 public class TelaVerAtributo {
     
