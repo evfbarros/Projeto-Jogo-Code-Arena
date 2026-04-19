@@ -1,16 +1,18 @@
 package entidades;
 
 public abstract class Character {
-    protected int vida ;
+    protected String nome; // adicao desse atributo nome
+    protected int vida;
     protected int vidaMáxima;
     protected int stamina;
     protected int staminaMáxima;
     protected int ataque;
     protected int defesa;
     protected int velocidade;
-    protected HabilidadeEspecial habilidadeEspecial;
+    // remocao de habiliade especial pois nao e comum a todos os filhos da classe Character
 
-    public Character(int vida, int stamina, int ataque, int defesa, int velocidade){
+    public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade){
+        this.nome = nome; // adicao aqui tambem
         this.vida = vida ;
         this.vidaMáxima = vida;
         this.stamina = stamina;
@@ -119,12 +121,6 @@ public abstract class Character {
         this.velocidade = velocidade;
     }
 
-    public HabilidadeEspecial getHabilidadeEspecial() {
-        return habilidadeEspecial;
-    }
-
-    public void setHabilidadeEspecial(HabilidadeEspecial habilidadeEspecial) {
-        this.habilidadeEspecial = habilidadeEspecial;
-    }
+    //remocao do get e set de habilidadeEspecial
     
 }

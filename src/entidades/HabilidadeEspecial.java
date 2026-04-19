@@ -14,6 +14,7 @@ public abstract class HabilidadeEspecial {
         this.tempoRecarga = tempoRecarga ;
         this.disponivel = true ;
     }
+    
     public abstract void usar(Character personagem);
 
     public String getNome() {
