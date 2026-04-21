@@ -11,7 +11,11 @@ public abstract class Questao{
         this.categoria = categoria;
     }
 
-    public String getEnunciado() {
+    public abstract boolean validarResposta(String resposta);
+
+    public abstract boolean verificarResposta(String resposta);
+
+    public String getEnunciado(){
         return enunciado;
     }
 
