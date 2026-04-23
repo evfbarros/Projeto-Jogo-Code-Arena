@@ -18,6 +18,11 @@ public class QuestaoMultiplaEscolha extends Questao {
     }
 
     public char normalizarResposta(String resposta){
+
+        if (resposta == null){
+            return '\0';
+        }
+
         String respostaLimpa = resposta.trim();
 
         if (respostaLimpa.length() != 1) {
@@ -42,6 +47,10 @@ public class QuestaoMultiplaEscolha extends Questao {
     @Override
     public boolean verificarResposta(String resposta){
         char respostaChar = normalizarResposta(resposta);
+        if (respostaChar == '\0'){
+            return false;
+        }
+
         int indice = respostaChar - 'A';
         return indice == gabarito;
     }

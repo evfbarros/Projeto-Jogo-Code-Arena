@@ -9,6 +9,10 @@ public class QuestaoVerdadeiroFalso extends Questao {
     }
 
     public char normalizarResposta(String resposta) {
+        if (resposta == null) {
+            return '\0';
+        }
+
         String respostaLimpa = resposta.trim();
 
         if (respostaLimpa.length() != 1) {
@@ -33,10 +37,15 @@ public class QuestaoVerdadeiroFalso extends Questao {
     @Override
     public boolean verificarResposta(String resposta) {
         char respostaChar = normalizarResposta(resposta);
+
+        if (respostaChar == '\0') {
+            return false;
+        }
+
         return respostaChar == gabarito;
     }
 
-    public int getGabarito(){
+    public char getGabarito() {
         return gabarito;
     }
 }

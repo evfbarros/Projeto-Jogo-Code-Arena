@@ -10,11 +10,14 @@ public class BancoQuestoes {
         ArrayList<String> alternativas1 = new ArrayList<>();
         alternativas1.add("A) 100");
         alternativas1.add("B) 200");
-        alternativas1.add("c) 300");
+        alternativas1.add("C) 300");
         alternativas1.add("D) 500");
         listaQuestoes.add(new QuestaoMultiplaEscolha("Quantos anos o Brasil tem", 1, "Historia", alternativas1 , 3));
     }
 
+    public ArrayList<Questao> getListaQuestoes() {
+        return listaQuestoes;
+    }
 }
 //isso aqui vai ser mudado dps pq quando o banco de questoes ficar mais extenso do jeuito 
 // que esta vai ser iniviavel
