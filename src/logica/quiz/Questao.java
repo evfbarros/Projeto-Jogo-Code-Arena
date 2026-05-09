@@ -2,10 +2,10 @@ package logica.quiz;
 
 public abstract class Questao{
     protected String enunciado;
-    protected int dificuldade;
+    protected Dificuldade dificuldade;
     protected String categoria;
 
-    public Questao(String enunciado, int dificuldade, String categoria){
+    public Questao(String enunciado, Dificuldade dificuldade, String categoria){
         this.enunciado = enunciado;
         this.dificuldade = dificuldade;
         this.categoria = categoria;
@@ -23,11 +23,11 @@ public abstract class Questao{
         this.enunciado = enunciado;
     }
 
-    public int getDificuldade() {
+    public Dificuldade getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(int dificuldade) {
+    public void setDificuldade(Dificuldade dificuldade) {
         this.dificuldade = dificuldade;
     }
 

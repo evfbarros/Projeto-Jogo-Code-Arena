@@ -3,7 +3,7 @@ package logica.quiz;
 public class QuestaoVerdadeiroFalso extends Questao {
     private char gabarito;
 
-    public QuestaoVerdadeiroFalso(String enunciado, int dificuldade, String categoria, char gabarito) {
+    public QuestaoVerdadeiroFalso(String enunciado, Dificuldade dificuldade, String categoria, char gabarito) {
         super(enunciado, dificuldade, categoria);
         this.gabarito = gabarito;
     }

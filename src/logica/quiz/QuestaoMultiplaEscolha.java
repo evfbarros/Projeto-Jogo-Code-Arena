@@ -5,7 +5,7 @@ public class QuestaoMultiplaEscolha extends Questao {
     private int gabarito; //o gabarito aqui vai ser o indice do array de alternativas que correponde a alternativa certa
     private ArrayList<String> alternativas;
 
-    public QuestaoMultiplaEscolha(String enunciado, int dificuldade, String categoria, ArrayList<String> alternativas, int gabarito){
+    public QuestaoMultiplaEscolha(String enunciado, Dificuldade dificuldade, String categoria, ArrayList<String> alternativas, int gabarito){
         super(enunciado, dificuldade, categoria);
         this.alternativas = new ArrayList<>(alternativas);
         this.gabarito = gabarito;
