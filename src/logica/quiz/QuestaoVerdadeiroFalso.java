@@ -8,6 +8,14 @@ public class QuestaoVerdadeiroFalso extends Questao {
         this.gabarito = gabarito;
     }
 
+    @Override
+    public void mostrarQuestao(){
+        System.out.println("---------ENUNCIADO---------");
+        System.out.println(getEnunciado());
+        System.out.print("Escolha entre V ou F:");
+    }
+    
+
     public char normalizarResposta(String resposta) {
         if (resposta == null) {
             return '\0';

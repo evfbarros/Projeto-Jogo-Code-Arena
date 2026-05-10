@@ -1,28 +1,27 @@
 package entidades;
 
 public abstract class Character {
-    protected String nome; // adicao desse atributo nome
+    protected String nome;
     protected int vida;
-    protected int vidaMáxima;
+    protected int vidaMaxima;
     protected int stamina;
-    protected int staminaMáxima;
+    protected int staminaMaxima;
     protected int ataque;
     protected int defesa;
     protected int velocidade;
-    // remocao de habiliade especial pois nao e comum a todos os filhos da classe Character
 
     public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade){
-        this.nome = nome; // adicao aqui tambem
+        this.nome = nome;
         this.vida = vida ;
-        this.vidaMáxima = vida;
+        this.vidaMaxima = vida;
         this.stamina = stamina;
-        this.staminaMáxima = stamina ;
+        this.staminaMaxima = stamina ;
         this.ataque = ataque;
         this.defesa= defesa;
         this.velocidade = velocidade ;
     }
 
-    public abstract void atacar(Character alvo);
+    public abstract int atacar(Character alvo);
     public abstract void defender();
 
     public int receberDano(int dano) {
@@ -35,18 +34,18 @@ public abstract class Character {
     }
 
     public int recuperarVida(int vidaRecuperada){
-        if((vida + vidaRecuperada) >= vidaMáxima) {
-            vida = vidaMáxima;
-        } else if((vida + vidaRecuperada) < vidaMáxima ) {
+        if((vida + vidaRecuperada) >= vidaMaxima) {
+            vida = vidaMaxima;
+        } else if((vida + vidaRecuperada) < vidaMaxima ) {
             vida = vida + vidaRecuperada;
         }
         return vida;
     }
 
     public int recuperarStamina(int staminaRecuperada) {
-        if((stamina + staminaRecuperada) >= staminaMáxima){
-            stamina = staminaMáxima ;
-        } else if((stamina + staminaRecuperada) < staminaMáxima) {
+        if((stamina + staminaRecuperada) >= staminaMaxima){
+            stamina = staminaMaxima ;
+        } else if((stamina + staminaRecuperada) < staminaMaxima) {
             stamina = stamina + staminaRecuperada;
         }
         return stamina ;
@@ -73,12 +72,12 @@ public abstract class Character {
         this.vida = vida;
     }
 
-    public int getVidaMáxima() {
-        return vidaMáxima;
+    public int getVidaMaxima() {
+        return vidaMaxima;
     }
 
-    public void setVidaMáxima(int vidaMáxima) {
-        this.vidaMáxima = vidaMáxima;
+    public void setVidaMaxima(int vidaMaxima) {
+        this.vidaMaxima = vidaMaxima;
     }
 
     public int getStamina() {
@@ -89,12 +88,12 @@ public abstract class Character {
         this.stamina = stamina;
     }
 
-    public int getStaminaMáxima() {
-        return staminaMáxima;
+    public int getStaminaMaxima() {
+        return staminaMaxima;
     }
 
-    public void setStaminaMáxima(int staminaMáxima) {
-        this.staminaMáxima = staminaMáxima;
+    public void setStaminaMaxima(int staminaMaxima) {
+        this.staminaMaxima = staminaMaxima;
     }
 
     public int getAtaque() {
@@ -121,6 +120,12 @@ public abstract class Character {
         this.velocidade = velocidade;
     }
 
-    //remocao do get e set de habilidadeEspecial
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
 }

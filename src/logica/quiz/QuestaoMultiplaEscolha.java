@@ -10,11 +10,17 @@ public class QuestaoMultiplaEscolha extends Questao {
         this.alternativas = new ArrayList<>(alternativas);
         this.gabarito = gabarito;
     }
-    
-    public void mostrarAlternativas(){
-        for(String a : alternativas){
-            System.out.println(a);
+
+    @Override
+    public void mostrarQuestao(){
+        System.out.println("---------ENUNCIADO---------");
+        System.out.println(getEnunciado());
+
+        for(int i = 0; i < alternativas.size(); i++ ){
+            System.out.println(alternativas.get(i));
         }
+
+        System.out.print("Escolha uma alternativa (A-E): ");
     }
 
     public char normalizarResposta(String resposta){
@@ -32,7 +38,7 @@ public class QuestaoMultiplaEscolha extends Questao {
         String respostaUpper = respostaLimpa.toUpperCase();
         char respostaChar = respostaUpper.charAt(0);
 
-        if (respostaChar == 'A' || respostaChar == 'B' || respostaChar == 'C' || respostaChar == 'D') {
+        if (respostaChar == 'A' || respostaChar == 'B' || respostaChar == 'C' || respostaChar == 'D' || respostaChar == 'E') {
             return respostaChar;
         }
 

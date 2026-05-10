@@ -2,13 +2,16 @@ package entidades;
 
 public class Tripulante extends Character {
     private HabilidadeEspecial habilidadeEspecial;
+
     public Tripulante(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, HabilidadeEspecial habilidadeEspecial){
         super(nome, vida, stamina, ataque, defesa, velocidade);
         this.habilidadeEspecial = habilidadeEspecial;
     }
 
     @Override
-    public void atacar(Character alvo) {
+    public int atacar(Character alvo) {
+        int danoAtaque = 20;
+        return danoAtaque;
     }
 
     @Override
@@ -22,6 +25,4 @@ public class Tripulante extends Character {
     public void setHabilidadeEspecial(HabilidadeEspecial habilidadeEspecial) {
         this.habilidadeEspecial = habilidadeEspecial;
     }
-
-    // adicao dos get e set ded habilidadeEspecial
 }

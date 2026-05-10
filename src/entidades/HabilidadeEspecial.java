@@ -1,11 +1,11 @@
 package entidades;
 
 public abstract class HabilidadeEspecial {
-    String nome; 
-    String descricao ;
-    int custoStamina;
-    int tempoRecarga ;
-    boolean disponivel ;
+    private String nome; 
+    private String descricao ;
+    private int custoStamina;
+    private int tempoRecarga ;
+    private boolean disponivel ;
 
     public HabilidadeEspecial( String nome , String descricao , int custoStamina , int tempoRecarga){
         this.nome= nome ;

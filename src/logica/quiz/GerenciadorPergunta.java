@@ -5,15 +5,21 @@ import java.util.ArrayList;
 public class GerenciadorPergunta{
     private ArrayList<Questao> listaQuestoes;
     private Random sorteio = new Random();
+    private Questao questaoAtual;
 
     public GerenciadorPergunta(ArrayList<Questao> listaQuestoes){
         this.listaQuestoes = listaQuestoes;
     }   
 
-    public int questaoSorteada(){
-        int tamanhoLista = listaQuestoes.size();
-        return sorteio.nextInt(tamanhoLista);
+    public Questao questaoSorteada(){
+        int indiceQuestao = sorteio.nextInt(listaQuestoes.size());
+        questaoAtual = listaQuestoes.get(indiceQuestao);
+        return questaoAtual;
+        
     }
 
-
+    public Questao getQuestaoAtual(){
+        return questaoAtual;
+    }
 }
+
