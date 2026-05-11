@@ -9,12 +9,11 @@ public class TrueFalseQuestion extends Question {
     }
 
     @Override
-    public void mostrarQuestao(){
-        System.out.println("---------ENUNCIADO---------");
+    public void mostrarQuestao() {
+        // System.out.println("\n---------ENUNCIADO---------\n");
         System.out.println(getEnunciado());
         System.out.print("Escolha entre V ou F:");
     }
-    
 
     public char normalizarResposta(String resposta) {
         if (resposta == null) {

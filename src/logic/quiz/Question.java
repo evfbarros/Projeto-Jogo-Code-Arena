@@ -1,11 +1,11 @@
 package logic.quiz;
 
-public abstract class Question{
+public abstract class Question {
     protected String enunciado;
     protected Difficulty dificuldade;
     protected String categoria;
 
-    public Question(String enunciado, Difficulty dificuldade, String categoria){
+    public Question(String enunciado, Difficulty dificuldade, String categoria) {
         this.enunciado = enunciado;
         this.dificuldade = dificuldade;
         this.categoria = categoria;
@@ -16,8 +16,8 @@ public abstract class Question{
     public abstract boolean verificarResposta(String resposta);
 
     public abstract void mostrarQuestao();
-    
-    public String getEnunciado(){
+
+    public String getEnunciado() {
         return enunciado;
     }
 

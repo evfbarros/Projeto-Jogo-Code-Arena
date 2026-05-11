@@ -1,31 +1,34 @@
 package logic.quiz;
+
 import java.util.ArrayList;
 
 public class MultipleChoiceQuestion extends Question {
-    private int gabarito; //o gabarito aqui vai ser o indice do array de alternativas que correponde a alternativa certa
+    private int gabarito; // o gabarito aqui vai ser o indice do array de alternativas que correponde a
+                          // alternativa certa
     private ArrayList<String> alternativas;
 
-    public MultipleChoiceQuestion(String enunciado, Difficulty dificuldade, String categoria, ArrayList<String> alternativas, int gabarito){
+    public MultipleChoiceQuestion(String enunciado, Difficulty dificuldade, String categoria,
+            ArrayList<String> alternativas, int gabarito) {
         super(enunciado, dificuldade, categoria);
         this.alternativas = new ArrayList<>(alternativas);
         this.gabarito = gabarito;
     }
 
     @Override
-    public void mostrarQuestao(){
-        System.out.println("---------ENUNCIADO---------");
+    public void mostrarQuestao() {
+        // System.out.println("\n---------ENUNCIADO---------\n");
         System.out.println(getEnunciado());
 
-        for(int i = 0; i < alternativas.size(); i++ ){
+        for (int i = 0; i < alternativas.size(); i++) {
             System.out.println(alternativas.get(i));
         }
 
         System.out.print("Escolha uma alternativa (A-E): ");
     }
 
-    public char normalizarResposta(String resposta){
+    public char normalizarResposta(String resposta) {
 
-        if (resposta == null){
+        if (resposta == null) {
             return '\0';
         }
 
@@ -38,7 +41,8 @@ public class MultipleChoiceQuestion extends Question {
         String respostaUpper = respostaLimpa.toUpperCase();
         char respostaChar = respostaUpper.charAt(0);
 
-        if (respostaChar == 'A' || respostaChar == 'B' || respostaChar == 'C' || respostaChar == 'D' || respostaChar == 'E') {
+        if (respostaChar == 'A' || respostaChar == 'B' || respostaChar == 'C' || respostaChar == 'D'
+                || respostaChar == 'E') {
             return respostaChar;
         }
 
@@ -46,14 +50,14 @@ public class MultipleChoiceQuestion extends Question {
     }
 
     @Override
-    public boolean validarResposta(String resposta){
+    public boolean validarResposta(String resposta) {
         return normalizarResposta(resposta) != '\0';
     }
 
     @Override
-    public boolean verificarResposta(String resposta){
+    public boolean verificarResposta(String resposta) {
         char respostaChar = normalizarResposta(resposta);
-        if (respostaChar == '\0'){
+        if (respostaChar == '\0') {
             return false;
         }
 
@@ -61,11 +65,11 @@ public class MultipleChoiceQuestion extends Question {
         return indice == gabarito;
     }
 
-    public int getGabarito(){
+    public int getGabarito() {
         return gabarito;
     }
 
-    public ArrayList<String> getAlternativas(){
+    public ArrayList<String> getAlternativas() {
         return new ArrayList<>(alternativas);
     }
 

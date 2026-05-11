@@ -1,17 +1,17 @@
 package entities;
 
-public class Villain extends Character {
+public class Enemy extends Character {
    private SpecialAbility habilidadeEspecial;
 
-     public Villain(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, SpecialAbility habilidadeEspecial){
+     public Enemy(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, SpecialAbility habilidadeEspecial){
         super(nome, vida, stamina, ataque, defesa, velocidade);
         this.habilidadeEspecial = habilidadeEspecial;
      }
 
     @Override
     public int atacar(Character alvo) {
-      int dano = 10;
-      return dano;
+      int danoAtaque = ataque;
+      return danoAtaque;
     }
 
     @Override

@@ -22,6 +22,7 @@ public abstract class Character {
     }
 
     public abstract int atacar(Character alvo);
+    
     public abstract void defender();
 
     public int receberDano(int dano) {
@@ -58,6 +59,12 @@ public abstract class Character {
             stamina = stamina - staminaGasta ;
         }
         return stamina ;
+    }
+
+    public void mostrarAtributos(){
+        System.out.println("Atributos Jogador: ");
+        System.out.print("Vida: " + getVida());
+        System.out.println(" Ataque: " + getAtaque());
     }
 
     public boolean estaVivo() {

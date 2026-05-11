@@ -10,7 +10,7 @@ public class CrewMember extends Character {
 
     @Override
     public int atacar(Character alvo) {
-        int danoAtaque = 20;
+        int danoAtaque = ataque;
         return danoAtaque;
     }
 

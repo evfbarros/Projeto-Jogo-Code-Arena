@@ -7,10 +7,10 @@ public class NPC extends Character {
 
     @Override
     public int atacar(Character alvo) {
-        int dano = 10;
-        return dano;
-        //provisorio so para nao da o erro do metodo nao ta compativel com o da classe mae
+        int danoAtaque = ataque;
+        return danoAtaque;
     }
+    
     @Override
     public void defender() {
     }

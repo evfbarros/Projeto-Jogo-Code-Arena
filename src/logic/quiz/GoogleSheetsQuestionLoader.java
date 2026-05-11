@@ -15,8 +15,7 @@ public class GoogleSheetsQuestionLoader {
             URL url = new URL(linkCsv);
 
             BufferedReader leitor = new BufferedReader(
-                new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)
-            );
+                    new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
 
             String linha;
             boolean primeiraLinha = true;
@@ -52,14 +51,12 @@ public class GoogleSheetsQuestionLoader {
                         int indiceGabarito = letraGabarito - 'A';
 
                         questoes.add(
-                            new MultipleChoiceQuestion(
-                                enunciado,
-                                dificuldade,
-                                categoria,
-                                alternativas,
-                                indiceGabarito
-                            )
-                        );
+                                new MultipleChoiceQuestion(
+                                        enunciado,
+                                        dificuldade,
+                                        categoria,
+                                        alternativas,
+                                        indiceGabarito));
                         break;
 
                     case "VOF":
@@ -76,13 +73,11 @@ public class GoogleSheetsQuestionLoader {
                         // talvez isso aquiu esteja errado
 
                         questoes.add(
-                            new TrueFalseQuestion(
-                                enunciado,
-                                dificuldade,
-                                categoria,
-                                gabaritoVF
-                            )
-                        );
+                                new TrueFalseQuestion(
+                                        enunciado,
+                                        dificuldade,
+                                        categoria,
+                                        gabaritoVF));
                         break;
 
                     default:
@@ -94,8 +89,9 @@ public class GoogleSheetsQuestionLoader {
             leitor.close();
 
         } catch (Exception e) {
-            //System.out.println("Erro ao carregar questões: " + e.getMessage());
-            //isso aq so e p indicar o erro, quando tiver todas as questoes no banco vai sumir
+            // System.out.println("Erro ao carregar questões: " + e.getMessage());
+            // isso aq so e p indicar o erro, quando tiver todas as questoes no banco vai
+            // sumir
         }
 
         return questoes;
