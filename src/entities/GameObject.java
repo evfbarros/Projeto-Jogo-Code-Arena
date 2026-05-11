@@ -1,11 +1,11 @@
-package entidades;
+package entities;
 
-public abstract class Objeto {
+public abstract class GameObject {
     protected String nome;
     protected String descricao;
     protected boolean ativo;
 
-    public Objeto(String nome , String descricao , boolean ativo) {
+    public GameObject(String nome , String descricao , boolean ativo) {
         this.nome = nome ;
         this.descricao = descricao;
         this.ativo = ativo;

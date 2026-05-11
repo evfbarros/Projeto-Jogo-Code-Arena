@@ -1,4 +1,4 @@
-package logica.quiz;
+package logic.quiz;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,10 +6,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class CarregadorQuestoesGoogleSheets {
+public class GoogleSheetsQuestionLoader {
 
-    public static ArrayList<Questao> carregar(String linkCsv) {
-        ArrayList<Questao> questoes = new ArrayList<>();
+    public static ArrayList<Question> carregar(String linkCsv) {
+        ArrayList<Question> questoes = new ArrayList<>();
 
         try {
             URL url = new URL(linkCsv);
@@ -33,7 +33,7 @@ public class CarregadorQuestoesGoogleSheets {
                 String tipo = colunas[0].trim().toUpperCase();
                 String categoria = colunas[1].trim();
 
-                Dificuldade dificuldade = Dificuldade.valueOf(colunas[2].trim().toUpperCase());
+                Difficulty dificuldade = Difficulty.valueOf(colunas[2].trim().toUpperCase());
 
                 String enunciado = colunas[3].trim();
 
@@ -52,7 +52,7 @@ public class CarregadorQuestoesGoogleSheets {
                         int indiceGabarito = letraGabarito - 'A';
 
                         questoes.add(
-                            new QuestaoMultiplaEscolha(
+                            new MultipleChoiceQuestion(
                                 enunciado,
                                 dificuldade,
                                 categoria,
@@ -76,7 +76,7 @@ public class CarregadorQuestoesGoogleSheets {
                         // talvez isso aquiu esteja errado
 
                         questoes.add(
-                            new QuestaoVerdadeiroFalso(
+                            new TrueFalseQuestion(
                                 enunciado,
                                 dificuldade,
                                 categoria,

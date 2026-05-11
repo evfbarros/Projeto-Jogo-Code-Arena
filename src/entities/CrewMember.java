@@ -1,9 +1,9 @@
-package entidades;
+package entities;
 
-public class Tripulante extends Character {
-    private HabilidadeEspecial habilidadeEspecial;
+public class CrewMember extends Character {
+    private SpecialAbility habilidadeEspecial;
 
-    public Tripulante(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, HabilidadeEspecial habilidadeEspecial){
+    public CrewMember(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, SpecialAbility habilidadeEspecial){
         super(nome, vida, stamina, ataque, defesa, velocidade);
         this.habilidadeEspecial = habilidadeEspecial;
     }
@@ -18,11 +18,11 @@ public class Tripulante extends Character {
     public void defender() {
     }
 
-    public HabilidadeEspecial getHabilidadeEspecial() {
+    public SpecialAbility getHabilidadeEspecial() {
         return habilidadeEspecial;
     }
 
-    public void setHabilidadeEspecial(HabilidadeEspecial habilidadeEspecial) {
+    public void setHabilidadeEspecial(SpecialAbility habilidadeEspecial) {
         this.habilidadeEspecial = habilidadeEspecial;
     }
 }

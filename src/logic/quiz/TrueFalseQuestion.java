@@ -1,9 +1,9 @@
-package logica.quiz;
+package logic.quiz;
 
-public class QuestaoVerdadeiroFalso extends Questao {
+public class TrueFalseQuestion extends Question {
     private char gabarito;
 
-    public QuestaoVerdadeiroFalso(String enunciado, Dificuldade dificuldade, String categoria, char gabarito) {
+    public TrueFalseQuestion(String enunciado, Difficulty dificuldade, String categoria, char gabarito) {
         super(enunciado, dificuldade, categoria);
         this.gabarito = gabarito;
     }

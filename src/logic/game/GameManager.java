@@ -1,28 +1,47 @@
-package logica.jogo;
+package logic.game;
 
-import logica.quiz.GerenciadorPergunta;
-import entidades.Character;
 import java.util.Scanner;
-import logica.quiz.Questao;
 
-public class GerenciadorJogo {
+import entities.Character;
+import logic.quiz.Question;
+import logic.quiz.QuestionManager;
+
+public class GameManager {
     private Character personagemJogador;
     private Character personagemInimigo;
-    private GerenciadorPergunta gerenciador;
+    private QuestionManager gerenciador;
     private Scanner leitor = new Scanner(System.in);
 
-    public GerenciadorJogo(Character personagemJogador, Character personagemInimigo, GerenciadorPergunta gerenciador){
+    public GameManager(Character personagemJogador, Character personagemInimigo, QuestionManager gerenciador){
         this.personagemJogador = personagemJogador;
         this.personagemInimigo = personagemInimigo;
         this.gerenciador = gerenciador;
     }
+    private void esperarEnter(){
+        System.out.println("\nPressione enter para continuar ");
+        leitor.nextLine();
+    }
+
+    private void limparTerminal() {
+        try {
+            if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            for (int i = 0; i < 50; i++) {
+            System.out.println();
+            }
+        }
+}
 
     public void iniciarJogo(){
         int rodada = 1;
         
         while(personagemJogador.estaVivo() == true && personagemInimigo.estaVivo() == true){
 
-            Questao questaoAtual = gerenciador.questaoSorteada();
+            Question questaoAtual = gerenciador.questaoSorteada();
             
             System.out.println("    -----RODADA " + rodada + "-----    "); 
             questaoAtual.mostrarQuestao();
@@ -53,6 +72,10 @@ public class GerenciadorJogo {
             System.out.println("          Vida inimigo: " +personagemInimigo.getVida());
             System.out.println("-------------------------------------");
  
+            esperarEnter(); // Espera o cara dá enter para mudar de rodada
+
+            limparTerminal(); // Limpa o terminal entre rodadas
+
             rodada++;
         }
 

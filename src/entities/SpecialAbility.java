@@ -1,13 +1,13 @@
-package entidades;
+package entities;
 
-public abstract class HabilidadeEspecial {
+public abstract class SpecialAbility {
     private String nome; 
     private String descricao ;
     private int custoStamina;
     private int tempoRecarga ;
     private boolean disponivel ;
 
-    public HabilidadeEspecial( String nome , String descricao , int custoStamina , int tempoRecarga){
+    public SpecialAbility( String nome , String descricao , int custoStamina , int tempoRecarga){
         this.nome= nome ;
         this.descricao = descricao ;
         this.custoStamina = custoStamina;

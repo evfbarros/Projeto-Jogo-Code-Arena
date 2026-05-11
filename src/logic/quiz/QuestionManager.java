@@ -1,24 +1,24 @@
-package logica.quiz;
+package logic.quiz;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class GerenciadorPergunta{
-    private ArrayList<Questao> listaQuestoes;
+public class QuestionManager{
+    private ArrayList<Question> listaQuestoes;
     private Random sorteio = new Random();
-    private Questao questaoAtual;
+    private Question questaoAtual;
 
-    public GerenciadorPergunta(ArrayList<Questao> listaQuestoes){
+    public QuestionManager(ArrayList<Question> listaQuestoes){
         this.listaQuestoes = listaQuestoes;
     }   
 
-    public Questao questaoSorteada(){
+    public Question questaoSorteada(){
         int indiceQuestao = sorteio.nextInt(listaQuestoes.size());
         questaoAtual = listaQuestoes.get(indiceQuestao);
         return questaoAtual;
         
     }
 
-    public Questao getQuestaoAtual(){
+    public Question getQuestaoAtual(){
         return questaoAtual;
     }
 }

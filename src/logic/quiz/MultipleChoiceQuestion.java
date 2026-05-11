@@ -1,11 +1,11 @@
-package logica.quiz;
+package logic.quiz;
 import java.util.ArrayList;
 
-public class QuestaoMultiplaEscolha extends Questao {
+public class MultipleChoiceQuestion extends Question {
     private int gabarito; //o gabarito aqui vai ser o indice do array de alternativas que correponde a alternativa certa
     private ArrayList<String> alternativas;
 
-    public QuestaoMultiplaEscolha(String enunciado, Dificuldade dificuldade, String categoria, ArrayList<String> alternativas, int gabarito){
+    public MultipleChoiceQuestion(String enunciado, Difficulty dificuldade, String categoria, ArrayList<String> alternativas, int gabarito){
         super(enunciado, dificuldade, categoria);
         this.alternativas = new ArrayList<>(alternativas);
         this.gabarito = gabarito;
