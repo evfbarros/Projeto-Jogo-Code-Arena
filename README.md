@@ -7,27 +7,38 @@ Durante as batalhas, o jogador enfrenta diferentes inimigos respondendo pergunta
 ## Estrutura
 
 src/
-├── main/
-│   └── Main.java                        # Início do jogo
-├── entities/
-│   ├── Character.java                   # Classe abstrata para personagens
-│   ├── CrewMember.java                  # Personagem controlado pelo jogador
-│   ├── Enemy.java                       # Personagem inimigo
-│   ├── NPC.java                         # Personagem não-jogável
-│   ├── GameObject.java                  # Classe abstrata para objetos do cenário
-│   └── SpecialAbility.java              # Classe abstrata para habilidades especiais
-└── logic/
-    ├── game/
-    │   ├── GameManager.java             # Controla o loop principal de batalha
-    │   └── LevelManager.java            # Gerenciamento de níveis (em desenvolvimento)
-    └── quiz/
-        ├── Question.java                # Classe abstrata para questões
-        ├── Difficulty.java              # Enum de dificuldades
-        ├── MultipleChoiceQuestion.java  # Questão de múltipla escolha (A–E)
-        ├── TrueFalseQuestion.java       # Questão de verdadeiro ou falso
-        ├── QuestionBank.java            # Repositório de questões
-        ├── QuestionManager.java         # Sorteio e controle das questões
-        └── GoogleSheetsQuestionLoader.java  # Carrega questões de uma planilha CSV
+
+main/
+
+Main.java — Inicio do jogo
+
+
+entities/
+
+Character.java — Classe abstrata para personagens
+CrewMember.java — Personagem controlado pelo jogador
+Enemy.java — Personagem inimigo
+NPC.java — Personagem não-jogável
+GameObject.java — Classe abstrata para objetos do cenário
+SpecialAbility.java — Classe abstrata para habilidades especiais
+
+
+logic/
+
+game/
+
+GameManager.java — Controla o loop principal de batalha
+LevelManager.java — Gerenciamento de níveis (em desenvolvimento)
+
+quiz/
+
+Question.java — Classe abstrata para questões
+MultipleChoiceQuestion.java — Questão de múltipla escolha (A–E)
+TrueFalseQuestion.java — Questão de verdadeiro ou falso
+Difficulty.java — Enum de dificuldades
+QuestionBank.java — Repositório de questões
+QuestionManager.java — Sorteio e controle das questões
+GoogleSheetsQuestionLoader.java — Carrega questões de uma planilha CSV
 
 ## Pré-Requisitos
 
