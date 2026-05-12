@@ -4,7 +4,7 @@ CodeArena é um jogo de combate em turnos inspirado no universo de One Piece, on
 
 Durante as batalhas, o jogador enfrenta diferentes inimigos respondendo perguntas de História e Geografia. Cada resposta certa causa dano aos seus inimigos, e as erradas dificultam o combate.
 
-## Como executar
+## Como executar 
 
 JDK 11 ou superior 
 
