@@ -1,18 +1,39 @@
-## Getting Started
+## Projeto CodeArena
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+CodeArena é um jogo de combate em turnos inspirado no universo de One Piece, onde o progresso do jogador depende do seu conhecimento.
 
-## Folder Structure
+Durante as batalhas, o jogador enfrenta diferentes inimigos respondendo perguntas de História e Geografia. Cada resposta certa causa dano aos seus inimigos, e as erradas dificultam o combate.
 
-The workspace contains two folders by default, where:
+## Estrutura
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+src/
+├── main/
+│   └── Main.java                        # Início do jogo
+├── entities/
+│   ├── Character.java                   # Classe abstrata para personagens
+│   ├── CrewMember.java                  # Personagem controlado pelo jogador
+│   ├── Enemy.java                       # Personagem inimigo
+│   ├── NPC.java                         # Personagem não-jogável
+│   ├── GameObject.java                  # Classe abstrata para objetos do cenário
+│   └── SpecialAbility.java              # Classe abstrata para habilidades especiais
+└── logic/
+    ├── game/
+    │   ├── GameManager.java             # Controla o loop principal de batalha
+    │   └── LevelManager.java            # Gerenciamento de níveis (em desenvolvimento)
+    └── quiz/
+        ├── Question.java                # Classe abstrata para questões
+        ├── Difficulty.java              # Enum de dificuldades
+        ├── MultipleChoiceQuestion.java  # Questão de múltipla escolha (A–E)
+        ├── TrueFalseQuestion.java       # Questão de verdadeiro ou falso
+        ├── QuestionBank.java            # Repositório de questões
+        ├── QuestionManager.java         # Sorteio e controle das questões
+        └── GoogleSheetsQuestionLoader.java  # Carrega questões de uma planilha CSV
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Pré-Requisitos
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+JDK 11 ou superior 
+Conexão com a internet(carregar as questões do Google Sheets)
 
-## Dependency Management
+## Desenvolvido por
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Eduardo Barros e Guilherme Alves
