@@ -61,12 +61,6 @@ public abstract class Character {
         return stamina ;
     }
 
-    public void mostrarAtributos(){
-        System.out.println("Atributos Jogador: ");
-        System.out.print("Vida: " + getVida());
-        System.out.println(" Ataque: " + getAtaque());
-    }
-
     public boolean estaVivo() {
         return vida > 0 ;
     }

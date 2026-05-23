@@ -14,18 +14,6 @@ public class MultipleChoiceQuestion extends Question {
         this.gabarito = gabarito;
     }
 
-    @Override
-    public void mostrarQuestao() {
-        // System.out.println("\n---------ENUNCIADO---------\n");
-        System.out.println(getEnunciado());
-
-        for (int i = 0; i < alternativas.size(); i++) {
-            System.out.println(alternativas.get(i));
-        }
-
-        System.out.print("Escolha uma alternativa (A-E): ");
-    }
-
     public char normalizarResposta(String resposta) {
 
         if (resposta == null) {

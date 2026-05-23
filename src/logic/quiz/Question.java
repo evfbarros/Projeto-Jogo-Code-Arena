@@ -15,8 +15,6 @@ public abstract class Question {
 
     public abstract boolean verificarResposta(String resposta);
 
-    public abstract void mostrarQuestao();
-
     public String getEnunciado() {
         return enunciado;
     }
