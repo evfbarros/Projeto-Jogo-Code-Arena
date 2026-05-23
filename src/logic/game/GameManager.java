@@ -21,7 +21,7 @@ public class GameManager {
     public void iniciarJogo() {
         int rodada = 1;
 
-        while (pJogador.estaVivo() == true && pInimigo.estaVivo() == true) {
+        while (pJogador.estaVivo() && pInimigo.estaVivo()) {
 
             Question questaoAtual = gerenciadorPergunta.questaoSorteada();
 
