@@ -1,7 +1,5 @@
 package logic.game;
 
-import java.util.Scanner;
-
 import entities.Character;
 import logic.quiz.Question;
 import logic.quiz.QuestionManager;

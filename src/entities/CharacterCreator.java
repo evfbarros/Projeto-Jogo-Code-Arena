@@ -7,17 +7,17 @@ public class CharacterCreator {
 
     //PERSONAGENS JOGAVEIS
     public static CrewMember personagemLuffy(){
-        return new CrewMember("Luffy", 250, 150, 100, 100, 100, null);
+        return new CrewMember("Luffy", 250, 150, 100, 100, 100, new LuffyGuessAbility());
     }
     //vida normal, stamina alta, ataque normal, defesa normal, velocidade normal
     //maior stamina
     public static CrewMember personagemZoro(){
-        return new CrewMember("Zoro", 300, 100, 150, 150, 100, null);
+        return new CrewMember("Zoro", 300, 100, 150, 150, 100, new ZoroCutAbility());
     }
     //vida alta, stamina normal, ataque alto, defesa alta, velocidade normal
     //maior vida, atk e defesa
     public static CrewMember personagemSanji(){
-        return new CrewMember("Sanji", 250, 150, 100, 150, 100, null);
+        return new CrewMember("Sanji", 250, 150, 100, 150, 100, new SanjiCookAbility());
     }
     //vida normal, stamina alta, ataque normal, defesa alta, velocidade normal
     //maior stamina e defesa
