@@ -22,12 +22,12 @@ public class CharacterCreator {
     //vida normal, stamina alta, ataque normal, defesa alta, velocidade normal
     //maior stamina e defesa
     public static CrewMember personagemNami(){
-        return new CrewMember("Nami", 200, 100, 100, 100, 150, null);
+        return new CrewMember("Nami", 200, 100, 100, 100, 150, new NamiNavigatorAbility());
     }
     //vida normal, stamina normal, ataque normal, defesa normal, velocidade alta
     //maior velocidade
     public static CrewMember personagemUsopp(){
-        return new CrewMember("Usopp", 150, 200, 50, 150, 200, null);
+        return new CrewMember("Usopp", 150, 200, 50, 150, 200, new UsoppLieAbility());
     }
     //vida baixa, stamina alta, ataque baixo, defesa alta, velocidade alta
     //maior stamina e velocidade
@@ -35,27 +35,27 @@ public class CharacterCreator {
 
     //PERSONAGENS BOSS
     public static Enemy personagemCapitaoMorgan(){
-        return new Enemy("Capitão Morgan", 350, 200, 250, 200, 100, null);
+        return new Enemy("Capitão Morgan", 350, 200, 250, 200, 100, new MorganAxeHandAbility());
     }
     //primeiro boss, mais facil, so tem mais atk
 
     public static Enemy personagemBuggy(){
-        return new Enemy("Buggy", 450, 250, 200, 300, 150, null);
+        return new Enemy("Buggy", 450, 250, 200, 300, 150, new BuggyDodgeAbility());
     }
     //segundo boss, mais vida, mais stamina, mais defesa e velocidade
 
     public static Enemy personagemCapitaoKuro(){
-        return new Enemy("Capitão Kuro", 500, 300, 250, 300, 200, null);
+        return new Enemy("Capitão Kuro", 500, 300, 250, 300, 200, new KuroDoubleAttackAbility());
     }
     //mais vida, stamina, atk e velocidade
 
     public static Enemy personagemDonKrieg(){
-        return new Enemy("Don Krieg", 600, 250, 300, 300, 100, null);
+        return new Enemy("Don Krieg", 600, 250, 300, 300, 100, new DonKriegGoldArmorAbility());
     }
     //mais tank, mais vida, atk e defesa
 
     public static Enemy personagemArlong(){
-        return new Enemy("Arlong", 800, 400, 400, 350, 300, null);
+        return new Enemy("Arlong", 800, 400, 400, 350, 300, new ArlongFishmanhAbility());
     }
     //boss final
 }

@@ -1,11 +1,11 @@
 package entities;
 
 public class Enemy extends Character {
-   private SpecialAbility habilidadeEspecial;
+   private CombatAbility habilidadeCombate;
 
-     public Enemy(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, SpecialAbility habilidadeEspecial){
+     public Enemy(String nome, int vida, int stamina , int ataque , int defesa , int velocidade, CombatAbility habilidadeCombate){
         super(nome, vida, stamina, ataque, defesa, velocidade);
-        this.habilidadeEspecial = habilidadeEspecial;
+        this.habilidadeCombate = habilidadeCombate;
      }
 
     @Override
@@ -18,11 +18,11 @@ public class Enemy extends Character {
     public void defender() {
     }
 
-   public SpecialAbility getHabilidadeEspecial() {
-      return habilidadeEspecial;
+   public CombatAbility getComAbility() {
+      return habilidadeCombate;
     }
 
-   public void setHabilidadeEspecial(SpecialAbility habilidadeEspecial) {
-      this.habilidadeEspecial = habilidadeEspecial;
+   public void setHabilidadeCombate(CombatAbility habilidadeCombate) {
+      this.habilidadeCombate = habilidadeCombate;
     }
 }
