@@ -39,6 +39,10 @@ public class BattleScreen {
         }
     }
 
+    public void upouNivel(String nomeJogador, int nivelPersonagem){
+        System.out.println("Parabens " + nomeJogador + ". Nivel do personagem: " + nivelPersonagem);
+    }
+
     public void esperarEnter() {
         System.out.print("\nPressione enter para continuar: ");
         leitor.nextLine();
