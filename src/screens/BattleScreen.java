@@ -1,5 +1,7 @@
 package screens;
+
 import java.util.*;
+import entities.Attack;
 
 public class BattleScreen {
     private Scanner leitor = new Scanner(System.in);
@@ -19,28 +21,68 @@ public class BattleScreen {
         }
     }
 
-    public void atributosBatalha(String nomeJogador, int vidaJogador, String nomeInimigo, int vidaInimigo){
+    public void atributosBatalha(String nomeJogador, int vidaJogador, String nomeInimigo, int vidaInimigo) {
         System.out.println("          Vida " + nomeJogador + ": " + vidaJogador);
         System.out.println("          Vida " + nomeInimigo + ": " + vidaInimigo);
         System.out.println("-------------------------------------");
     }
 
-    public void resultadoBatalha(boolean resultadoBatalha, String nomeGanhador){
-        if (resultadoBatalha){
+    public void resultadoBatalha(boolean resultadoBatalha, String nomeGanhador) {
+        if (resultadoBatalha) {
             System.out.println("-----FIM DE JOGO-----");
             System.out.println("\nPARABENS, VOCE VENCEU");
-            System.out.println( nomeGanhador + " FOI O VENCEDOR DA BATALHA");
+            System.out.println(nomeGanhador + " FOI O VENCEDOR DA BATALHA");
             System.out.println("\n---------------------");
         } else {
             System.out.println("-----------FIM DE JOGO----------");
             System.out.println("\nINFELIZMENTE VOCE FOI DERROTADO");
-            System.out.println( nomeGanhador + " FOI O VENCEDOR DA BATALHA");
+            System.out.println(nomeGanhador + " FOI O VENCEDOR DA BATALHA");
             System.out.println("\n--------------------------------");
         }
     }
 
-    public void upouNivel(String nomeJogador, int nivelPersonagem){
+    public void upouNivel(String nomeJogador, int nivelPersonagem) {
         System.out.println("Parabens " + nomeJogador + ". Nivel do personagem: " + nivelPersonagem);
+    }
+
+    public void exibirAtaques(ArrayList<Attack> listaAtaque) {
+        System.out.println("\nLista de Ataques: ");
+        for (int i = 0; i < listaAtaque.size(); i++) {
+            Attack ataque = listaAtaque.get(i);
+            System.out.println(i + " - " + ataque.getNome() + " | Poder: " + ataque.getPoder() + " | Usos: "
+                    + ataque.getUsosRestantes() + "/" + ataque.getUsosMaximos());
+        }
+    }
+
+    // vai retronar o indice do ataque escolhido
+    public int escolherAtaque() {
+        System.out.print("Escolha seu ataque (0 a 2): ");
+        int escolha = leitor.nextInt();
+        leitor.nextLine();
+        while (escolha < 0 || escolha > 2) {
+            System.out.println("Escolha um indice entre 0 e 2: ");
+            escolha = leitor.nextInt();
+            leitor.nextLine();
+        }
+        return escolha;
+    }
+
+    public void ataqueIndisponivel() {
+        System.out.println("\nAtaque indisponivel, tente outro");
+    }
+
+    public int defender() {
+        System.out.println("\n0 - Defender");
+        System.out.println("1 - Ignorar");
+        System.out.print("Defender ou ignorar (0 ou 1): ");
+        int escolha = leitor.nextInt();
+        leitor.nextLine();
+        while (escolha < 0 || escolha > 1) {
+            System.out.println("Escolha uma opcao valida: ");
+            escolha = leitor.nextInt();
+            leitor.nextLine();
+        }
+        return escolha;
     }
 
     public void esperarEnter() {

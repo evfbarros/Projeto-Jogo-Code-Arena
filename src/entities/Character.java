@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.ArrayList;
+
 public abstract class Character {
     protected String nome;
     protected int vida;
@@ -10,59 +12,59 @@ public abstract class Character {
     protected int defesa;
     protected int velocidade;
 
-    public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade){
+    public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade) {
         this.nome = nome;
-        this.vida = vida ;
+        this.vida = vida;
         this.vidaMaxima = vida;
         this.stamina = stamina;
-        this.staminaMaxima = stamina ;
+        this.staminaMaxima = stamina;
         this.ataque = ataque;
-        this.defesa= defesa;
-        this.velocidade = velocidade ;
+        this.defesa = defesa;
+        this.velocidade = velocidade;
     }
 
-    public abstract int atacar(Character alvo);
-    
-    public abstract void defender();
+    public abstract int atacar(int escolhaAtaque, Character alvo);
+
+    public abstract int defender(int dano);
 
     public int receberDano(int dano) {
-        if(dano >= vida){
+        if (dano >= vida) {
             vida = 0;
-        } else if( dano < vida){
-            vida = vida - dano ;
-        } 
+        } else if (dano < vida) {
+            vida = vida - dano;
+        }
         return vida;
     }
 
-    public int recuperarVida(int vidaRecuperada){
-        if((vida + vidaRecuperada) >= vidaMaxima) {
+    public int recuperarVida(int vidaRecuperada) {
+        if ((vida + vidaRecuperada) >= vidaMaxima) {
             vida = vidaMaxima;
-        } else if((vida + vidaRecuperada) < vidaMaxima ) {
+        } else if ((vida + vidaRecuperada) < vidaMaxima) {
             vida = vida + vidaRecuperada;
         }
         return vida;
     }
 
     public int recuperarStamina(int staminaRecuperada) {
-        if((stamina + staminaRecuperada) >= staminaMaxima){
-            stamina = staminaMaxima ;
-        } else if((stamina + staminaRecuperada) < staminaMaxima) {
+        if ((stamina + staminaRecuperada) >= staminaMaxima) {
+            stamina = staminaMaxima;
+        } else if ((stamina + staminaRecuperada) < staminaMaxima) {
             stamina = stamina + staminaRecuperada;
         }
-        return stamina ;
+        return stamina;
     }
 
     public int gastarStamina(int staminaGasta) {
-        if(staminaGasta >= stamina) {
+        if (staminaGasta >= stamina) {
             stamina = 0;
-        } else if(staminaGasta < stamina) {
-            stamina = stamina - staminaGasta ;
+        } else if (staminaGasta < stamina) {
+            stamina = stamina - staminaGasta;
         }
-        return stamina ;
+        return stamina;
     }
 
     public boolean estaVivo() {
-        return vida > 0 ;
+        return vida > 0;
     }
 
     public int getVida() {
@@ -128,5 +130,5 @@ public abstract class Character {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
 }

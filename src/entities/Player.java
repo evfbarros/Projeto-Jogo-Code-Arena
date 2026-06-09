@@ -6,22 +6,22 @@ public class Player {
     private double xpAtual = 0;
     private double xpUparNivel = 100;
 
-    public Player(CrewMember personagemAtual){
+    public Player(CrewMember personagemAtual) {
         this.personagemAtual = personagemAtual;
     }
 
-    public boolean ganharXP(double xpRecebido){
+    public boolean ganharXP(double xpRecebido) {
         xpAtual += xpRecebido;
-        
+
         boolean upou = false;
-        while(xpAtual >= xpUparNivel){
+        while (xpAtual >= xpUparNivel) {
             uparNivel();
             upou = true;
         }
         return upou;
     }
 
-    public void uparNivel(){
+    public void uparNivel() {
         xpAtual = xpAtual - xpUparNivel;
         nivelAtual += 1;
         xpUparNivel *= 1.5;

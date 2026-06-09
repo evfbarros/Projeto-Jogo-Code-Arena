@@ -18,7 +18,8 @@ public class GameManager {
     private QuestionScreen questionScreen;
     private ArrayList<Question> perguntasUsadas = new ArrayList<>();
 
-    public GameManager(Player pJogador, Character pInimigo, QuestionManager gerenciadorPergunta, BattleScreen battleScreen, QuestionScreen questionScreen) {
+    public GameManager(Player pJogador, Character pInimigo, QuestionManager gerenciadorPergunta,
+            BattleScreen battleScreen, QuestionScreen questionScreen) {
         this.pJogador = pJogador;
         this.pInimigo = pInimigo;
         this.gerenciadorPergunta = gerenciadorPergunta;
@@ -33,11 +34,11 @@ public class GameManager {
             CrewMember personagemPlayer = pJogador.getPersonagemAtual();
             Question questaoAtual;
 
-            // Loop até achar uma pergunta que ainda não foi usada
+            //Loop até achar uma pergunta que ainda não foi usada
             do {
                 questaoAtual = gerenciadorPergunta.questaoSorteada();
             } while (perguntasUsadas.contains(questaoAtual));
-            // Marca a pergunta como usada
+            //Marca a pergunta como usada
             perguntasUsadas.add(questaoAtual);
 
             battleScreen.exibirRodada(rodada);
@@ -47,25 +48,41 @@ public class GameManager {
 
             boolean resultado = questaoAtual.verificarResposta(resposta);
 
-            if (resultado){
-                int dano = personagemPlayer.atacar(pInimigo);
+            if (resultado) {
+                battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
+                int escolhaAtaque = battleScreen.escolherAtaque();
+                int dano = personagemPlayer.atacar(escolhaAtaque, pInimigo);
+                while (dano < 0) {
+                    battleScreen.ataqueIndisponivel();
+                    battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
+                    escolhaAtaque = battleScreen.escolherAtaque();
+                    dano = personagemPlayer.atacar(escolhaAtaque, pInimigo);
+                }
                 pInimigo.receberDano(dano);
                 battleScreen.resultadoRodada(rodada, true, personagemPlayer.getNome(), dano);
-                
-                //xp aleatorio apenas p teste, dps vamos implementar um sistema mais completo para o ganho de xp
+
+                //xp aleatorio apenas p teste, dps vamos implementar um sistema mais completo
+                //para o ganho de xp
                 boolean upou = pJogador.ganharXP(25);
 
-                if(upou){
+                if (upou) {
                     battleScreen.upouNivel(personagemPlayer.getNome(), pJogador.getNivelAtual());
                 }
 
             } else {
-                int dano = pInimigo.atacar(personagemPlayer);
-                personagemPlayer.receberDano(dano);
+                int dano = pInimigo.atacar(0, personagemPlayer); //tenho q atualizar os ataques dos inimgos
+                int defender = battleScreen.defender();
+                if (defender == 0) {
+                    dano = personagemPlayer.defender(dano);
+                    personagemPlayer.receberDano(dano);
+                } else {
+                    personagemPlayer.receberDano(dano);
+                }
                 battleScreen.resultadoRodada(rodada, false, pInimigo.getNome(), dano);
             }
 
-            battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), pInimigo.getNome(), pInimigo.getVida());
+            battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), pInimigo.getNome(),
+                    pInimigo.getVida());
             battleScreen.esperarEnter();
             battleScreen.limparTerminal();
 
