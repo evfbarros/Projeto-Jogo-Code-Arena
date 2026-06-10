@@ -1,13 +1,26 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Player {
     private CrewMember personagemAtual;
     private int nivelAtual = 1;
     private double xpAtual = 0;
     private double xpUparNivel = 100;
+    private ArrayList<CrewMember> tripulacao = new ArrayList<>();
 
     public Player(CrewMember personagemAtual) {
         this.personagemAtual = personagemAtual;
+        this.tripulacao.add(personagemAtual);
+    }
+
+    public void desbloquearPersonagem(CrewMember novoPersonagem) {
+        tripulacao.add(novoPersonagem);
+        System.out.println(novoPersonagem.getNome() + " entrou para a tripulacao!");
+    }
+
+    public ArrayList<CrewMember> getTripulacao() {
+        return tripulacao;
     }
 
     public boolean ganharXP(double xpRecebido) {

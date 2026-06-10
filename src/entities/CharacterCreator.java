@@ -104,4 +104,13 @@ public class CharacterCreator {
         return new Enemy("Arlong", 800, 400, 400, 350, 300, new ArlongFishmanhAbility(), ataquesArlong);
     }
     //boss final
+
+    public static Enemy personagemHelmeppo() {
+        ArrayList<Attack> ataquesHelmeppo = new ArrayList<>();
+        ataquesHelmeppo.add(new Attack(null, 0, 0));
+        ataquesHelmeppo.add(new Attack(null, 0, 0));
+        ataquesHelmeppo.add(new Attack(null, 0, 0));
+        return new Enemy(null, 0, 0, 0, 0, 0, null, ataquesHelmeppo);
+    }
+    // miniboss 1
 }
