@@ -4,6 +4,7 @@ import java.util.*;
 import logic.quiz.MultipleChoiceQuestion;
 import logic.quiz.Question;
 import logic.quiz.TrueFalseQuestion;
+import logic.quiz.OpenQuestion;
 
 public class QuestionScreen {
     private Scanner leitor = new Scanner(System.in);
@@ -16,6 +17,9 @@ public class QuestionScreen {
         } else if (questao instanceof TrueFalseQuestion) {
             TrueFalseQuestion verdadeiroFalso = (TrueFalseQuestion) questao; 
             mostrarVerdadeiroFalso(verdadeiroFalso);
+        } else if(questao instanceof OpenQuestion) {
+            OpenQuestion questaoAberta = (OpenQuestion) questao;
+            mostrarQuestaoAberta(questaoAberta);
         }
     }
 
@@ -32,6 +36,11 @@ public class QuestionScreen {
         System.out.println(questao.getEnunciado());
         System.out.print("Escolha entre V ou F:");
     }
+
+    private void mostrarQuestaoAberta(OpenQuestion questao) {
+        System.out.println(questao.getEnunciado());
+        System.out.print("Digite sua resposta: ");
+}
     
     public String leituraRespostaValida(Question questaoAtual){
         String resposta;
@@ -42,6 +51,9 @@ public class QuestionScreen {
             }
         } while (!questaoAtual.validarResposta(resposta));
         return resposta;
+    }
+    public void pedirResposta() {
+        System.out.print("Resposta: ");
     }
     
 }

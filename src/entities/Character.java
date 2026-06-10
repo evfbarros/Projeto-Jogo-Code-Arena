@@ -1,6 +1,5 @@
 package entities;
 
-import java.util.ArrayList;
 
 public abstract class Character {
     protected String nome;

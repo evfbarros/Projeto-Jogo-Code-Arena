@@ -80,16 +80,10 @@ public class GoogleSheetsQuestionLoader {
                                         gabaritoVF));
                         break;
                     
-                    case "OPEN":    
-                            questoes.add(
-            new OpenQuestion(
-                enunciado,
-                Difficulty.valueOf(colunas[2].toUpperCase()),
-                categoria,
-                colunas[4] // coluna com resposta correta
-            )
-        );
-        break;                
+                    case "OPEN":
+                        questoes.add(new OpenQuestion( enunciado,dificuldade,categoria, colunas[10].trim() ));
+                        break;
+
                     default:
                         System.out.println("Tipo de questão inválido: " + tipo);
                         break;

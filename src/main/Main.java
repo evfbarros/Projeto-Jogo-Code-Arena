@@ -1,7 +1,6 @@
 package main;
 
 import entities.CharacterCreator;
-import entities.CrewMember;
 import entities.Enemy;
 import entities.Player;
 import logic.game.GameManager;

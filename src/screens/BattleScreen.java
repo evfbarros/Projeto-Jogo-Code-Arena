@@ -103,4 +103,47 @@ public class BattleScreen {
             }
         }
     }
+
+    public int escolherAcaoEspecialOuResponder() {
+        System.out.println("\nO que deseja fazer?");
+        System.out.println("0 - Responder normalmente");
+        System.out.println("1 - Usar habilidade especial");
+        System.out.print("Escolha: ");
+
+        int escolha = leitor.nextInt();
+        leitor.nextLine();
+
+        while (escolha < 0 || escolha > 1) {
+            System.out.print("Escolha uma opcao valida: ");
+            escolha = leitor.nextInt();
+            leitor.nextLine();
+    }
+
+        return escolha;
+    }
+
+    public void staminaInsuficiente() {
+        System.out.println("Stamina insuficiente para usar habilidade especial.");
+    }
+
+    public void habilidadeUsada(String nome) {
+        System.out.println(nome + " usou sua habilidade especial!");
+    }
+
+    public void habilidadeNaoAplicavel() {
+        System.out.println("Essa habilidade nao pode ser usada nesta questao.");
+    }
+    public void responderNormalmente() {
+        System.out.println("Voce devera responder a questao normalmente.");
+        System.out.println("Escolha:");
+    }
+    public void respostaCorretaEscolhaAtaque() {
+        System.out.println("\nVoce acertou a questao, parabens!");
+        System.out.println("Escolha uma opcao de ataque:");
+    }
+
+    public void respostaErradaEscolhaDefesa() {
+        System.out.println("\nVoce errou a questao, que pena!");
+        System.out.println("Escolha uma opcao de defesa:");
+    }
 }

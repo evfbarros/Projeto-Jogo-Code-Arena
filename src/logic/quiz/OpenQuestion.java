@@ -1,5 +1,7 @@
 package logic.quiz;
 
+import java.text.Normalizer;
+
 public class OpenQuestion extends Question {
 
     private String respostaCorreta;
@@ -9,22 +11,32 @@ public class OpenQuestion extends Question {
         this.respostaCorreta = respostaCorreta;
     }
 
-    /**
-     * Método que valida a resposta do usuário.
-     * Retorna true se a resposta do usuário estiver correta.
-     */
     @Override
     public boolean validarResposta(String respostaUsuario) {
-        return respostaUsuario.trim().equalsIgnoreCase(respostaCorreta);
+        return respostaUsuario != null && !respostaUsuario.trim().isEmpty();
     }
 
-    /**
-     * Método complementar para compatibilidade com a lógica de verificação de respostas.
-     */
     @Override
     public boolean verificarResposta(String respostaUsuario) {
-        return validarResposta(respostaUsuario);
-    }
+        if (respostaUsuario == null || respostaCorreta == null) {
+            return false;
+        }
+
+        String respostaUsuarioNormalizada = normalizarTexto(respostaUsuario);
+        String respostaCorretaNormalizada = normalizarTexto(respostaCorreta);
+
+        return respostaUsuarioNormalizada.equals(respostaCorretaNormalizada);
+}
+
+    private String normalizarTexto(String texto) {
+         String textoNormalizado = Normalizer.normalize(texto, Normalizer.Form.NFD);
+
+        return textoNormalizado
+            .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "")
+            .trim()
+            .toLowerCase()
+            .replaceAll("\\s+", " ");
+}
 
     public String getRespostaCorreta() {
         return respostaCorreta;
