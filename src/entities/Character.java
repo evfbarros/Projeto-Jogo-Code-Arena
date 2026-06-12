@@ -1,5 +1,7 @@
 package entities;
 
+import exceptions.AtaqueIndisponivelException;
+import exceptions.AtaqueInvalidoException;
 
 public abstract class Character {
     protected String nome;
@@ -22,7 +24,7 @@ public abstract class Character {
         this.velocidade = velocidade;
     }
 
-    public abstract int atacar(int escolhaAtaque, Character alvo);
+    public abstract int atacar(int escolhaAtaque, Character alvo) throws AtaqueInvalidoException, AtaqueIndisponivelException;
 
     public abstract int defender(int dano);
 

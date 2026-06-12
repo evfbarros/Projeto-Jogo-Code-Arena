@@ -1,5 +1,6 @@
-package entities;
+package entities.ability;
 
+import entities.Character;
 import logic.quiz.Question;
 
 public class NamiNavigatorAbility implements SpecialAbility {

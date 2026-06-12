@@ -57,30 +57,43 @@ public class BattleScreen {
     // vai retronar o indice do ataque escolhido
     public int escolherAtaque() {
         System.out.print("Escolha seu ataque (0 a 2): ");
-        int escolha = leitor.nextInt();
-        leitor.nextLine();
+        int escolha = -1;
+        
+
         while (escolha < 0 || escolha > 2) {
-            System.out.println("Escolha um indice entre 0 e 2: ");
-            escolha = leitor.nextInt();
-            leitor.nextLine();
+            try{
+                escolha = leitor.nextInt();
+                leitor.nextLine();
+                if(escolha < 0 || escolha > 2){
+                    escolha = -1;
+                    System.out.print("Escolha um ataque valido (0 a 2): ");
+                }
+            } catch (InputMismatchException e){
+                System.out.print("Escolha um ataque valido (0 a 2): ");
+                leitor.nextLine();
+            }
         }
         return escolha;
-    }
-
-    public void ataqueIndisponivel() {
-        System.out.println("\nAtaque indisponivel, tente outro");
     }
 
     public int defender() {
         System.out.println("\n0 - Defender");
         System.out.println("1 - Ignorar");
         System.out.print("Defender ou ignorar (0 ou 1): ");
-        int escolha = leitor.nextInt();
-        leitor.nextLine();
+        int escolha = -1;
+
         while (escolha < 0 || escolha > 1) {
-            System.out.println("Escolha uma opcao valida: ");
-            escolha = leitor.nextInt();
-            leitor.nextLine();
+            try{
+                escolha = leitor.nextInt();
+                leitor.nextLine();
+                if(escolha < 0 || escolha > 1){
+                    escolha = -1;
+                    System.out.print("Escolha uma opcao valida (0 ou 1): ");
+                }
+            } catch (InputMismatchException e){
+                System.out.print("Escolha uma opçao valida (0 ou 1): ");
+                leitor.nextLine();
+            }
         }
         return escolha;
     }
@@ -110,15 +123,21 @@ public class BattleScreen {
         System.out.println("1 - Usar habilidade especial");
         System.out.print("Escolha: ");
 
-        int escolha = leitor.nextInt();
-        leitor.nextLine();
+        int escolha = -1;
 
         while (escolha < 0 || escolha > 1) {
-            System.out.print("Escolha uma opcao valida: ");
-            escolha = leitor.nextInt();
-            leitor.nextLine();
+            try{
+                escolha = leitor.nextInt();
+                leitor.nextLine();
+                if(escolha < 0 || escolha > 1){
+                    escolha = -1;
+                    System.out.print("Escolha uma opcao valida (0 ou 1): ");
+                }
+            } catch (InputMismatchException e){
+                System.out.print("Escolha uma opçao valida (0 ou 1): ");
+                leitor.nextLine();
+            }
     }
-
         return escolha;
     }
 
@@ -135,7 +154,6 @@ public class BattleScreen {
     }
     public void responderNormalmente() {
         System.out.println("Voce devera responder a questao normalmente.");
-        System.out.println("Escolha:");
     }
     public void respostaCorretaEscolhaAtaque() {
         System.out.println("\nVoce acertou a questao, parabens!");

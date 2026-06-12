@@ -2,6 +2,8 @@ package entities;
 
 import java.util.ArrayList;
 
+import entities.ability.CombatAbility;
+
 public class Enemy extends Character {
      private CombatAbility habilidadeCombate;
      private ArrayList<Attack> listaAtaque;

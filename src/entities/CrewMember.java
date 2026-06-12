@@ -2,6 +2,10 @@ package entities;
 
 import java.util.*;
 
+import entities.ability.SpecialAbility;
+import exceptions.AtaqueIndisponivelException;
+import exceptions.AtaqueInvalidoException;
+
 public class CrewMember extends Character {
     private SpecialAbility habilidadeEspecial;
     private ArrayList<Attack> listaAtaque;
@@ -14,16 +18,20 @@ public class CrewMember extends Character {
     }
 
     @Override
-    public int atacar(int indiceAtaque, Character alvo) {
+    public int atacar(int indiceAtaque, Character alvo) throws AtaqueInvalidoException, AtaqueIndisponivelException {
+        if(indiceAtaque < 0 || indiceAtaque >= listaAtaque.size()){
+            throw new AtaqueInvalidoException(" Escolha um ataque valido.");
+        }
+        
         Attack ataqueEscolhido = listaAtaque.get(indiceAtaque);
-        boolean podeUsar = ataqueEscolhido.podeUsar();
-        if (podeUsar) {
-            int dano = ataqueEscolhido.calcularDano(this, alvo);
+
+        if(!ataqueEscolhido.podeUsar()){
+            throw new AtaqueIndisponivelException(" Ataque indisponivel, escolha outro.");
+        }
+        
+        int dano = ataqueEscolhido.calcularDano(this, alvo);
             ataqueEscolhido.usar();
             return dano;
-        } else {
-            return -1;
-        }
     }
 
     //ver se vou criar outra classe abstrata para crewmember e enemy herdarem pq ta tndo codigo replicado

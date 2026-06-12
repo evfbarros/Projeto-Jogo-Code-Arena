@@ -1,7 +1,8 @@
-package entities;
+package entities.ability;
 
 import java.util.Random;
 
+import entities.Character;
 import logic.quiz.MultipleChoiceQuestion;
 import logic.quiz.Question;
 import logic.quiz.TrueFalseQuestion;

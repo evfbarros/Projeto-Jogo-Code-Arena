@@ -1,4 +1,4 @@
-package entities;
+package entities.ability;
 
 public interface CombatAbility {
     // Modifica o dano que o inimigo vai causar

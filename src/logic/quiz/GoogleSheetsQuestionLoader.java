@@ -93,9 +93,7 @@ public class GoogleSheetsQuestionLoader {
             leitor.close();
 
         } catch (Exception e) {
-            // System.out.println("Erro ao carregar questões: " + e.getMessage());
-            // isso aq so e p indicar o erro, quando tiver todas as questoes no banco vai
-            // sumir
+            System.out.println("Erro ao carregar questões: " + e.getMessage());
         }
 
         return questoes;

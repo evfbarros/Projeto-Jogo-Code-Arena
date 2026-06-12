@@ -1,4 +1,4 @@
-package entities;
+package entities.ability;
 
 public class KuroDoubleAttackAbility implements CombatAbility {
 

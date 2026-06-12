@@ -4,6 +4,17 @@ import java.util.*;
 //Criacao inicial dos personagens principais, ver possiveis alteracoes diante da mecanica
 //do jogo e da dificuldade de enfrentar os inimigos
 
+import entities.ability.ArlongFishmanhAbility;
+import entities.ability.BuggyDodgeAbility;
+import entities.ability.DonKriegGoldArmorAbility;
+import entities.ability.KuroDoubleAttackAbility;
+import entities.ability.LuffyGuessAbility;
+import entities.ability.MorganAxeHandAbility;
+import entities.ability.NamiNavigatorAbility;
+import entities.ability.SanjiCookAbility;
+import entities.ability.UsoppLieAbility;
+import entities.ability.ZoroCutAbility;
+
 public class CharacterCreator {
 
     // ERSONAGENS JOGAVEIS

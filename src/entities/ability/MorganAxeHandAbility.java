@@ -1,4 +1,4 @@
-package entities;
+package entities.ability;
 
 public class MorganAxeHandAbility implements CombatAbility {
 

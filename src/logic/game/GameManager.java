@@ -2,8 +2,6 @@ package logic.game;
 
 import java.util.ArrayList;
 
-import entities.SpecialAbility;
-
 import entities.Character;
 import entities.CrewMember;
 import entities.Enemy;
@@ -12,6 +10,9 @@ import logic.quiz.QuestionManager;
 import screens.BattleScreen;
 import screens.QuestionScreen;
 import entities.Player;
+import entities.ability.SpecialAbility;
+import exceptions.AtaqueIndisponivelException;
+import exceptions.AtaqueInvalidoException;
 
 public class GameManager {
     private Player pJogador;
@@ -20,7 +21,7 @@ public class GameManager {
     private BattleScreen battleScreen;
     private QuestionScreen questionScreen;
     private ArrayList<Question> perguntasUsadas = new ArrayList<>();
-    private static final int CUSTO_HABILIDADE_ESPECIAL = 40;
+    private static final int CUSTO_HABILIDADE_ESPECIAL = 100;
 
     public GameManager(Player pJogador, Character pInimigo, QuestionManager gerenciadorPergunta,
             BattleScreen battleScreen, QuestionScreen questionScreen) {
@@ -99,13 +100,23 @@ public class GameManager {
                 battleScreen.respostaCorretaEscolhaAtaque();
                 battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
                 int escolhaAtaque = battleScreen.escolherAtaque();
-                int dano = personagemPlayer.atacar(escolhaAtaque, pInimigo);
+                int dano = -1;
+
                 while (dano < 0) {
-                    battleScreen.ataqueIndisponivel();
-                    battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
-                    escolhaAtaque = battleScreen.escolherAtaque();
-                    dano = personagemPlayer.atacar(escolhaAtaque, pInimigo);
+                    try{
+                        dano = personagemPlayer.atacar(escolhaAtaque, pInimigo);
+                    } catch (AtaqueInvalidoException e){
+                        System.out.println("Erro : " + e.getMessage());
+                        battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
+                        escolhaAtaque = battleScreen.escolherAtaque();
+                    } catch (AtaqueIndisponivelException e){
+                        System.out.println("Erro: " + e.getMessage());
+                        battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
+                        escolhaAtaque = battleScreen.escolherAtaque();
+                    }
+                    // battleScreen.ataqueIndisponivel(); nao vai precisar
                 }
+
                 if (pInimigo instanceof Enemy) {
                     Enemy inimigo = (Enemy) pInimigo;
                     dano = inimigo.getComAbility().modificarDanoRecebido(dano, rodada);
@@ -132,8 +143,16 @@ public class GameManager {
                 int danoTotal = 0; // Guarda a soma dos danos da rodada
 
                 for (int i = 0; i < quantidadeAtaques; i++) { // Repete de acordo com a quantidade de ataques
-                    int dano = pInimigo.atacar(0, personagemPlayer); // Calcula o dano base
-
+                    int dano = 0;
+                    
+                    try{
+                        dano = pInimigo.atacar(0, personagemPlayer); // Calcula o dano base
+                    } catch (AtaqueInvalidoException e){
+                        System.out.println("Erro : " + e.getMessage());
+                    } catch (AtaqueIndisponivelException e){
+                        System.out.println("Erro " + e.getMessage());
+                    }
+                    
                     if (pInimigo instanceof Enemy) { // Verifica se possui habilidade de combate
                         Enemy inimigo = (Enemy) pInimigo; // Converte para Enemy
                         dano = inimigo.getComAbility().modificarDano(dano, rodada); // Aplica habilidade ofensiva
