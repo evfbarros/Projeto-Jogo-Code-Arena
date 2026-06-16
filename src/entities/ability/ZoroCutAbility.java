@@ -20,7 +20,7 @@ public class ZoroCutAbility implements SpecialAbility {
             // Remove 3 alternativas erradas da questão.
             // A alternativa correta nunca é removida.
             multiplaEscolha.cortarAlternativasErradas(3);
-
+            
             // Retorna true para indicar que a habilidade foi usada com sucesso.
             return true;
         }

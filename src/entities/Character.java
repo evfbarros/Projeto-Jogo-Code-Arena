@@ -12,8 +12,9 @@ public abstract class Character {
     protected int ataque;
     protected int defesa;
     protected int velocidade;
+    protected double xpConcedido;
 
-    public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade) {
+    public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade, double xpConcedido) {
         this.nome = nome;
         this.vida = vida;
         this.vidaMaxima = vida;
@@ -22,6 +23,7 @@ public abstract class Character {
         this.ataque = ataque;
         this.defesa = defesa;
         this.velocidade = velocidade;
+        this.xpConcedido = xpConcedido;
     }
 
     public abstract int atacar(int escolhaAtaque, Character alvo) throws AtaqueInvalidoException, AtaqueIndisponivelException;
@@ -132,4 +134,11 @@ public abstract class Character {
         this.nome = nome;
     }
 
+    public double getXpConcedido(){
+        return xpConcedido;
+    }
+
+    public void setXpConcedido(int xpConcedido){
+        this.xpConcedido = xpConcedido;
+    }
 }

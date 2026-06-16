@@ -8,6 +8,7 @@ import entities.Enemy;
 import logic.quiz.Question;
 import logic.quiz.QuestionManager;
 import screens.BattleScreen;
+import screens.CharacterSelectionScreen;
 import screens.QuestionScreen;
 import entities.Player;
 import entities.ability.SpecialAbility;
@@ -20,16 +21,18 @@ public class GameManager {
     private QuestionManager gerenciadorPergunta;
     private BattleScreen battleScreen;
     private QuestionScreen questionScreen;
+    private CharacterSelectionScreen selectionScreen;
     private ArrayList<Question> perguntasUsadas = new ArrayList<>();
     private static final int CUSTO_HABILIDADE_ESPECIAL = 100;
 
     public GameManager(Player pJogador, Character pInimigo, QuestionManager gerenciadorPergunta,
-            BattleScreen battleScreen, QuestionScreen questionScreen) {
+            BattleScreen battleScreen, QuestionScreen questionScreen, CharacterSelectionScreen selectionScreen) {
         this.pJogador = pJogador;
         this.pInimigo = pInimigo;
         this.gerenciadorPergunta = gerenciadorPergunta;
         this.battleScreen = battleScreen;
         this.questionScreen = questionScreen;
+        this.selectionScreen = selectionScreen;
     }
         private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {
             if (personagemPlayer.getStamina() < CUSTO_HABILIDADE_ESPECIAL) { // Verifica se há stamina suficiente
@@ -65,6 +68,10 @@ public class GameManager {
     public void iniciarJogo() {
         int rodada = 1;
 
+        selectionScreen.exibirPersonagens(pJogador.getTripulacao());
+        int escolha = selectionScreen.escolhaPersonagem(pJogador.getTripulacao());
+        pJogador.selecionarPersonagem(escolha);
+        
         while (pJogador.getPersonagemAtual().estaVivo() && pInimigo.estaVivo()) {
             CrewMember personagemPlayer = pJogador.getPersonagemAtual();
             Question questaoAtual;
@@ -122,15 +129,13 @@ public class GameManager {
                     dano = inimigo.getComAbility().modificarDanoRecebido(dano, rodada);
                 } // Isso é especificamente para a habilidade do Don Krieg que é defensiva
                 pInimigo.receberDano(dano);
-                battleScreen.resultadoRodada(rodada, true, personagemPlayer.getNome(), dano);
-
-                //xp aleatorio apenas p teste, dps vamos implementar um sistema mais completo
-                //para o ganho de xp
-                boolean upou = pJogador.ganharXP(25);
-
-                if (upou) {
-                    battleScreen.upouNivel(personagemPlayer.getNome(), pJogador.getNivelAtual());
+                if(!pInimigo.estaVivo()){
+                    boolean upou = personagemPlayer.ganharXP(pInimigo.getXpConcedido());
+                    if (upou) {
+                        battleScreen.upouNivel(personagemPlayer.getNome(), personagemPlayer.getNivelAtual());
+                    }
                 }
+                battleScreen.resultadoRodada(rodada, true, personagemPlayer.getNome(), dano);
 
             } else {
                 int quantidadeAtaques = 1; // Por padrão, o inimigo ataca apenas uma vez

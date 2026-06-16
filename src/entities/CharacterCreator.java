@@ -23,7 +23,7 @@ public class CharacterCreator {
         ataquesLuffy.add(new Attack("Gomu Gomu no Pistol", 50, 5));
         ataquesLuffy.add(new Attack("Gomu Gomu no Gatling", 75, 3));
         ataquesLuffy.add(new Attack("Gomu Gomu no Ono", 100, 1));
-        return new CrewMember("Luffy", 250, 150, 100, 100, 100, new LuffyGuessAbility(), ataquesLuffy);
+        return new CrewMember("Luffy", 250, 150, 100, 100, 100, 0, new LuffyGuessAbility(), ataquesLuffy);
     }
 
     //criacao dos ataques esta basica ainda, ver melhor quando for testando e
@@ -32,40 +32,40 @@ public class CharacterCreator {
     //maior stamina
     public static CrewMember personagemZoro() {
         ArrayList<Attack> ataquesZoro = new ArrayList<>();
-        ataquesZoro.add(new Attack(null, 0, 0));
-        ataquesZoro.add(new Attack(null, 0, 0));
-        ataquesZoro.add(new Attack(null, 0, 0));
-        return new CrewMember("Zoro", 300, 100, 150, 150, 100, new ZoroCutAbility(), ataquesZoro);
+        ataquesZoro.add(new Attack("Oni Giri", 50, 5));
+        ataquesZoro.add(new Attack("Tora Gari", 75, 3));
+        ataquesZoro.add(new Attack("Santoryu Ougi: Sanzen Sekai", 100, 1));
+        return new CrewMember("Zoro", 300, 100, 150, 150, 100, 0,  new ZoroCutAbility(), ataquesZoro);
     }
 
     //vida alta, stamina normal, ataque alto, defesa alta, velocidade normal
     //maior vida, atk e defesa
     public static CrewMember personagemSanji() {
         ArrayList<Attack> ataquesSanji = new ArrayList<>();
-        ataquesSanji.add(new Attack(null, 0, 0));
-        ataquesSanji.add(new Attack(null, 0, 0));
-        ataquesSanji.add(new Attack(null, 0, 0));
-        return new CrewMember("Sanji", 250, 150, 100, 150, 100, new SanjiCookAbility(), ataquesSanji);
+        ataquesSanji.add(new Attack("Collier Shoot", 0, 0));
+        ataquesSanji.add(new Attack("Mouton Shot", 0, 0));
+        ataquesSanji.add(new Attack("Concassé", 0, 0));
+        return new CrewMember("Sanji", 250, 150, 100, 150, 100, 0, new SanjiCookAbility(), ataquesSanji);
     }
 
     //vida normal, stamina alta, ataque normal, defesa alta, velocidade normal
     //maior stamina e defesa
     public static CrewMember personagemNami() {
         ArrayList<Attack> ataquesNami = new ArrayList<>();
-        ataquesNami.add(new Attack(null, 0, 0));
-        ataquesNami.add(new Attack(null, 0, 0));
-        ataquesNami.add(new Attack(null, 0, 0));
-        return new CrewMember("Nami", 200, 100, 100, 100, 150, new NamiNavigatorAbility(), ataquesNami);
+        ataquesNami.add(new Attack("Nami Punch", 50, 0));
+        ataquesNami.add(new Attack("Bo Staff Strike", 75, 0));
+        ataquesNami.add(new Attack("Nami Kick", 100, 0));
+        return new CrewMember("Nami", 200, 100, 100, 100, 150, 0, new NamiNavigatorAbility(), ataquesNami);
     }
 
     //vida normal, stamina normal, ataque normal, defesa normal, velocidade alta
     //maior velocidade
     public static CrewMember personagemUsopp() {
         ArrayList<Attack> ataquesUsopp = new ArrayList<>();
-        ataquesUsopp.add(new Attack(null, 0, 0));
-        ataquesUsopp.add(new Attack(null, 0, 0));
-        ataquesUsopp.add(new Attack(null, 0, 0));
-        return new CrewMember("Usopp", 150, 200, 50, 150, 200, new UsoppLieAbility(), ataquesUsopp);
+        ataquesUsopp.add(new Attack("Tamago Boshi (Egg Star)", 50, 5));
+        ataquesUsopp.add(new Attack("Tabasco Boshi (Tabasco Star)", 75, 3));
+        ataquesUsopp.add(new Attack("Usopp Hammer", 100, 1));
+        return new CrewMember("Usopp", 150, 200, 50, 150, 200, 0, new UsoppLieAbility(), ataquesUsopp);
     }
     //vida baixa, stamina alta, ataque baixo, defesa alta, velocidade alta
     //maior stamina e velocidade
@@ -76,7 +76,7 @@ public class CharacterCreator {
         ataquesCapitaoMorgan.add(new Attack(null, 0, 0));
         ataquesCapitaoMorgan.add(new Attack(null, 0, 0));
         ataquesCapitaoMorgan.add(new Attack(null, 0, 0));
-        return new Enemy("Capitão Morgan", 350, 200, 250, 200, 100, new MorganAxeHandAbility(), ataquesCapitaoMorgan);
+        return new Enemy("Capitão Morgan", 350, 200, 250, 200, 100, 100, new MorganAxeHandAbility(), ataquesCapitaoMorgan);
     }
     //primeiro boss, mais facil, so tem mais atk
 
@@ -85,7 +85,7 @@ public class CharacterCreator {
         ataquesBuggy.add(new Attack(null, 0, 0));
         ataquesBuggy.add(new Attack(null, 0, 0));
         ataquesBuggy.add(new Attack(null, 0, 0));
-        return new Enemy("Buggy", 450, 250, 200, 300, 150, new BuggyDodgeAbility(), ataquesBuggy);
+        return new Enemy("Buggy", 450, 250, 200, 300, 150, 150, new BuggyDodgeAbility(), ataquesBuggy);
     }
     //segundo boss, mais vida, mais stamina, mais defesa e velocidade
 
@@ -94,7 +94,7 @@ public class CharacterCreator {
         ataquesCapitaoKuro.add(new Attack(null, 0, 0));
         ataquesCapitaoKuro.add(new Attack(null, 0, 0));
         ataquesCapitaoKuro.add(new Attack(null, 0, 0));
-        return new Enemy("Capitão Kuro", 500, 300, 250, 300, 200, new KuroDoubleAttackAbility(), ataquesCapitaoKuro);
+        return new Enemy("Capitão Kuro", 500, 300, 250, 300, 200, 200, new KuroDoubleAttackAbility(), ataquesCapitaoKuro);
     }
     //mais vida, stamina, atk e velocidade
 
@@ -103,7 +103,7 @@ public class CharacterCreator {
         ataquesDonKrieg.add(new Attack(null, 0, 0));
         ataquesDonKrieg.add(new Attack(null, 0, 0));
         ataquesDonKrieg.add(new Attack(null, 0, 0));
-        return new Enemy("Don Krieg", 600, 250, 300, 300, 100, new DonKriegGoldArmorAbility(), ataquesDonKrieg);
+        return new Enemy("Don Krieg", 600, 250, 300, 300, 100, 250, new DonKriegGoldArmorAbility(), ataquesDonKrieg);
     }
     //mais tank, mais vida, atk e defesa
 
@@ -112,7 +112,7 @@ public class CharacterCreator {
         ataquesArlong.add(new Attack(null, 0, 0));
         ataquesArlong.add(new Attack(null, 0, 0));
         ataquesArlong.add(new Attack(null, 0, 0));
-        return new Enemy("Arlong", 800, 400, 400, 350, 300, new ArlongFishmanhAbility(), ataquesArlong);
+        return new Enemy("Arlong", 800, 400, 400, 350, 300, 400, new ArlongFishmanhAbility(), ataquesArlong);
     }
     //boss final
 
@@ -121,7 +121,7 @@ public class CharacterCreator {
         ataquesHelmeppo.add(new Attack(null, 0, 0));
         ataquesHelmeppo.add(new Attack(null, 0, 0));
         ataquesHelmeppo.add(new Attack(null, 0, 0));
-        return new Enemy(null, 0, 0, 0, 0, 0, null, ataquesHelmeppo);
+        return new Enemy(null, 0, 0, 0, 0, 0, 25, null, ataquesHelmeppo);
     }
     // miniboss 1
 }

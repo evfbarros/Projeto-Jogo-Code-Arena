@@ -1,8 +1,8 @@
 package entities;
 
 public class NPC extends Character {
-    public NPC(String nome, int vida, int stamina, int ataque, int defesa, int velocidade) {
-        super(nome, vida, stamina, ataque, defesa, velocidade);
+    public NPC(String nome, int vida, int stamina, int ataque, int defesa, int velocidade, double xpConcedido) {
+        super(nome, vida, stamina, ataque, defesa, velocidade, xpConcedido);
     }
 
     @Override

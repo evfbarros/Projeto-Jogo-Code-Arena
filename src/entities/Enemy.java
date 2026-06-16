@@ -8,9 +8,9 @@ public class Enemy extends Character {
      private CombatAbility habilidadeCombate;
      private ArrayList<Attack> listaAtaque;
 
-     public Enemy(String nome, int vida, int stamina, int ataque, int defesa, int velocidade,
+     public Enemy(String nome, int vida, int stamina, int ataque, int defesa, int velocidade, double xpConcedido,
                CombatAbility habilidadeCombate, ArrayList<Attack> listaAtaque) {
-          super(nome, vida, stamina, ataque, defesa, velocidade);
+          super(nome, vida, stamina, ataque, defesa, velocidade, xpConcedido);
           this.habilidadeCombate = habilidadeCombate;
           this.listaAtaque = listaAtaque;
      }
