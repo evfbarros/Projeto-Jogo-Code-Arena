@@ -41,6 +41,10 @@ public class Attack {
         }
     }
 
+    public void resetarAtaque(){
+        usosRestantes = usosMaximos;
+    }
+    
     public String getNome() {
         return nome;
     }

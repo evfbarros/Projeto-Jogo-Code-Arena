@@ -14,6 +14,8 @@ import entities.Player;
 import entities.ability.SpecialAbility;
 import exceptions.AtaqueIndisponivelException;
 import exceptions.AtaqueInvalidoException;
+import exceptions.DefesaIndisponivelException;
+import exceptions.DesvioIndisponivelException;
 
 public class GameManager {
     private Player pJogador;
@@ -166,13 +168,37 @@ public class GameManager {
                     danoTotal += dano; // Soma ao dano total
                 }
                 battleScreen.respostaErradaEscolhaDefesa();
-                int defender = battleScreen.defender(); // Pergunta se o jogador quer defender
+                int defender = battleScreen.defender(personagemPlayer.getDefesasRestantes(), personagemPlayer.getDefesasMaximas(),
+                 personagemPlayer.getDesviosRestantes(), personagemPlayer.getDesviosMaximos()); // Pergunta se o jogador quer defender
 
                 if (defender == 0) { // Se escolher defender
-                    danoTotal = personagemPlayer.defender(danoTotal); // Reduz o dano
-                }
-
-                personagemPlayer.receberDano(danoTotal); // Aplica o dano final
+                    try{ 
+                        danoTotal = personagemPlayer.defender(danoTotal); // Reduz o dano
+                        personagemPlayer.usarDefesa();
+                        personagemPlayer.receberDano(danoTotal);
+                    } catch (DefesaIndisponivelException e){
+                        System.out.println("Erro: " + e.getMessage());
+                        personagemPlayer.receberDano(danoTotal);
+                    }
+                } else if (defender == 1){
+                    try{
+                        boolean desviou = personagemPlayer.desviou();
+                    if(desviou){
+                        battleScreen.desviou(); // toma 0 de dano
+                        danoTotal = 0;
+                        personagemPlayer.usarDesvio();
+                    } else {
+                        personagemPlayer.usarDesvio();
+                        personagemPlayer.receberDano(danoTotal);   
+                        battleScreen.naoDesviou(); // vai tomar o dano completo pq falhou em desviar
+                    }
+                    } catch (DesvioIndisponivelException e){
+                        System.out.println("Erro: " + e.getMessage());
+                        personagemPlayer.receberDano(danoTotal);
+                    }
+                } else {
+                    personagemPlayer.receberDano(danoTotal); // Aplica o dano final
+                }   
 
                 battleScreen.resultadoRodada(rodada, false, pInimigo.getNome(), danoTotal); // Mostra resultado
             }

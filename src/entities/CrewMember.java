@@ -5,6 +5,8 @@ import java.util.*;
 import entities.ability.SpecialAbility;
 import exceptions.AtaqueIndisponivelException;
 import exceptions.AtaqueInvalidoException;
+import exceptions.DefesaIndisponivelException;
+import exceptions.DesvioIndisponivelException;
 
 public class CrewMember extends Character {
     private SpecialAbility habilidadeEspecial;
@@ -12,12 +14,20 @@ public class CrewMember extends Character {
     private int nivelAtual = 1;
     private double xpAtual = 0;
     private double xpUparNivel = 100;
+    private int defesasMaximas;
+    private int defesasRestantes;
+    private int desviosMaximos;
+    private int desviosRestantes;
 
     public CrewMember(String nome, int vida, int stamina, int ataque, int defesa, int velocidade, double xpConcedido,
             SpecialAbility habilidadeEspecial, ArrayList<Attack> listaAtaque) {
         super(nome, vida, stamina, ataque, defesa, velocidade, xpConcedido);
         this.habilidadeEspecial = habilidadeEspecial;
         this.listaAtaque = listaAtaque;
+        this.defesasMaximas = 3;
+        this.defesasRestantes = this.defesasMaximas;
+        this.desviosMaximos = 2;
+        this.desviosRestantes = this.desviosMaximos;
     }
 
     @Override
@@ -37,13 +47,63 @@ public class CrewMember extends Character {
             return dano;
     }
 
+    public void resetarAtaques(){
+        for(Attack a : listaAtaque){
+            a.resetarAtaque();
+        }
+    }
+
+    public boolean desviou() throws DesvioIndisponivelException {
+        if(!podeDesviar()){
+            throw new DesvioIndisponivelException("Voce nao pode desviar no momento");
+        }
+        double desvio = (double) velocidade / (velocidade + 150);
+        double chance = Math.random();
+        System.out.println("Chance: " + chance);
+        
+        return desvio > chance;
+    }
+
+    public boolean podeDesviar(){
+        return desviosRestantes > 0;
+    }
+
+    public void usarDesvio(){
+        if(podeDesviar()){
+            desviosRestantes--;
+        }
+    }
+
+    public void resetarDesvios(){
+        desviosRestantes = desviosMaximos;
+    }
+    
     @Override
-    public int defender(int dano) {
+    public int defender(int dano) throws DefesaIndisponivelException {
+        
+        if(!podeDefender()){
+            throw new DefesaIndisponivelException("Voce nao pode defender no momento");
+        }
+        
         dano = dano - (defesa / 2);
         if (dano < 10) {
             dano = 10;
         }
         return dano;
+    }
+
+    public boolean podeDefender(){
+        return defesasRestantes > 0;
+    }
+
+    public void usarDefesa(){
+        if(podeDefender()){
+            defesasRestantes--;
+        }
+    }
+
+    public void resetarDefesa(){
+        defesasRestantes = defesasMaximas;
     }
 
     public boolean ganharXP(double xpRecebido) {
@@ -114,5 +174,37 @@ public class CrewMember extends Character {
 
     public void setXpUparNivel(double xpUparNivel) {
         this.xpUparNivel = xpUparNivel;
+    }
+
+    public int getDefesasRestantes(){
+        return defesasRestantes;
+    }
+
+    public void setDefesasRestantes(int defesasRestantes) {
+        this.defesasRestantes = defesasRestantes;
+    }
+
+    public int getDefesasMaximas() {
+        return defesasMaximas;
+    }
+
+    public void setDefesasMaximas(int defesasMaximas) {
+        this.defesasMaximas = defesasMaximas;
+    }
+
+    public int getDesviosMaximos() {
+        return desviosMaximos;
+    }
+
+    public void setDesviosMaximos(int desviosMaximos) {
+        this.desviosMaximos = desviosMaximos;
+    }
+
+    public int getDesviosRestantes() {
+        return desviosRestantes;
+    }
+
+    public void setDesviosRestantes(int desviosRestantes) {
+        this.desviosRestantes = desviosRestantes;
     }
 }
