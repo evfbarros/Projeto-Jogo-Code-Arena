@@ -2,6 +2,7 @@ package entities;
 
 import exceptions.AtaqueIndisponivelException;
 import exceptions.AtaqueInvalidoException;
+import exceptions.DefesaIndisponivelException;
 
 public abstract class Character {
     protected String nome;
@@ -28,7 +29,7 @@ public abstract class Character {
 
     public abstract int atacar(int escolhaAtaque, Character alvo) throws AtaqueInvalidoException, AtaqueIndisponivelException;
 
-    public abstract int defender(int dano);
+    public abstract int defender(int dano) throws DefesaIndisponivelException;
 
     public int receberDano(int dano) {
         if (dano >= vida) {

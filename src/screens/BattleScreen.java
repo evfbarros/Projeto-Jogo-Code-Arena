@@ -76,28 +76,37 @@ public class BattleScreen {
         return escolha;
     }
 
-    public int defender() {
-        System.out.println("\n0 - Defender");
-        System.out.println("1 - Ignorar");
-        System.out.print("Defender ou ignorar (0 ou 1): ");
+    public int defender(int defesasRestantes, int defesasMaximas, int desviosRestantes, int desviosMaximos) {
+        System.out.println("\n0 - Defender | Usos: " + defesasRestantes + " / " + defesasMaximas);
+        System.out.println("1 - Desviar | Usos: " + desviosRestantes + " / " + desviosMaximos);
+        System.out.println("2 - Ignorar");
+        System.out.print("Defender ou ignorar (0 a 2): ");
         int escolha = -1;
 
-        while (escolha < 0 || escolha > 1) {
+        while (escolha < 0 || escolha > 2) {
             try{
                 escolha = leitor.nextInt();
                 leitor.nextLine();
-                if(escolha < 0 || escolha > 1){
+                if(escolha < 0 || escolha > 2){
                     escolha = -1;
-                    System.out.print("Escolha uma opcao valida (0 ou 1): ");
+                    System.out.print("Escolha uma opcao valida (0 ou 2): ");
                 }
             } catch (InputMismatchException e){
-                System.out.print("Escolha uma opçao valida (0 ou 1): ");
+                System.out.print("Escolha uma opçao valida (0 ou 2): ");
                 leitor.nextLine();
             }
         }
         return escolha;
     }
 
+    public void desviou(){
+        System.out.println("Voce conseguiu desviar e nao tomou nenhum dano.");
+    }
+
+    public void naoDesviou(){
+        System.out.println("Voce falhou em desviar e tomou o dano completo.");
+    }
+    
     public void esperarEnter() {
         System.out.print("\nPressione enter para continuar: ");
         leitor.nextLine();
