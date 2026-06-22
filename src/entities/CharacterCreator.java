@@ -3,6 +3,7 @@ package entities;
 import java.util.*;
 //Criacao inicial dos personagens principais, ver possiveis alteracoes diante da mecanica
 //do jogo e da dificuldade de enfrentar os inimigos
+import entities.ability.*;
 
 
 public class CharacterCreator {
@@ -114,4 +115,32 @@ public class CharacterCreator {
         return new Enemy(null, 0, 0, 0, 0, 0, 25, null, ataquesHelmeppo);
     }
     // miniboss 1
+    public static Enemy personagemMohji() {
+        ArrayList<Attack> ataquesMohji = new ArrayList<>();
+        ataquesMohji.add(new Attack("Chicote", 45, 5));
+        ataquesMohji.add(new Attack("Ataque do Richie", 65, 3));
+        ataquesMohji.add(new Attack("Investida Selvagem", 85, 1));
+        return new Enemy("Mohji",350,150,110,90,100,0,null,ataquesMohji);
+    }
+    public static Enemy personagemJango() {
+        ArrayList<Attack> ataquesJango = new ArrayList<>();
+        ataquesJango.add(new Attack("Disco Cortante", 40, 5));
+        ataquesJango.add(new Attack("Passo Enganador", 50, 3));
+        ataquesJango.add(new Attack("Ataque Hipnotico", 65, 1));
+        return new Enemy("Jango", 350, 150, 120, 90, 130, 0, new JangoHypnosisAbility(), ataquesJango);
+    } // miniboss 3
+    public static Enemy personagemGin() {
+        ArrayList<Attack> ataquesGin = new ArrayList<>();
+        ataquesGin.add(new Attack("Tonfa de Ferro", 50, 5));
+        ataquesGin.add(new Attack("Golpe Duplo", 70, 3));
+        ataquesGin.add(new Attack("Investida Demonio", 90, 1));
+        return new Enemy("Gin",450,200,140, 100, 150,0,new GinDemonAbility(),ataquesGin);
+    }// miniboss 4
+    public static Enemy personagemHatchan() {
+        ArrayList<Attack> ataquesHatchan = new ArrayList<>();
+        ataquesHatchan.add(new Attack("Espada Dupla", 70, 5));
+        ataquesHatchan.add(new Attack("Ataque Giratorio", 90, 3));
+        ataquesHatchan.add(new Attack("Estilo Seis Espadas", 120, 1));
+        return new Enemy("Hatchan",650,250,180,140,180,0,new HatchanSixSwordAbility(),ataquesHatchan);
+    } // miniboss 5
 }

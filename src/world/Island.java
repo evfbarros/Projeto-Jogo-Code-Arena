@@ -23,6 +23,7 @@ public class Island {
         this.recompensa = recompensa;
     }
 
+
     public String getNome() {
         return nome;
     }

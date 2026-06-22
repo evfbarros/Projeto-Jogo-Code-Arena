@@ -22,6 +22,10 @@ public class Player {
         return personagemSelecionado;
     }
 
+    public void removerPersonagem(CrewMember personagem) {
+        tripulacao.remove(personagem);
+    } // Adicionei esse método por conta da Nami
+
     public ArrayList<CrewMember> getTripulacao() {
         return tripulacao;
     }
