@@ -59,8 +59,8 @@ public class CrewMember extends Character {
         }
         double desvio = (double) velocidade / (velocidade + 150);
         double chance = Math.random();
-        System.out.println("Chance: " + chance);
         
+        usarDesvio();
         return desvio > chance;
     }
 
@@ -89,7 +89,9 @@ public class CrewMember extends Character {
         if (dano < 10) {
             dano = 10;
         }
+        usarDefesa();
         return dano;
+        
     }
 
     public boolean podeDefender(){

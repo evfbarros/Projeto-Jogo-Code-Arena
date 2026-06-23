@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         Player personagemjogador = new Player(CharacterCreator.personagemLuffy());
-        Enemy inimigo = CharacterCreator.personagemCapitaoMorgan();
+        Enemy inimigo = CharacterCreator.personagemArlong();
 
         //tava birncnado e testadndo um pouco
         personagemjogador.desbloquearPersonagem(CharacterCreator.personagemZoro());

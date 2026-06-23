@@ -10,13 +10,14 @@ public class BattleScreen {
         System.out.println("    -----RODADA " + rodada + "-----    ");
     }
 
-    public void resultadoRodada(int rodada, boolean resultado, String nomePersonagem, int dano) {
+    public void resultadoRodada(int rodada, boolean resultado, String nomePersonagem, int dano, String ataqueInimigo) {
         System.out.println("\n----------RESULTADO RODADA " + rodada + "----------");
         if (resultado) {
             System.out.println("          Resposta correta");
             System.out.println("          Voce causou " + dano + " de dano");
         } else {
             System.out.println("          Resposta errada");
+            System.out.println("          " + nomePersonagem + " usou: " + ataqueInimigo);
             System.out.println("          Voce recebeu " + dano + " de dano");
         }
     }

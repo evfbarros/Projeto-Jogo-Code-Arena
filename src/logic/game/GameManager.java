@@ -137,7 +137,7 @@ public class GameManager {
                         battleScreen.upouNivel(personagemPlayer.getNome(), personagemPlayer.getNivelAtual());
                     }
                 }
-                battleScreen.resultadoRodada(rodada, true, personagemPlayer.getNome(), dano);
+                battleScreen.resultadoRodada(rodada, true, personagemPlayer.getNome(), dano, null);
 
             } else {
                 int quantidadeAtaques = 1; // Por padrão, o inimigo ataca apenas uma vez
@@ -149,11 +149,14 @@ public class GameManager {
 
                 int danoTotal = 0; // Guarda a soma dos danos da rodada
 
+                String ataqueInimigo = ""; 
+
                 for (int i = 0; i < quantidadeAtaques; i++) { // Repete de acordo com a quantidade de ataques
                     int dano = 0;
-                    
                     try{
                         dano = pInimigo.atacar(0, personagemPlayer); // Calcula o dano base
+                        Enemy inimigo = (Enemy) pInimigo;
+                        ataqueInimigo = inimigo.getListaAtaque().get(inimigo.getAtaqueUsado()).getNome();
                     } catch (AtaqueInvalidoException e){
                         System.out.println("Erro : " + e.getMessage());
                     } catch (AtaqueIndisponivelException e){
@@ -174,7 +177,6 @@ public class GameManager {
                 if (defender == 0) { // Se escolher defender
                     try{ 
                         danoTotal = personagemPlayer.defender(danoTotal); // Reduz o dano
-                        personagemPlayer.usarDefesa();
                         personagemPlayer.receberDano(danoTotal);
                     } catch (DefesaIndisponivelException e){
                         System.out.println("Erro: " + e.getMessage());
@@ -186,9 +188,7 @@ public class GameManager {
                     if(desviou){
                         battleScreen.desviou(); // toma 0 de dano
                         danoTotal = 0;
-                        personagemPlayer.usarDesvio();
                     } else {
-                        personagemPlayer.usarDesvio();
                         personagemPlayer.receberDano(danoTotal);   
                         battleScreen.naoDesviou(); // vai tomar o dano completo pq falhou em desviar
                     }
@@ -200,7 +200,7 @@ public class GameManager {
                     personagemPlayer.receberDano(danoTotal); // Aplica o dano final
                 }   
 
-                battleScreen.resultadoRodada(rodada, false, pInimigo.getNome(), danoTotal); // Mostra resultado
+                battleScreen.resultadoRodada(rodada, false, pInimigo.getNome(), danoTotal, ataqueInimigo ); // Mostra resultado
             }
             battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), pInimigo.getNome(),
                     pInimigo.getVida());

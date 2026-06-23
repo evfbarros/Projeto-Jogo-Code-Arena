@@ -64,45 +64,45 @@ public class CharacterCreator {
     //PERSONAGENS BOSS
     public static Enemy personagemCapitaoMorgan() {
         ArrayList<Attack> ataquesCapitaoMorgan = new ArrayList<>();
-        ataquesCapitaoMorgan.add(new Attack("Axe Slash", 50, 0));
-        ataquesCapitaoMorgan.add(new Attack("Execution Chop", 75, 0));
-        ataquesCapitaoMorgan.add(new Attack("Iron Justice Smash", 100, 0));
+        ataquesCapitaoMorgan.add(new Attack("Axe Slash", 50, 5));
+        ataquesCapitaoMorgan.add(new Attack("Execution Chop", 75, 3));
+        ataquesCapitaoMorgan.add(new Attack("Iron Justice Smash", 100, 2));
         return new Enemy("Capitão Morgan", 350, 200, 250, 200, 100, 100, new MorganAxeHandAbility(), ataquesCapitaoMorgan);
     }
     //primeiro boss, mais facil, so tem mais atk
 
     public static Enemy personagemBuggy() {
         ArrayList<Attack> ataquesBuggy = new ArrayList<>();
-        ataquesBuggy.add(new Attack("Bara Bara Festival", 50, 0));
-        ataquesBuggy.add(new Attack("Bara Bara Rush", 75, 0));
-        ataquesBuggy.add(new Attack("Buggy Ball", 100, 0));
+        ataquesBuggy.add(new Attack("Bara Bara Festival", 50, 5));
+        ataquesBuggy.add(new Attack("Bara Bara Rush", 75, 3));
+        ataquesBuggy.add(new Attack("Buggy Ball", 100, 2));
         return new Enemy("Buggy", 450, 250, 200, 300, 150, 150, new BuggyDodgeAbility(), ataquesBuggy);
     }
     //segundo boss, mais vida, mais stamina, mais defesa e velocidade
 
     public static Enemy personagemCapitaoKuro() {
         ArrayList<Attack> ataquesCapitaoKuro = new ArrayList<>();
-        ataquesCapitaoKuro.add(new Attack("Cat Claw Combo", 50, 0));
-        ataquesCapitaoKuro.add(new Attack("Shakushi", 75, 0));
-        ataquesCapitaoKuro.add(new Attack("Deadly Shakushi", 100, 0));
+        ataquesCapitaoKuro.add(new Attack("Cat Claw Combo", 50, 5));
+        ataquesCapitaoKuro.add(new Attack("Shakushi", 75, 3));
+        ataquesCapitaoKuro.add(new Attack("Deadly Shakushi", 100, 2));
         return new Enemy("Capitão Kuro", 500, 300, 250, 300, 200, 200, new KuroDoubleAttackAbility(), ataquesCapitaoKuro);
     }
     //mais vida, stamina, atk e velocidade
 
     public static Enemy personagemDonKrieg() {
         ArrayList<Attack> ataquesDonKrieg = new ArrayList<>();
-        ataquesDonKrieg.add(new Attack("Explosive Spear", 50, 0));
-        ataquesDonKrieg.add(new Attack("MH5 Poison Gas", 75, 0));
-        ataquesDonKrieg.add(new Attack("Battle Spear Barrage", 100, 0));
+        ataquesDonKrieg.add(new Attack("Explosive Spear", 50, 5));
+        ataquesDonKrieg.add(new Attack("MH5 Poison Gas", 75, 3));
+        ataquesDonKrieg.add(new Attack("Battle Spear Barrage", 100, 2));
         return new Enemy("Don Krieg", 600, 250, 300, 300, 100, 250, new DonKriegGoldArmorAbility(), ataquesDonKrieg);
     }
     //mais tank, mais vida, atk e defesa
 
     public static Enemy personagemArlong() {
         ArrayList<Attack> ataquesArlong = new ArrayList<>();
-        ataquesArlong.add(new Attack("Shark on Darts", 75, 0));
-        ataquesArlong.add(new Attack("Kiribachi Drill", 100, 0));
-        ataquesArlong.add(new Attack("Samehada Punch", 125, 0));
+        ataquesArlong.add(new Attack("Shark on Darts", 75, 5));
+        ataquesArlong.add(new Attack("Kiribachi Drill", 100, 3));
+        ataquesArlong.add(new Attack("Samehada Punch", 125, 3));
         return new Enemy("Arlong", 800, 400, 400, 350, 300, 400, new ArlongFishmanhAbility(), ataquesArlong);
     }
     //boss final
@@ -112,35 +112,35 @@ public class CharacterCreator {
         ataquesHelmeppo.add(new Attack("Arrogant Slap", 25, 5));
         ataquesHelmeppo.add(new Attack("Stick Strike", 50, 5));
         ataquesHelmeppo.add(new Attack("Marine Backup", 75, 5));
-        return new Enemy(null, 0, 0, 0, 0, 0, 25, null, ataquesHelmeppo);
+        return new Enemy("Helmeppo", 250, 200, 100, 100, 100, 25, null, ataquesHelmeppo);
     }
     // miniboss 1
     public static Enemy personagemMohji() {
         ArrayList<Attack> ataquesMohji = new ArrayList<>();
-        ataquesMohji.add(new Attack("Chicote", 45, 5));
-        ataquesMohji.add(new Attack("Ataque do Richie", 65, 3));
-        ataquesMohji.add(new Attack("Investida Selvagem", 85, 1));
+        ataquesMohji.add(new Attack("Whip Strike", 45, 5));
+        ataquesMohji.add(new Attack("Richie's Attack", 65, 3));
+        ataquesMohji.add(new Attack("Wild Charge", 85, 1));
         return new Enemy("Mohji",350,150,110,90,100,0,null,ataquesMohji);
     }
     public static Enemy personagemJango() {
         ArrayList<Attack> ataquesJango = new ArrayList<>();
-        ataquesJango.add(new Attack("Disco Cortante", 40, 5));
-        ataquesJango.add(new Attack("Passo Enganador", 50, 3));
-        ataquesJango.add(new Attack("Ataque Hipnotico", 65, 1));
+        ataquesJango.add(new Attack("Cutting Disc", 40, 5));
+        ataquesJango.add(new Attack("Deceptive Step", 50, 3));
+        ataquesJango.add(new Attack("Hypnotic Attack", 65, 1));
         return new Enemy("Jango", 350, 150, 120, 90, 130, 0, new JangoHypnosisAbility(), ataquesJango);
     } // miniboss 3
     public static Enemy personagemGin() {
         ArrayList<Attack> ataquesGin = new ArrayList<>();
-        ataquesGin.add(new Attack("Tonfa de Ferro", 50, 5));
-        ataquesGin.add(new Attack("Golpe Duplo", 70, 3));
-        ataquesGin.add(new Attack("Investida Demonio", 90, 1));
+        ataquesGin.add(new Attack("Iron Tonfa", 50, 5));
+        ataquesGin.add(new Attack("Double Strike", 70, 3));
+        ataquesGin.add(new Attack("Demon Charge", 90, 1));
         return new Enemy("Gin",450,200,140, 100, 150,0,new GinDemonAbility(),ataquesGin);
     }// miniboss 4
     public static Enemy personagemHatchan() {
         ArrayList<Attack> ataquesHatchan = new ArrayList<>();
-        ataquesHatchan.add(new Attack("Espada Dupla", 70, 5));
-        ataquesHatchan.add(new Attack("Ataque Giratorio", 90, 3));
-        ataquesHatchan.add(new Attack("Estilo Seis Espadas", 120, 1));
-        return new Enemy("Hatchan",650,250,180,140,180,0,new HatchanSixSwordAbility(),ataquesHatchan);
+        ataquesHatchan.add(new Attack("Dual Sword Slash", 70, 5));
+        ataquesHatchan.add(new Attack("Spinning Attack", 90, 3));
+        ataquesHatchan.add(new Attack("Six-Sword Style", 120, 1));
+        return new Enemy("Hatchan",550,250,180,140,180,0,new HatchanSixSwordAbility(),ataquesHatchan);
     } // miniboss 5
 }
