@@ -8,9 +8,12 @@ public class BuggyDodgeAbility implements CombatAbility {
 
     @Override
     public int modificarDano(int danoBase, int rodada) {
-        // 40% de chance de esquivar
+        return danoBase;
+    }
+    @Override
+    public int modificarDanoRecebido(int danoBase, int rodada) {
         if (random.nextInt(100) < 40) {
-            return 0; // dano esquivado
+            return 0;
         }
         return danoBase;
     }

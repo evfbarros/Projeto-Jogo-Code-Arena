@@ -174,4 +174,8 @@ public class BattleScreen {
         System.out.println("\nVoce errou a questao, que pena!");
         System.out.println("Escolha uma opcao de defesa:");
     }
+
+    public void inimigoDesviou(String nomeInimigo) {
+        System.out.println(nomeInimigo + " desviou do ataque!");
+    }
 }

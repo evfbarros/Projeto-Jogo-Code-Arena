@@ -112,7 +112,7 @@ public class CharacterCreator {
         ataquesHelmeppo.add(new Attack("Arrogant Slap", 25, 5));
         ataquesHelmeppo.add(new Attack("Stick Strike", 50, 5));
         ataquesHelmeppo.add(new Attack("Marine Backup", 75, 5));
-        return new Enemy("Helmeppo", 250, 200, 100, 100, 100, 25, null, ataquesHelmeppo);
+        return new Enemy("Helmeppo", 250, 200, 100, 100, 100, 25, new DefaultCombatAbility(), ataquesHelmeppo);
     }
     // miniboss 1
     public static Enemy personagemMohji() {
@@ -120,7 +120,7 @@ public class CharacterCreator {
         ataquesMohji.add(new Attack("Whip Strike", 45, 5));
         ataquesMohji.add(new Attack("Richie's Attack", 65, 3));
         ataquesMohji.add(new Attack("Wild Charge", 85, 1));
-        return new Enemy("Mohji",350,150,110,90,100,0,null,ataquesMohji);
+        return new Enemy("Mohji",350,150,110,90,100,0,new DefaultCombatAbility(),ataquesMohji);
     }
     public static Enemy personagemJango() {
         ArrayList<Attack> ataquesJango = new ArrayList<>();

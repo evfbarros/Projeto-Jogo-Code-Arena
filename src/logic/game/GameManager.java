@@ -36,43 +36,77 @@ public class GameManager {
         this.questionScreen = questionScreen;
         this.selectionScreen = selectionScreen;
     }
-        private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {
-            if (personagemPlayer.getStamina() < CUSTO_HABILIDADE_ESPECIAL) { // Verifica se há stamina suficiente
-                battleScreen.staminaInsuficiente(); // Informa que a habilidade não pode ser usada
-                questionScreen.mostrarQuestao(questaoAtual); // mostra a pergunta novamente
-                String resposta = questionScreen.leituraRespostaValida(questaoAtual); // Permite responder normalmente
-                return questaoAtual.verificarResposta(resposta); // Retorna se a resposta está correta
+        private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {//Modifiquei esse método para integrar todas as habilidades especiais
+            if (personagemPlayer.getStamina() < CUSTO_HABILIDADE_ESPECIAL) {
+                battleScreen.staminaInsuficiente();
+                questionScreen.mostrarQuestao(questaoAtual);
+                String resposta = questionScreen.leituraRespostaValida(questaoAtual);
+                return questaoAtual.verificarResposta(resposta);
+                }
+
+            SpecialAbility habilidadeEspecial = personagemPlayer.getHabilidadeEspecial();
+
+            personagemPlayer.gastarStamina(CUSTO_HABILIDADE_ESPECIAL);
+
+            if (personagemPlayer.getNome().equalsIgnoreCase("Zoro")) {
+                boolean funcionou = habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
+
+                if (funcionou) {
+                    battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                } else {
+                    battleScreen.habilidadeNaoAplicavel();
+                }
+
+                questionScreen.mostrarQuestao(questaoAtual);
+                String resposta = questionScreen.leituraRespostaValida(questaoAtual);
+                return questaoAtual.verificarResposta(resposta);
             }
 
-            personagemPlayer.gastarStamina(CUSTO_HABILIDADE_ESPECIAL); // Consome a stamina da habilidade
+            if (personagemPlayer.getNome().equalsIgnoreCase("Sanji")) {
+                habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
+                battleScreen.habilidadeUsada(personagemPlayer.getNome());
 
-            SpecialAbility habilidadeEspecial = personagemPlayer.getHabilidadeEspecial(); // Obtém a habilidade do personagem
+                questionScreen.mostrarQuestao(questaoAtual);
+                String resposta = questionScreen.leituraRespostaValida(questaoAtual);
+                return questaoAtual.verificarResposta(resposta);
+            }
 
-            String resposta = ""; // Algumas habilidades não precisam de resposta digitada
+            if (personagemPlayer.getNome().equalsIgnoreCase("Usopp")) {
+                questionScreen.mostrarQuestao(questaoAtual);
+                String resposta = questionScreen.leituraRespostaValida(questaoAtual);
 
-            boolean habilidadeFuncionou = habilidadeEspecial.usar(personagemPlayer, questaoAtual, resposta); // Usa a habilidade
+                battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                return habilidadeEspecial.usar(personagemPlayer, questaoAtual, resposta);
+            }
 
-            if (habilidadeFuncionou) { // Se a habilidade funcionou
-                battleScreen.habilidadeUsada(personagemPlayer.getNome()); // Exibe mensagem de sucesso
-                return true; // Considera a questão correta
+            boolean habilidadeFuncionou = habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
+
+            if (habilidadeFuncionou) {
+                battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                return true;
+            }
+
+            battleScreen.habilidadeNaoAplicavel();
+            battleScreen.responderNormalmente();
+
+            questionScreen.mostrarQuestao(questaoAtual);
+            String respostaNormal = questionScreen.leituraRespostaValida(questaoAtual);
+
+            return questaoAtual.verificarResposta(respostaNormal);
         }
-
-        battleScreen.habilidadeNaoAplicavel(); // Avisa que a habilidade não funciona nessa questão
-        battleScreen.responderNormalmente(); // Avisa que o jogador deverá responder normalmente
-
-        questionScreen.mostrarQuestao(questaoAtual); // mostra a pergunta novamente
-
-        String respostaNormal = questionScreen.leituraRespostaValida(questaoAtual); // Lê a resposta normal
-
-        return questaoAtual.verificarResposta(respostaNormal); // Verifica se a resposta está correta
-    }
-
-    public void iniciarJogo() {
+    public boolean iniciarJogo() { //Troquei por boolean para facilitar a integrar
         int rodada = 1;
 
         selectionScreen.exibirPersonagens(pJogador.getTripulacao());
         int escolha = selectionScreen.escolhaPersonagem(pJogador.getTripulacao());
         pJogador.selecionarPersonagem(escolha);
+
+        CrewMember personagemEscolhido = pJogador.getPersonagemAtual(); // Tem que se recuperar entre 2 ilhas
+        personagemEscolhido.resetarAtaques();
+        personagemEscolhido.resetarDefesa();
+        personagemEscolhido.resetarDesvios();
+        personagemEscolhido.recuperarVida(personagemEscolhido.getVidaMaxima());
+        personagemEscolhido.recuperarStamina(personagemEscolhido.getStaminaMaxima());
         
         while (pJogador.getPersonagemAtual().estaVivo() && pInimigo.estaVivo()) {
             CrewMember personagemPlayer = pJogador.getPersonagemAtual();
@@ -163,10 +197,16 @@ public class GameManager {
                         System.out.println("Erro " + e.getMessage());
                     }
                     
-                    if (pInimigo instanceof Enemy) { // Verifica se possui habilidade de combate
-                        Enemy inimigo = (Enemy) pInimigo; // Converte para Enemy
-                        dano = inimigo.getComAbility().modificarDano(dano, rodada); // Aplica habilidade ofensiva
-                        }
+                    int danoAntesHabilidade = dano;
+
+                    if (pInimigo instanceof Enemy) {
+                        Enemy inimigo = (Enemy) pInimigo;
+                        dano = inimigo.getComAbility().modificarDanoRecebido(dano, rodada);
+                    }
+
+                    if (danoAntesHabilidade > 0 && dano == 0) {
+                        battleScreen.inimigoDesviou(pInimigo.getNome());
+                    }
 
                     danoTotal += dano; // Soma ao dano total
                 }
@@ -217,5 +257,6 @@ public class GameManager {
         } else {
             battleScreen.resultadoBatalha(false, pInimigo.getNome());
         }
+        return resultadoBatalha;
     }
 }
