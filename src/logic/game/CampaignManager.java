@@ -33,8 +33,8 @@ public class CampaignManager {
         for (Island ilha : ilhas) {
             gameScreen.exibirIlhaAtual(ilha.getNome());
 
-            if (ilha.getNome().equalsIgnoreCase("Arlong Park")) {
-                removerNamiAntesDeArlong();
+            if (ilha.getNome().equalsIgnoreCase("Baratie")) {
+                removerNamiAntesDeBaratie();
             }
 
             if (ilha.getMiniBoss() != null) {
@@ -87,7 +87,7 @@ public class CampaignManager {
         return gameManager.iniciarJogo();
     }
 
-    private void removerNamiAntesDeArlong() {
+    private void removerNamiAntesDeBaratie() {
         CrewMember nami = null;
 
         for (CrewMember personagem : jogador.getTripulacao()) {

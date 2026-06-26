@@ -5,41 +5,59 @@ import entities.Attack;
 
 public class BattleScreen {
     private Scanner leitor = new Scanner(System.in);
+    private void separador() {
+        System.out.println("\n========================================");
+    }
+
+    private void linha() {
+        System.out.println("----------------------------------------");
+    }
 
     public void exibirRodada(int rodada) {
-        System.out.println("    -----RODADA " + rodada + "-----    ");
+        separador();
+        System.out.println("              RODADA " + rodada);
+        separador();
     }
 
-    public void resultadoRodada(int rodada, boolean resultado, String nomePersonagem, int dano, String ataqueInimigo) {
-        System.out.println("\n----------RESULTADO RODADA " + rodada + "----------");
+    public void resultadoRodada(int rodada, boolean resultado, String nomePersonagem,int dano, String ataqueInimigo, String respostaCorreta) {
+        System.out.println("\n=====================================");
+        System.out.println("           RESULTADO RODADA " + rodada);
+        System.out.println("=====================================");
+
         if (resultado) {
-            System.out.println("          Resposta correta");
-            System.out.println("          Voce causou " + dano + " de dano");
+            System.out.println("Status: resposta correta!");
+            System.out.println("Dano causado: " + dano);
         } else {
-            System.out.println("          Resposta errada");
-            System.out.println("          " + nomePersonagem + " usou: " + ataqueInimigo);
-            System.out.println("          Voce recebeu " + dano + " de dano");
+            System.out.println("Status: resposta errada.");
+            System.out.println("Resposta correta: " + respostaCorreta);
+            System.out.println(nomePersonagem + " usou: " + ataqueInimigo);
+            System.out.println("Dano recebido: " + dano);
         }
-    }
 
-    public void atributosBatalha(String nomeJogador, int vidaJogador, String nomeInimigo, int vidaInimigo) {
-        System.out.println("          Vida " + nomeJogador + ": " + vidaJogador);
-        System.out.println("          Vida " + nomeInimigo + ": " + vidaInimigo);
-        System.out.println("-------------------------------------");
+        System.out.println("=====================================");
     }
+    public void atributosBatalha(String nomeJogador, int vidaJogador, String nomeInimigo, int vidaInimigo) {
+        linha();
+        System.out.println("STATUS DA BATALHA");
+        linha();
+        System.out.println(nomeJogador + " | Vida: " + vidaJogador);
+        System.out.println(nomeInimigo + " | Vida: " + vidaInimigo);
+        linha();
+}
 
     public void resultadoBatalha(boolean resultadoBatalha, String nomeGanhador) {
+        separador();
+        System.out.println("              FIM DA BATALHA");
+        separador();
+
         if (resultadoBatalha) {
-            System.out.println("-----FIM DE JOGO-----");
-            System.out.println("\nPARABENS, VOCE VENCEU");
-            System.out.println(nomeGanhador + " FOI O VENCEDOR DA BATALHA");
-            System.out.println("\n---------------------");
+            System.out.println("Parabens, voce venceu!");
         } else {
-            System.out.println("-----------FIM DE JOGO----------");
-            System.out.println("\nINFELIZMENTE VOCE FOI DERROTADO");
-            System.out.println(nomeGanhador + " FOI O VENCEDOR DA BATALHA");
-            System.out.println("\n--------------------------------");
+            System.out.println("Infelizmente voce foi derrotado.");
         }
+
+        System.out.println("Vencedor: " + nomeGanhador);
+        separador();
     }
 
     public void upouNivel(String nomeJogador, int nivelPersonagem) {
@@ -47,12 +65,17 @@ public class BattleScreen {
     }
 
     public void exibirAtaques(ArrayList<Attack> listaAtaque) {
-        System.out.println("\nLista de Ataques: ");
+        linha();
+        System.out.println("ATAQUES DISPONIVEIS");
+        linha();
+
         for (int i = 0; i < listaAtaque.size(); i++) {
             Attack ataque = listaAtaque.get(i);
-            System.out.println(i + " - " + ataque.getNome() + " | Poder: " + ataque.getPoder() + " | Usos: "
-                    + ataque.getUsosRestantes() + "/" + ataque.getUsosMaximos());
+            System.out.println(i + " - " + ataque.getNome()+ " | Poder: " + ataque.getPoder()+ " | Usos: " + ataque.getUsosRestantes() + "/" 
+                                + ataque.getUsosMaximos());
         }
+
+        linha();
     }
 
     // vai retronar o indice do ataque escolhido
@@ -78,10 +101,11 @@ public class BattleScreen {
     }
 
     public int defender(int defesasRestantes, int defesasMaximas, int desviosRestantes, int desviosMaximos) {
-        System.out.println("\n0 - Defender | Usos: " + defesasRestantes + " / " + defesasMaximas);
-        System.out.println("1 - Desviar | Usos: " + desviosRestantes + " / " + desviosMaximos);
-        System.out.println("2 - Ignorar");
-        System.out.print("Defender ou ignorar (0 a 2): ");
+        System.out.println("[0] Defender | Usos: " + defesasRestantes + "/" + defesasMaximas);
+        System.out.println("[1] Desviar  | Usos: " + desviosRestantes + "/" + desviosMaximos);
+        System.out.println("[2] Aceitar o ataque");
+        System.out.println("----------------------------------------");
+        System.out.print("Escolha uma opcao: ");
         int escolha = -1;
 
         while (escolha < 0 || escolha > 2) {
@@ -128,10 +152,14 @@ public class BattleScreen {
     }
 
     public int escolherAcaoEspecialOuResponder() {
-        System.out.println("\nO que deseja fazer?");
-        System.out.println("0 - Responder normalmente");
-        System.out.println("1 - Usar habilidade especial");
-        System.out.print("Escolha: ");
+        System.out.println();
+        linha();
+        System.out.println("              SUA ACAO");
+        linha();
+        System.out.println("[0] Responder normalmente");
+        System.out.println("[1] Usar habilidade especial");
+        linha();
+        System.out.print("Escolha uma opcao: ");
 
         int escolha = -1;
 
@@ -171,8 +199,16 @@ public class BattleScreen {
     }
 
     public void respostaErradaEscolhaDefesa() {
-        System.out.println("\nVoce errou a questao, que pena!");
-        System.out.println("Escolha uma opcao de defesa:");
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println("          RESPOSTA INCORRETA");
+        System.out.println("========================================");
+        System.out.println();
+        System.out.println("O inimigo preparou um ataque!");
+        System.out.println();
+        System.out.println("----------------------------------------");
+        System.out.println("          ESCOLHA SUA DEFESA");
+        System.out.println("----------------------------------------");
     }
 
     public void inimigoDesviou(String nomeInimigo) {

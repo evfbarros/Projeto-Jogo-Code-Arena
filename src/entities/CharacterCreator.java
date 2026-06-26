@@ -26,7 +26,7 @@ public class CharacterCreator {
         ataquesZoro.add(new Attack("Oni Giri", 50, 5));
         ataquesZoro.add(new Attack("Tora Gari", 75, 3));
         ataquesZoro.add(new Attack("Santoryu Ougi: Sanzen Sekai", 100, 1));
-        return new CrewMember("Zoro", 300, 100, 150, 150, 100, 0,  new ZoroCutAbility(), ataquesZoro);
+        return new CrewMember("Zoro", 500, 500, 400, 250, 100, 0,  new ZoroCutAbility(), ataquesZoro);
     }
 
     //vida alta, stamina normal, ataque alto, defesa alta, velocidade normal

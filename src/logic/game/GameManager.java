@@ -123,9 +123,8 @@ public class GameManager {
             perguntasUsadas.add(questaoAtual);
 
             battleScreen.exibirRodada(rodada);
-
+            battleScreen.atributosBatalha(personagemPlayer.getNome(),personagemPlayer.getVida(),pInimigo.getNome(),pInimigo.getVida());
             questionScreen.mostrarQuestao(questaoAtual);
-
             boolean resultado;
             int escolhaAcao = battleScreen.escolherAcaoEspecialOuResponder();
 
@@ -136,11 +135,11 @@ public class GameManager {
 
                 case 0:
                 default:
-                    questionScreen.pedirResposta(); // mostra "Resposta: "
+                    questionScreen.pedirResposta();
                     String resposta = questionScreen.leituraRespostaValida(questaoAtual);
                     resultado = questaoAtual.verificarResposta(resposta);
                     break;
-            }
+                }
 
             if (resultado) {
                 battleScreen.respostaCorretaEscolhaAtaque();
@@ -174,7 +173,8 @@ public class GameManager {
                         battleScreen.upouNivel(personagemPlayer.getNome(), personagemPlayer.getNivelAtual());
                     }
                 }
-                battleScreen.resultadoRodada(rodada, true, personagemPlayer.getNome(), dano, null);
+                battleScreen.resultadoRodada(rodada,true,personagemPlayer.getNome(),dano,null
+                                            ,questionScreen.obterRespostaCorreta(questaoAtual));
 
             } else {
                 int quantidadeAtaques = 1; // Por padrão, o inimigo ataca apenas uma vez
@@ -243,7 +243,8 @@ public class GameManager {
                     personagemPlayer.receberDano(danoTotal); // Aplica o dano final
                 }   
 
-                battleScreen.resultadoRodada(rodada, false, pInimigo.getNome(), danoTotal, ataqueInimigo ); // Mostra resultado
+               battleScreen.resultadoRodada(rodada,false,pInimigo.getNome(),danoTotal,ataqueInimigo
+                                            ,questionScreen.obterRespostaCorreta(questaoAtual));
             }
             battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), pInimigo.getNome(),
                     pInimigo.getVida());

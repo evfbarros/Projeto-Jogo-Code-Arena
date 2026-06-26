@@ -24,7 +24,11 @@ public class Player {
 
     public void removerPersonagem(CrewMember personagem) {
         tripulacao.remove(personagem);
-    } // Adicionei esse método por conta da Nami
+        if (personagemAtual == personagem && !tripulacao.isEmpty()) {
+            personagemAtual = tripulacao.get(0);
+        }
+    }
+    // Adicionei esse método por conta da Nami
 
     public ArrayList<CrewMember> getTripulacao() {
         return tripulacao;
@@ -37,5 +41,9 @@ public class Player {
     public void setPersonagemAtual(CrewMember personagemAtual) {
         this.personagemAtual = personagemAtual;
     }
-
+    public void resetarStaminaTripulacao() {
+        for (CrewMember personagem : tripulacao) {
+            personagem.recuperarStamina(personagem.getStaminaMaxima());
+        }
+    }
 }
