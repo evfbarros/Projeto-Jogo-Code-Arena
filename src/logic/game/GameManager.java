@@ -16,6 +16,8 @@ import exceptions.AtaqueIndisponivelException;
 import exceptions.AtaqueInvalidoException;
 import exceptions.DefesaIndisponivelException;
 import exceptions.DesvioIndisponivelException;
+import java.util.Map;
+import logic.quiz.Difficulty;
 
 public class GameManager {
     private Player pJogador;
@@ -24,17 +26,21 @@ public class GameManager {
     private BattleScreen battleScreen;
     private QuestionScreen questionScreen;
     private CharacterSelectionScreen selectionScreen;
-    private ArrayList<Question> perguntasUsadas = new ArrayList<>();
+    private ArrayList<Question> perguntasUsadas;
     private static final int CUSTO_HABILIDADE_ESPECIAL = 100;
+    private Map<Difficulty, Integer> distribuicaoPerguntas;
 
     public GameManager(Player pJogador, Character pInimigo, QuestionManager gerenciadorPergunta,
-            BattleScreen battleScreen, QuestionScreen questionScreen, CharacterSelectionScreen selectionScreen) {
+            BattleScreen battleScreen, QuestionScreen questionScreen, CharacterSelectionScreen selectionScreen,
+            Map<Difficulty, Integer> distribuicaoPerguntas,ArrayList<Question> perguntasUsadas) {
         this.pJogador = pJogador;
         this.pInimigo = pInimigo;
         this.gerenciadorPergunta = gerenciadorPergunta;
         this.battleScreen = battleScreen;
         this.questionScreen = questionScreen;
         this.selectionScreen = selectionScreen;
+        this.distribuicaoPerguntas = distribuicaoPerguntas;
+        this.perguntasUsadas = perguntasUsadas;
     }
         private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {//Modifiquei esse método para integrar todas as habilidades especiais
             if (personagemPlayer.getStamina() < CUSTO_HABILIDADE_ESPECIAL) {
@@ -112,11 +118,8 @@ public class GameManager {
             CrewMember personagemPlayer = pJogador.getPersonagemAtual();
             Question questaoAtual;
 
-            //Loop até achar uma pergunta que ainda não foi usada
-            do {
-                questaoAtual = gerenciadorPergunta.questaoSorteada();
-            } while (perguntasUsadas.contains(questaoAtual));
-            //Marca a pergunta como usada
+            questaoAtual = gerenciadorPergunta.questaoSorteadaPorDistribuicao(distribuicaoPerguntas,perguntasUsadas);
+
             perguntasUsadas.add(questaoAtual);
 
             battleScreen.exibirRodada(rodada);

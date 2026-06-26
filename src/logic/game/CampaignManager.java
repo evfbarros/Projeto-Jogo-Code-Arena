@@ -12,12 +12,14 @@ import screens.GameScreen;
 import screens.QuestionScreen;
 import world.Island;
 import world.IslandCreator;
+import logic.quiz.Question;
 
 public class CampaignManager {
 
     private Player jogador;
     private QuestionManager gerenciadorPergunta;
     private GameScreen gameScreen;
+    private ArrayList<Question> perguntasUsadasNaCampanha = new ArrayList<>();
 
     public CampaignManager(Player jogador, QuestionManager gerenciadorPergunta, GameScreen gameScreen) {
         this.jogador = jogador;
@@ -36,7 +38,7 @@ public class CampaignManager {
             }
 
             if (ilha.getMiniBoss() != null) {
-                boolean venceuMiniBoss = iniciarBatalha(ilha.getMiniBoss());
+                boolean venceuMiniBoss = iniciarBatalha(ilha.getMiniBoss(), ilha);
 
                 if (!venceuMiniBoss) {
                     gameScreen.campanhaEncerrada(ilha.getMiniBoss().getNome());
@@ -45,7 +47,7 @@ public class CampaignManager {
             }
 
             if (ilha.getBoss() != null) {
-                boolean venceuBoss = iniciarBatalha(ilha.getBoss());
+                boolean venceuBoss = iniciarBatalha(ilha.getBoss(), ilha);
 
                 if (!venceuBoss) {
                     gameScreen.campanhaEncerrada(ilha.getBoss().getNome());
@@ -74,12 +76,14 @@ public class CampaignManager {
         return ilhas;
     }
 
-    private boolean iniciarBatalha(Enemy inimigo) {
+    private boolean iniciarBatalha(Enemy inimigo, Island ilha) {
         BattleScreen battleScreen = new BattleScreen();
         QuestionScreen questionScreen = new QuestionScreen();
         CharacterSelectionScreen selectionScreen = new CharacterSelectionScreen();
 
-        GameManager gameManager = new GameManager(jogador,inimigo,gerenciadorPergunta,battleScreen,questionScreen,selectionScreen);
+        GameManager gameManager = new GameManager(jogador,inimigo,gerenciadorPergunta,battleScreen,questionScreen,selectionScreen,ilha.getDistribuicaoPerguntas()
+                                                ,perguntasUsadasNaCampanha);
+
         return gameManager.iniciarJogo();
     }
 

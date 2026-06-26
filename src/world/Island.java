@@ -1,10 +1,12 @@
 package world;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import entities.CrewMember;
 import entities.Enemy;
 import entities.NPC;
+import logic.quiz.Difficulty;
 
 public class Island {
 
@@ -13,14 +15,15 @@ public class Island {
     private Enemy miniBoss;
     private Enemy boss;
     private CrewMember recompensa;
+    private Map<Difficulty, Integer> distribuicaoPerguntas;
 
-    public Island(String nome,ArrayList<NPC> inimigos,Enemy miniBoss,Enemy boss,CrewMember recompensa) {
-
+    public Island(String nome,ArrayList<NPC> inimigos,Enemy miniBoss,Enemy boss,CrewMember recompensa,Map<Difficulty, Integer> distribuicaoPerguntas) {
         this.nome = nome;
         this.inimigos = inimigos;
         this.miniBoss = miniBoss;
         this.boss = boss;
         this.recompensa = recompensa;
+        this.distribuicaoPerguntas = distribuicaoPerguntas;
     }
 
 
@@ -62,5 +65,11 @@ public class Island {
 
     public void setRecompensa(CrewMember recompensa) {
         this.recompensa = recompensa;
+    }
+    public Map<Difficulty, Integer> getDistribuicaoPerguntas() {
+        return distribuicaoPerguntas;
+    }
+    public void setDistribuicaoPerguntas(Map<Difficulty, Integer> distribuicaoPerguntas) {
+        this.distribuicaoPerguntas = distribuicaoPerguntas;
     }
 }
