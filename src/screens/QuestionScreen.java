@@ -28,50 +28,50 @@ public class QuestionScreen {
 
     private void mostrarQuestaoMultiplaEscolha(MultipleChoiceQuestion questao){
         System.out.println();
-        System.out.println("========================================");
+        System.out.println("════════════════════════════════════════");
         System.out.println("               PERGUNTA");
-        System.out.println("Tipo: Pergunta de multipla escolha");
-        System.out.println("========================================");
+        System.out.println("════════════════════════════════════════");
+        System.out.println();
 
-        System.out.println(questao.getEnunciado());
+        imprimirComQuebra(questao.getEnunciado(), 40);
 
-        System.out.println("----------------------------------------");
+        System.out.println();
+        System.out.println("────────────────────────────────────────");
 
         for (String alternativa : questao.getAlternativas()){
-            System.out.println(alternativa);
+            System.out.println(" " + alternativa);
         }
 
-        System.out.println("----------------------------------------");
-        System.out.println("Leia a pergunta e escolha sua acao abaixo.");
-        instrucaoResposta = "Digite uma opcao A-E";
+        System.out.println("────────────────────────────────────────");
+        instrucaoResposta = "Digite uma opção (A-E)";
     }
 
    private void mostrarVerdadeiroFalso(TrueFalseQuestion questao){
         System.out.println();
-        System.out.println("========================================");
+        System.out.println("════════════════════════════════════════");
         System.out.println("               PERGUNTA");
-        System.out.println("Tipo: Pergunta de verdadeiro ou falso");
-        System.out.println("========================================");
+        System.out.println("════════════════════════════════════════");
 
-        System.out.println(questao.getEnunciado());
+        imprimirComQuebra(questao.getEnunciado(), 40);
 
-        System.out.println("----------------------------------------");
-        System.out.println("Leia a pergunta e escolha sua acao abaixo.");
+        System.out.println("────────────────────────────────────────");
+        System.out.println(" [V] Verdadeiro");
+        System.out.println(" [F] Falso");
+        System.out.println("────────────────────────────────────────");
+
         instrucaoResposta = "Digite V ou F";
     }
 
     private void mostrarQuestaoAberta(OpenQuestion questao){
         System.out.println();
-        System.out.println("========================================");
+        System.out.println("════════════════════════════════════════");
         System.out.println("               PERGUNTA");
-        System.out.println("Tipo: Pergunta de completar lacuna");
-        System.out.println("========================================");
+        System.out.println("════════════════════════════════════════");
 
-        System.out.println(questao.getEnunciado());
+        imprimirComQuebra(questao.getEnunciado(), 40);
 
-        System.out.println("----------------------------------------");
-        System.out.println("Leia a pergunta e escolha sua acao abaixo.");
-        instrucaoResposta = "Digite uma palavra";
+        System.out.println("────────────────────────────────────────");
+        instrucaoResposta = "Digite sua resposta";
     }
     
     public String leituraRespostaValida(Question questaoAtual){
@@ -79,25 +79,25 @@ public class QuestionScreen {
         do {
             resposta = leitor.nextLine();
             if (!questaoAtual.validarResposta(resposta)) {
-                System.out.print("Resposta invalida. Tente novamente: ");
+                System.out.print(" Resposta inválida. Tente novamente: ");
             }
         } while (!questaoAtual.validarResposta(resposta));
         return resposta;
     }
+
     public void pedirResposta() {
         System.out.println();
-        System.out.println("----------------------------------------");
-        System.out.print(instrucaoResposta + ": ");
+        System.out.println("────────────────────────────────────────");
+        System.out.print(" " + instrucaoResposta + ": ");
     }
     public String obterRespostaCorreta(Question questao) {
         if (questao instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion multiplaEscolha = (MultipleChoiceQuestion) questao;
 
             int indiceCorreto = multiplaEscolha.getGabarito();
-            char letraCorreta = (char) ('A' + indiceCorreto);
             String textoCorreto = multiplaEscolha.getAlternativas().get(indiceCorreto);
 
-            return letraCorreta + " - " + textoCorreto;
+            return " " + textoCorreto;
         }
 
         if (questao instanceof TrueFalseQuestion) {
@@ -111,5 +111,23 @@ public class QuestionScreen {
         }
 
         return "Resposta não disponível";
+    }
+
+    public static void imprimirComQuebra(String texto, int largura) {
+        String[] palavras = texto.split(" ");
+        StringBuilder linha = new StringBuilder("  ");
+
+        for (String palavra : palavras) {
+            if (linha.length() + palavra.length() + 1 > largura) {
+                System.out.println(linha.toString());
+                linha = new StringBuilder("  " + palavra + " ");
+            } else {
+                linha.append(palavra).append(" ");
+            }
+        }
+
+        if (linha.length() > 2) {
+            System.out.println(linha.toString());
+        }
     }
 }

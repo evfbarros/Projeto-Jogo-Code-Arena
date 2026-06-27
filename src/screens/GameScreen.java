@@ -5,9 +5,7 @@ import entities.CrewMember;
 public class GameScreen {
 
     public void exibirIlhaAtual(String nomeIlha) {
-        System.out.println("\n==============================");
-        System.out.println("ILHA ATUAL: " + nomeIlha);
-        System.out.println("==============================");
+        cabecalho("ILHA ATUAL: " + nomeIlha.toUpperCase());
     }
 
     public void namiSaiu() {
@@ -25,4 +23,15 @@ public class GameScreen {
     public void campanhaFinalizada() {
         System.out.println("\nPARABENS! VOCE FINALIZOU A CAMPANHA EAST BLUE!");
     }
+
+    public void cabecalho(String texto) {
+        int largura = 40;
+        String linha = "═".repeat(largura);
+        int espacos = (largura - texto.length()) / 2;
+        String padding = " ".repeat(Math.max(0, espacos));
+        System.out.println(linha);
+        System.out.println(padding + texto);
+        System.out.println(linha);
+    }
+
 }

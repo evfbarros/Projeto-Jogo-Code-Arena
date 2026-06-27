@@ -18,6 +18,7 @@ public class CrewMember extends Character {
     private int defesasRestantes;
     private int desviosMaximos;
     private int desviosRestantes;
+    private int ataqueEscolhido;
 
     public CrewMember(String nome, int vida, int stamina, int ataque, int defesa, int velocidade, double xpConcedido,
             SpecialAbility habilidadeEspecial, ArrayList<Attack> listaAtaque) {
@@ -129,13 +130,13 @@ public class CrewMember extends Character {
     //o aumento em porcentagem ainda nao e o definitivo pq temos que testar no
     //jogo, entoa so coloquei vlaores aleatorios
     public void uparAtributos() {
-        ataque = ((int) (ataque * 1.2));
-        defesa = ((int) (defesa * 1.3));
-        staminaMaxima = ((int) (staminaMaxima * 1.2));
+        ataque = ((int) (ataque * 1.25));
+        defesa = ((int) (defesa * 1.25));
+        staminaMaxima = ((int) (staminaMaxima * 1.25));
         stamina = staminaMaxima;
-        vidaMaxima = ((int) (vidaMaxima * 1.2));
+        vidaMaxima = ((int) (vidaMaxima * 1.25));
         vida = vidaMaxima;
-        velocidade = ((int) (velocidade * 1.3));
+        velocidade = ((int) (velocidade * 1.25));
     }
 
     public SpecialAbility getHabilidadeEspecial() {
@@ -208,5 +209,9 @@ public class CrewMember extends Character {
 
     public void setDesviosRestantes(int desviosRestantes) {
         this.desviosRestantes = desviosRestantes;
+    }
+
+    public int getAtaqueEscolhido(){
+        return ataqueEscolhido;
     }
 }

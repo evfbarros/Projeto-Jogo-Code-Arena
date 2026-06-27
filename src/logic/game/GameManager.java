@@ -19,6 +19,7 @@ import exceptions.DesvioIndisponivelException;
 import java.util.Map;
 import logic.quiz.Difficulty;
 
+
 public class GameManager {
     private Player pJogador;
     private Character pInimigo;
@@ -29,10 +30,11 @@ public class GameManager {
     private ArrayList<Question> perguntasUsadas;
     private static final int CUSTO_HABILIDADE_ESPECIAL = 100;
     private Map<Difficulty, Integer> distribuicaoPerguntas;
+    private boolean selecionar;
 
     public GameManager(Player pJogador, Character pInimigo, QuestionManager gerenciadorPergunta,
             BattleScreen battleScreen, QuestionScreen questionScreen, CharacterSelectionScreen selectionScreen,
-            Map<Difficulty, Integer> distribuicaoPerguntas,ArrayList<Question> perguntasUsadas) {
+            Map<Difficulty, Integer> distribuicaoPerguntas,ArrayList<Question> perguntasUsadas, boolean selecionar) {
         this.pJogador = pJogador;
         this.pInimigo = pInimigo;
         this.gerenciadorPergunta = gerenciadorPergunta;
@@ -41,6 +43,7 @@ public class GameManager {
         this.selectionScreen = selectionScreen;
         this.distribuicaoPerguntas = distribuicaoPerguntas;
         this.perguntasUsadas = perguntasUsadas;
+        this.selecionar = selecionar;
     }
         private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {//Modifiquei esse método para integrar todas as habilidades especiais
             if (personagemPlayer.getStamina() < CUSTO_HABILIDADE_ESPECIAL) {
@@ -103,16 +106,22 @@ public class GameManager {
     public boolean iniciarJogo() { //Troquei por boolean para facilitar a integrar
         int rodada = 1;
 
-        selectionScreen.exibirPersonagens(pJogador.getTripulacao());
-        int escolha = selectionScreen.escolhaPersonagem(pJogador.getTripulacao());
-        pJogador.selecionarPersonagem(escolha);
+        boolean selecionarPersonagem = selecionar;
+        if(selecionarPersonagem){
+            selectionScreen.exibirPersonagens(pJogador.getTripulacao());
+            int escolha = selectionScreen.escolhaPersonagem(pJogador.getTripulacao());
+            pJogador.selecionarPersonagem(escolha);
+            battleScreen.limparTerminal();
 
-        CrewMember personagemEscolhido = pJogador.getPersonagemAtual(); // Tem que se recuperar entre 2 ilhas
-        personagemEscolhido.resetarAtaques();
-        personagemEscolhido.resetarDefesa();
-        personagemEscolhido.resetarDesvios();
-        personagemEscolhido.recuperarVida(personagemEscolhido.getVidaMaxima());
-        personagemEscolhido.recuperarStamina(personagemEscolhido.getStaminaMaxima());
+
+            CrewMember personagemEscolhido = pJogador.getPersonagemAtual(); // Tem que se recuperar entre 2 ilhas
+            personagemEscolhido.resetarAtaques();
+            personagemEscolhido.resetarDefesa();
+            personagemEscolhido.resetarDesvios();
+            personagemEscolhido.recuperarVida(personagemEscolhido.getVidaMaxima());
+            personagemEscolhido.recuperarStamina(personagemEscolhido.getStaminaMaxima());
+        }
+        
         
         while (pJogador.getPersonagemAtual().estaVivo() && pInimigo.estaVivo()) {
             CrewMember personagemPlayer = pJogador.getPersonagemAtual();
@@ -123,7 +132,10 @@ public class GameManager {
             perguntasUsadas.add(questaoAtual);
 
             battleScreen.exibirRodada(rodada);
-            battleScreen.atributosBatalha(personagemPlayer.getNome(),personagemPlayer.getVida(),pInimigo.getNome(),pInimigo.getVida());
+            battleScreen.atributosBatalha(personagemPlayer.getNome(),personagemPlayer.getVida(), personagemPlayer.getVidaMaxima(),
+            pInimigo.getNome(),pInimigo.getVida(), pInimigo.getVidaMaxima());
+            battleScreen.esperarEnter();
+            battleScreen.limparTerminal();
             questionScreen.mostrarQuestao(questaoAtual);
             boolean resultado;
             int escolhaAcao = battleScreen.escolherAcaoEspecialOuResponder();
@@ -137,6 +149,7 @@ public class GameManager {
                 default:
                     questionScreen.pedirResposta();
                     String resposta = questionScreen.leituraRespostaValida(questaoAtual);
+                    battleScreen.limparTerminal();
                     resultado = questaoAtual.verificarResposta(resposta);
                     break;
                 }
@@ -145,6 +158,7 @@ public class GameManager {
                 battleScreen.respostaCorretaEscolhaAtaque();
                 battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
                 int escolhaAtaque = battleScreen.escolherAtaque();
+                battleScreen.limparTerminal();
                 int dano = -1;
 
                 while (dano < 0) {
@@ -171,10 +185,17 @@ public class GameManager {
                     boolean upou = personagemPlayer.ganharXP(pInimigo.getXpConcedido());
                     if (upou) {
                         battleScreen.upouNivel(personagemPlayer.getNome(), personagemPlayer.getNivelAtual());
+                        battleScreen.esperarEnter();
+                        battleScreen.limparTerminal();
                     }
                 }
-                battleScreen.resultadoRodada(rodada,true,personagemPlayer.getNome(),dano,null
+
+                battleScreen.resultadoRodada(rodada,true,personagemPlayer.getNome(),dano,personagemPlayer.getListaAtaque().get(personagemPlayer.getAtaqueEscolhido()).getNome()
                                             ,questionScreen.obterRespostaCorreta(questaoAtual));
+                battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), personagemPlayer.getVidaMaxima(),
+                 pInimigo.getNome(), pInimigo.getVida(), pInimigo.getVidaMaxima());
+                battleScreen.esperarEnter();
+                battleScreen.limparTerminal();
 
             } else {
                 int quantidadeAtaques = 1; // Por padrão, o inimigo ataca apenas uma vez
@@ -192,8 +213,13 @@ public class GameManager {
                     int dano = 0;
                     try{
                         dano = pInimigo.atacar(0, personagemPlayer); // Calcula o dano base
-                        Enemy inimigo = (Enemy) pInimigo;
-                        ataqueInimigo = inimigo.getListaAtaque().get(inimigo.getAtaqueUsado()).getNome();
+                        if (pInimigo instanceof Enemy){
+                            Enemy inimigo = (Enemy) pInimigo;
+                            ataqueInimigo = inimigo.getListaAtaque().get(inimigo.getAtaqueUsado()).getNome();
+                        } else {
+                            ataqueInimigo = "Ataque Básico";
+                        }
+                        
                     } catch (AtaqueInvalidoException e){
                         System.out.println("Erro : " + e.getMessage());
                     } catch (AtaqueIndisponivelException e){
@@ -213,6 +239,7 @@ public class GameManager {
 
                     danoTotal += dano; // Soma ao dano total
                 }
+
                 battleScreen.respostaErradaEscolhaDefesa();
                 int defender = battleScreen.defender(personagemPlayer.getDefesasRestantes(), personagemPlayer.getDefesasMaximas(),
                  personagemPlayer.getDesviosRestantes(), personagemPlayer.getDesviosMaximos()); // Pergunta se o jogador quer defender
@@ -243,13 +270,19 @@ public class GameManager {
                     personagemPlayer.receberDano(danoTotal); // Aplica o dano final
                 }   
 
+                battleScreen.limparTerminal();
+
                battleScreen.resultadoRodada(rodada,false,pInimigo.getNome(),danoTotal,ataqueInimigo
                                             ,questionScreen.obterRespostaCorreta(questaoAtual));
+                battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), personagemPlayer.getVidaMaxima(),
+                 pInimigo.getNome(), pInimigo.getVida(), pInimigo.getVidaMaxima());
+                battleScreen.esperarEnter();
+                battleScreen.limparTerminal();
             }
-            battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), pInimigo.getNome(),
-                    pInimigo.getVida());
-            battleScreen.esperarEnter();
-            battleScreen.limparTerminal();
+            //battleScreen.atributosBatalha(personagemPlayer.getNome(), personagemPlayer.getVida(), pInimigo.getNome(),
+            //        pInimigo.getVida());
+            //battleScreen.esperarEnter();
+            //battleScreen.limparTerminal();
 
             rodada++;
         }
@@ -257,7 +290,9 @@ public class GameManager {
         boolean resultadoBatalha = pJogador.getPersonagemAtual().estaVivo();
 
         if (resultadoBatalha) {
-            battleScreen.resultadoBatalha(true, pJogador.getPersonagemAtual().getNome());
+            battleScreen.inimigoDerrotado(pInimigo.getNome());
+            battleScreen.limparTerminal();
+
         } else {
             battleScreen.resultadoBatalha(false, pInimigo.getNome());
         }

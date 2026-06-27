@@ -22,6 +22,8 @@ public class IslandCreator {
     }
     public static Island criarShellsTown(){
         ArrayList<NPC> marinheiros = new ArrayList<>();
+        marinheiros.add(CharacterCreator.marinheirosShellsTown("Recruta da Marinha"));
+        marinheiros.add(CharacterCreator.marinheirosShellsTown("Soldado da Base"));
         Enemy morgan = CharacterCreator.personagemCapitaoMorgan();
         Enemy helmeppo = CharacterCreator.personagemHelmeppo();
         CrewMember zoro = CharacterCreator.personagemZoro();
@@ -29,6 +31,8 @@ public class IslandCreator {
     }
     public static Island criarOrangeTown(){
         ArrayList<NPC> piratasBuggy = new ArrayList<>();
+        piratasBuggy.add(CharacterCreator.piratasBuggy("Espadachim do Circo"));
+        piratasBuggy.add(CharacterCreator.piratasBuggy("Pirata Malabarista"));
         Enemy mohji = CharacterCreator.personagemMohji();
         Enemy buggy = CharacterCreator.personagemBuggy();
         CrewMember nami = CharacterCreator.personagemNami();
@@ -36,6 +40,8 @@ public class IslandCreator {
     }
     public static Island criarSyrupVillage() {
         ArrayList<NPC> piratasGato = new ArrayList<>();
+        piratasGato.add(CharacterCreator.piratasGatoPreto("Assassino Felino"));
+        piratasGato.add(CharacterCreator.piratasGatoPreto("Caçador Silencioso"));
         Enemy jango = CharacterCreator.personagemJango();
         Enemy kuro = CharacterCreator.personagemCapitaoKuro();
         CrewMember usopp = CharacterCreator.personagemUsopp();
@@ -43,6 +49,8 @@ public class IslandCreator {
     }
     public static Island criarBaratie(){
         ArrayList<NPC> piratasKrieg = new ArrayList<>();
+        piratasKrieg.add(CharacterCreator.piratasKrieg("Soldado Blindado"));
+        piratasKrieg.add(CharacterCreator.piratasKrieg("Veterano da Guerra"));
         Enemy donKrieg = CharacterCreator.personagemDonKrieg();
         Enemy gin = CharacterCreator.personagemGin();
         CrewMember sanji = CharacterCreator.personagemSanji();
@@ -50,6 +58,8 @@ public class IslandCreator {
     }
     public static Island criarArlongPark(){
         ArrayList<NPC> piratasArlong = new ArrayList<>();
+        piratasArlong.add(CharacterCreator.piratarArlong("Guerreiro Homem-Peixe"));
+        piratasArlong.add(CharacterCreator.piratarArlong("Caçador Abissal"));
         Enemy hatchan = CharacterCreator.personagemHatchan();
         Enemy arlong = CharacterCreator.personagemArlong();
         CrewMember nami = CharacterCreator.personagemNami();

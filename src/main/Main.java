@@ -5,6 +5,7 @@ import entities.Player;
 import logic.game.CampaignManager;
 import logic.quiz.QuestionBank;
 import logic.quiz.QuestionManager;
+import screens.BattleScreen;
 import screens.GameScreen;
 
 public class Main {
@@ -18,11 +19,13 @@ public class Main {
         QuestionManager gerenciadorPergunta = new QuestionManager(banco.getListaQuestoes());
 
         GameScreen gameScreen = new GameScreen();
+        BattleScreen battleScreen = new BattleScreen();
 
         CampaignManager campanha = new CampaignManager(
                 jogador,
                 gerenciadorPergunta,
-                gameScreen
+                gameScreen,
+                battleScreen
         );
 
         campanha.iniciarCampanha();

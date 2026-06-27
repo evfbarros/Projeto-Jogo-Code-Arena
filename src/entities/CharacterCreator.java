@@ -109,10 +109,10 @@ public class CharacterCreator {
 
     public static Enemy personagemHelmeppo() {
         ArrayList<Attack> ataquesHelmeppo = new ArrayList<>();
-        ataquesHelmeppo.add(new Attack("Arrogant Slap", 25, 5));
-        ataquesHelmeppo.add(new Attack("Stick Strike", 50, 5));
-        ataquesHelmeppo.add(new Attack("Marine Backup", 75, 5));
-        return new Enemy("Helmeppo", 250, 200, 100, 100, 100, 25, new DefaultCombatAbility(), ataquesHelmeppo);
+        ataquesHelmeppo.add(new Attack("Arrogant Slap", 50, 5));
+        ataquesHelmeppo.add(new Attack("Stick Strike", 75, 5));
+        ataquesHelmeppo.add(new Attack("Marine Backup", 100, 5));
+        return new Enemy("Helmeppo", 250, 200, 150, 100, 100, 50, new DefaultCombatAbility(), ataquesHelmeppo);
     }
     // miniboss 1
     public static Enemy personagemMohji() {
@@ -143,4 +143,27 @@ public class CharacterCreator {
         ataquesHatchan.add(new Attack("Six-Sword Style", 120, 1));
         return new Enemy("Hatchan",550,250,180,140,180,0,new HatchanSixSwordAbility(),ataquesHatchan);
     } // miniboss 5
+
+    public static NPC marinheirosShellsTown(String nome){
+        return new NPC(nome, 150, 100, 100, 100, 100, 50);
+    }
+
+    public static NPC piratasBuggy(String nome){
+        return new NPC(nome, 150, 100, 100, 100, 100, 50);
+    }
+
+    public static NPC piratasGatoPreto(String nome){
+        return new NPC(nome, 150, 100, 150, 100, 100, 50);
+    }
+
+    public static NPC piratasKrieg(String nome){
+        return new NPC(nome, 150, 100, 150, 100, 100, 50);
+    }
+
+    public static NPC piratarArlong(String nome){
+        return new NPC(nome, 150, 100, 200, 100, 100, 100);
+    }
+
+    //criei assim, mas nao to usando uma quantidade grande de NPCs ainda para as ilhas nao ficarem tao extensas, mas mais no futuro o jeito que os NPC 
+    //tao sendo cirados vai ficar melhor
 }

@@ -6,68 +6,74 @@ import entities.Attack;
 public class BattleScreen {
     private Scanner leitor = new Scanner(System.in);
     private void separador() {
-        System.out.println("\n========================================");
+        System.out.println("========================================");
     }
 
     private void linha() {
-        System.out.println("----------------------------------------");
+        System.out.println("────────────────────────────────────────");
     }
 
     public void exibirRodada(int rodada) {
-        separador();
+        //separador();
+        linha();
         System.out.println("              RODADA " + rodada);
-        separador();
+        linha();
+        //separador();
     }
 
-    public void resultadoRodada(int rodada, boolean resultado, String nomePersonagem,int dano, String ataqueInimigo, String respostaCorreta) {
-        System.out.println("\n=====================================");
-        System.out.println("           RESULTADO RODADA " + rodada);
-        System.out.println("=====================================");
+    public void resultadoRodada(int rodada, boolean resultado,String nomePersonagem,int dano, String ataque, String respostaCorreta) {
+        linha();
+        System.out.println("         RESULTADO RODADA " + rodada);
+        linha();
 
         if (resultado) {
-            System.out.println("Status: resposta correta!");
+            System.out.println("Status: Resposta correta");
+            System.out.println(nomePersonagem + " usou: " + ataque);
             System.out.println("Dano causado: " + dano);
         } else {
-            System.out.println("Status: resposta errada.");
+            System.out.println("Status: Resposta errada");
             System.out.println("Resposta correta: " + respostaCorreta);
-            System.out.println(nomePersonagem + " usou: " + ataqueInimigo);
+            System.out.println(nomePersonagem + " usou: " + ataque);
             System.out.println("Dano recebido: " + dano);
         }
 
-        System.out.println("=====================================");
+        linha();
     }
-    public void atributosBatalha(String nomeJogador, int vidaJogador, String nomeInimigo, int vidaInimigo) {
-        linha();
-        System.out.println("STATUS DA BATALHA");
-        linha();
-        System.out.println(nomeJogador + " | Vida: " + vidaJogador);
-        System.out.println(nomeInimigo + " | Vida: " + vidaInimigo);
+    public void atributosBatalha(String nomeJogador, int vidaJogador, int vidaMaximaJogador, String nomeInimigo, int vidaInimigo, int vidaMaximaInimigo) {
+        System.out.println(nomeJogador + "  " + vidaJogador + "/" + vidaMaximaJogador + " HP");
+        System.out.println(nomeInimigo + "  " + vidaInimigo + "/" + vidaMaximaInimigo + " HP");
         linha();
 }
 
+    public void novaBatalha(String personagemPlayer, String personagemInimigo){
+        linha();
+        System.out.println("     UMA NOVA BATALHA FOI INICIADA");
+        System.out.println("      " + personagemPlayer.toUpperCase() + " VS " + personagemInimigo.toUpperCase());
+        linha();
+        System.out.println();
+    }
+
     public void resultadoBatalha(boolean resultadoBatalha, String nomeGanhador) {
-        separador();
-        System.out.println("              FIM DA BATALHA");
-        separador();
+        System.out.println("──────────────────────────────────────────────────");
+        System.out.println("          FIM DA BATALHA");
 
         if (resultadoBatalha) {
-            System.out.println("Parabens, voce venceu!");
+            System.out.println("          PARABÉNS, VOCÊ VENCEU!");
         } else {
-            System.out.println("Infelizmente voce foi derrotado.");
+            System.out.println("          INFELIZMENTE VOCÊ FOI DERROTADO.");
         }
 
-        System.out.println("Vencedor: " + nomeGanhador);
-        separador();
+        System.out.println("          VENCEDOR: " + nomeGanhador.toUpperCase());
+        System.out.println("──────────────────────────────────────────────────");
     }
 
     public void upouNivel(String nomeJogador, int nivelPersonagem) {
-        System.out.println("Parabens " + nomeJogador + ". Nivel do personagem: " + nivelPersonagem);
+        cabecalho("  Parabéns. " + nomeJogador + " subiu de nível\n Nível: " + nivelPersonagem);
     }
 
     public void exibirAtaques(ArrayList<Attack> listaAtaque) {
-        linha();
-        System.out.println("ATAQUES DISPONIVEIS");
-        linha();
+        System.out.println("────────────────────────────────────────");
+        System.out.println("──────────────────────────────────────────────────");
 
         for (int i = 0; i < listaAtaque.size(); i++) {
             Attack ataque = listaAtaque.get(i);
@@ -75,12 +81,11 @@ public class BattleScreen {
                                 + ataque.getUsosMaximos());
         }
 
-        linha();
+        System.out.println("──────────────────────────────────────────────────");
     }
 
-    // vai retronar o indice do ataque escolhido
     public int escolherAtaque() {
-        System.out.print("Escolha seu ataque (0 a 2): ");
+        System.out.print("  -> ");
         int escolha = -1;
         
 
@@ -104,8 +109,8 @@ public class BattleScreen {
         System.out.println("[0] Defender | Usos: " + defesasRestantes + "/" + defesasMaximas);
         System.out.println("[1] Desviar  | Usos: " + desviosRestantes + "/" + desviosMaximos);
         System.out.println("[2] Aceitar o ataque");
-        System.out.println("----------------------------------------");
-        System.out.print("Escolha uma opcao: ");
+        linha();
+        System.out.print("  -> ");
         int escolha = -1;
 
         while (escolha < 0 || escolha > 2) {
@@ -152,14 +157,12 @@ public class BattleScreen {
     }
 
     public int escolherAcaoEspecialOuResponder() {
-        System.out.println();
-        linha();
-        System.out.println("              SUA ACAO");
+        System.out.println("              SUA AÇÃO");
         linha();
         System.out.println("[0] Responder normalmente");
         System.out.println("[1] Usar habilidade especial");
         linha();
-        System.out.print("Escolha uma opcao: ");
+        System.out.print("  -> ");
 
         int escolha = -1;
 
@@ -194,24 +197,43 @@ public class BattleScreen {
         System.out.println("Voce devera responder a questao normalmente.");
     }
     public void respostaCorretaEscolhaAtaque() {
-        System.out.println("\nVoce acertou a questao, parabens!");
-        System.out.println("Escolha uma opcao de ataque:");
+        System.out.println();
+        linha();
+        System.out.println(" Resposta Correta. Escolha seu ataque:");
     }
 
     public void respostaErradaEscolhaDefesa() {
         System.out.println();
-        System.out.println("========================================");
-        System.out.println("          RESPOSTA INCORRETA");
-        System.out.println("========================================");
-        System.out.println();
-        System.out.println("O inimigo preparou um ataque!");
-        System.out.println();
-        System.out.println("----------------------------------------");
+        linha();
+        System.out.println(" Resposta Incorreta. O inimigo ataca!");
+        linha();
         System.out.println("          ESCOLHA SUA DEFESA");
-        System.out.println("----------------------------------------");
+        linha();
     }
 
     public void inimigoDesviou(String nomeInimigo) {
         System.out.println(nomeInimigo + " desviou do ataque!");
+    }
+
+    public void inimigoDerrotado(String nomeInimigo){
+        linha();
+        System.out.println(" Você derrotou " + nomeInimigo);
+        linha();
+    }
+
+    public void novoInimigo(String nomeInimigo){
+        System.out.println("────────────────────────────────────────────");
+        System.out.println(" Um novo inimigo aparece: " + nomeInimigo);
+        System.out.println("────────────────────────────────────────────");
+    }
+
+    public void cabecalho(String texto) {
+        int largura = 40;
+        String linha = "═".repeat(largura);
+        int espacos = (largura - texto.length()) / 2;
+        String padding = " ".repeat(Math.max(0, espacos));
+        System.out.println(linha);
+        System.out.println(padding + texto);
+        System.out.println(linha);
     }
 }
