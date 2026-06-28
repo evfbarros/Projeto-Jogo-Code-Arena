@@ -18,6 +18,7 @@ import exceptions.DefesaIndisponivelException;
 import exceptions.DesvioIndisponivelException;
 import java.util.Map;
 import logic.quiz.Difficulty;
+import logic.quiz.OpenQuestion;
 
 
 public class GameManager {
@@ -61,7 +62,7 @@ public class GameManager {
                 boolean funcionou = habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
 
                 if (funcionou) {
-                    battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                    battleScreen.habilidadeUsada("Zoro realizou um corte!");
                 } else {
                     battleScreen.habilidadeNaoAplicavel();
                 }
@@ -73,7 +74,7 @@ public class GameManager {
 
             if (personagemPlayer.getNome().equalsIgnoreCase("Sanji")) {
                 habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
-                battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                battleScreen.habilidadeUsada("Sanji recuperou suas forças!");
 
                 questionScreen.mostrarQuestao(questaoAtual);
                 String resposta = questionScreen.leituraRespostaValida(questaoAtual);
@@ -84,8 +85,33 @@ public class GameManager {
                 questionScreen.mostrarQuestao(questaoAtual);
                 String resposta = questionScreen.leituraRespostaValida(questaoAtual);
 
-                battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                battleScreen.habilidadeUsada("Capitão Ussop nunca erra!");
                 return habilidadeEspecial.usar(personagemPlayer, questaoAtual, resposta);
+            }
+
+            if (personagemPlayer.getNome().equalsIgnoreCase("Luffy")){
+
+                if (questaoAtual instanceof OpenQuestion){
+                    battleScreen.habilidadeNaoAplicavel();
+                    battleScreen.esperarEnter();
+                    battleScreen.limparTerminal();
+                    questionScreen.mostrarQuestao(questaoAtual);
+                    String resposta = questionScreen.leituraRespostaValida(questaoAtual);
+
+                    return questaoAtual.verificarResposta(resposta);
+                }
+
+                boolean deuCerto = habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
+
+                if(deuCerto){
+                    battleScreen.habilidadeUsada("Luffy deu um chute!");
+                } else{
+                    battleScreen.habilidadeUsada("Luffy errou o chute!");
+                }  
+                
+                battleScreen.esperarEnter();
+                battleScreen.limparTerminal();
+                return deuCerto;
             }
 
             boolean habilidadeFuncionou = habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
@@ -96,12 +122,14 @@ public class GameManager {
             }
 
             battleScreen.habilidadeNaoAplicavel();
-            battleScreen.responderNormalmente();
+            battleScreen.esperarEnter();
+            battleScreen.limparTerminal();
 
             questionScreen.mostrarQuestao(questaoAtual);
             String respostaNormal = questionScreen.leituraRespostaValida(questaoAtual);
-
+            battleScreen.limparTerminal();
             return questaoAtual.verificarResposta(respostaNormal);
+
         }
     public boolean iniciarJogo() { //Troquei por boolean para facilitar a integrar
         int rodada = 1;
@@ -185,6 +213,8 @@ public class GameManager {
                     boolean upou = personagemPlayer.ganharXP(pInimigo.getXpConcedido());
                     if (upou) {
                         battleScreen.upouNivel(personagemPlayer.getNome(), personagemPlayer.getNivelAtual());
+                        battleScreen.atributosJogador(personagemPlayer.getNome(), personagemPlayer.getVida(), personagemPlayer.getAtaque(),
+                        personagemPlayer.getDefesa(), personagemPlayer.getStamina());
                         battleScreen.esperarEnter();
                         battleScreen.limparTerminal();
                     }

@@ -1,8 +1,10 @@
 package screens;
 
 import entities.CrewMember;
+import java.util.*;
 
 public class GameScreen {
+    private Scanner leitor = new Scanner(System.in);
 
     public void exibirIlhaAtual(String nomeIlha) {
         cabecalho("ILHA ATUAL: " + nomeIlha.toUpperCase());
@@ -13,7 +15,7 @@ public class GameScreen {
     }
 
     public void personagemEntrou(CrewMember personagem) {
-        System.out.println(personagem.getNome() + " entrou para a tripulacao!");
+        cabecalho(personagem.getNome() + " entrou para a tripulação!");
     }
 
     public void campanhaEncerrada(String nomeInimigo) {
@@ -34,4 +36,8 @@ public class GameScreen {
         System.out.println(linha);
     }
 
+    public void esperarEnter() {
+        System.out.print("\nPressione enter para continuar: ");
+        leitor.nextLine();
+    }
 }

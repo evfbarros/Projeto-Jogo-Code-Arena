@@ -7,6 +7,7 @@ import logic.quiz.QuestionBank;
 import logic.quiz.QuestionManager;
 import screens.BattleScreen;
 import screens.GameScreen;
+import screens.MenuScreen;
 
 public class Main {
 
@@ -28,6 +29,8 @@ public class Main {
                 battleScreen
         );
 
-        campanha.iniciarCampanha();
+        MenuScreen menuScreen = new MenuScreen();
+
+        menuScreen.menu(campanha);
     }
 }

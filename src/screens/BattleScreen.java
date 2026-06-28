@@ -13,6 +13,7 @@ public class BattleScreen {
         System.out.println("────────────────────────────────────────");
     }
 
+    //vou repetir e
     public void exibirRodada(int rodada) {
         //separador();
         linha();
@@ -68,7 +69,13 @@ public class BattleScreen {
     }
 
     public void upouNivel(String nomeJogador, int nivelPersonagem) {
-        cabecalho("  Parabéns. " + nomeJogador + " subiu de nível\n Nível: " + nivelPersonagem);
+        cabecalho(" Parabéns. " + nomeJogador + " subiu de nível\n Nível: " + nivelPersonagem);
+    }
+
+    public void atributosJogador(String nomeJogador, int vida, int ataque, int defesa, int stamina){
+        System.out.println(" Atributos " +nomeJogador);
+        System.out.println(" Vida: " + vida + "\n Ataque : " + ataque + "\n Defesa: " + defesa + "\n Stamina: " + stamina);
+        linha();
     }
 
     public void exibirAtaques(ArrayList<Attack> listaAtaque) {
@@ -183,19 +190,28 @@ public class BattleScreen {
     }
 
     public void staminaInsuficiente() {
-        System.out.println("Stamina insuficiente para usar habilidade especial.");
+        linha();
+        System.out.println("Stamina insuficiente para usar habilidade \n" + "especial.");
     }
 
-    public void habilidadeUsada(String nome) {
-        System.out.println(nome + " usou sua habilidade especial!");
+    public void habilidadeUsada(String mensagem) {
+        linha();
+        System.out.println(mensagem);
+    }
+
+    public void habilidadeDeuRuim(String mensagem){
+        linha();
+        System.out.println(mensagem);
+        linha();
     }
 
     public void habilidadeNaoAplicavel() {
-        System.out.println("Essa habilidade nao pode ser usada nesta questao.");
+        linha();
+        System.out.println("Habilidade indisponível para essa pergunta.");
+        System.out.println("Responda a questão normalmente.");
+        linha();
     }
-    public void responderNormalmente() {
-        System.out.println("Voce devera responder a questao normalmente.");
-    }
+
     public void respostaCorretaEscolhaAtaque() {
         System.out.println();
         linha();
@@ -236,4 +252,7 @@ public class BattleScreen {
         System.out.println(padding + texto);
         System.out.println(linha);
     }
+
+    //vou acabar repetindo metodos como o cabecalho, linha e separador em outras classes sem fazer do jeito certo, mas e so pq eu ja comecei assim
+    //e como e coisa de terminal, nao to dando tanta imortancia, depois eu ajeito
 }

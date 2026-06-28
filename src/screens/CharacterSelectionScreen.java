@@ -8,13 +8,13 @@ public class CharacterSelectionScreen {
     public void exibirPersonagens(ArrayList<CrewMember> tripulacao){
         
         System.out.println("\nPERSONAGENS DISPONÍVEIS: ");
-        System.out.println("══════════════════════════════════════════════════");
+        System.out.println("═════════════════════════════════════════════════════════════════");
         for(int i = 0; i < tripulacao.size(); i++){
             CrewMember personagem = tripulacao.get(i);
             System.out.println(i + " - " +personagem.getNome() + " | Vida: " + personagem.getVidaMaxima() + " | Ataque : " 
-            + personagem.getAtaque() + " | Defesa: " + personagem.getDefesa());
+            + personagem.getAtaque() + " | Defesa: " + personagem.getDefesa() + " | Stamina: " + personagem.getStamina());
         }
-        System.out.println("══════════════════════════════════════════════════");
+        System.out.println("═════════════════════════════════════════════════════════════════");
     }
     
     public int escolhaPersonagem(ArrayList<CrewMember> tripulacao){

@@ -80,6 +80,8 @@ public class CampaignManager {
             if (ilha.getRecompensa() != null) {
                 jogador.desbloquearPersonagem(ilha.getRecompensa());
                 gameScreen.personagemEntrou(ilha.getRecompensa());
+                battleScreen.esperarEnter();
+                battleScreen.limparTerminal();
             }
         }
 

@@ -20,7 +20,7 @@ public class LuffyGuessAbility implements SpecialAbility {
 
         // Se a questão for de múltipla escolha, Luffy terá 40% de chance de acertar
         if (questao instanceof MultipleChoiceQuestion) {
-            chanceAcerto = 40;
+            chanceAcerto = 70;
         }
 
         // Se a questão for de verdadeiro ou falso, Luffy terá 70% de chance de acertar

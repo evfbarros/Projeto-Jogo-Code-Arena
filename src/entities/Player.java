@@ -13,7 +13,6 @@ public class Player {
 
     public void desbloquearPersonagem(CrewMember novoPersonagem) {
         tripulacao.add(novoPersonagem);
-        System.out.println(novoPersonagem.getNome() + " entrou para a tripulacao!");
     }
 
     public CrewMember selecionarPersonagem(int indicePersonagem){
