@@ -12,6 +12,8 @@ public class Player {
     }
 
     public void desbloquearPersonagem(CrewMember novoPersonagem) {
+        int nivelMedio = calcularNivelMedioTripulacao();
+        novoPersonagem.ajustarNivelInicial(nivelMedio);
         tripulacao.add(novoPersonagem);
     }
 
@@ -44,5 +46,22 @@ public class Player {
         for (CrewMember personagem : tripulacao) {
             personagem.recuperarStamina(personagem.getStaminaMaxima());
         }
+    }
+    public ArrayList<CrewMember> distribuirXPParaTripulacao(double xpRecebido) {
+        ArrayList<CrewMember> personagensQueUparam = new ArrayList<>();
+        for (CrewMember personagem : tripulacao) {
+            boolean upou = personagem.ganharXP(xpRecebido);
+            if (upou) {
+            personagensQueUparam.add(personagem);
+            }
+        }
+        return personagensQueUparam;
+    }
+    private int calcularNivelMedioTripulacao() {
+        int somaNiveis = 0;
+        for (CrewMember personagem : tripulacao) {
+            somaNiveis += personagem.getNivelAtual();
+        }
+    return somaNiveis / tripulacao.size();
     }
 }

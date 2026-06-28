@@ -141,6 +141,7 @@ public class GameManager {
             pJogador.selecionarPersonagem(escolha);
             battleScreen.limparTerminal();
 
+            pJogador.resetarStaminaTripulacao();
 
             CrewMember personagemEscolhido = pJogador.getPersonagemAtual(); // Tem que se recuperar entre 2 ilhas
             personagemEscolhido.resetarAtaques();
@@ -210,11 +211,16 @@ public class GameManager {
                 } // Isso é especificamente para a habilidade do Don Krieg que é defensiva
                 pInimigo.receberDano(dano);
                 if(!pInimigo.estaVivo()){
-                    boolean upou = personagemPlayer.ganharXP(pInimigo.getXpConcedido());
-                    if (upou) {
-                        battleScreen.upouNivel(personagemPlayer.getNome(), personagemPlayer.getNivelAtual());
-                        battleScreen.atributosJogador(personagemPlayer.getNome(), personagemPlayer.getVida(), personagemPlayer.getAtaque(),
-                        personagemPlayer.getDefesa(), personagemPlayer.getStamina());
+                    ArrayList<CrewMember> personagensQueUparam =pJogador.distribuirXPParaTripulacao(pInimigo.getXpConcedido());
+                    for (CrewMember personagem : pJogador.getTripulacao()) {
+                        battleScreen.xpRecebido(personagem.getNome(), pInimigo.getXpConcedido());
+                    }
+                    for (CrewMember personagem : personagensQueUparam) {
+                        battleScreen.upouNivel(personagem.getNome(), personagem.getNivelAtual());
+
+                        battleScreen.atributosJogador(personagem.getNome(),personagem.getVida(),personagem.getAtaque(),personagem.getDefesa(),
+                                                        personagem.getStamina());
+
                         battleScreen.esperarEnter();
                         battleScreen.limparTerminal();
                     }
@@ -260,7 +266,7 @@ public class GameManager {
 
                     if (pInimigo instanceof Enemy) {
                         Enemy inimigo = (Enemy) pInimigo;
-                        dano = inimigo.getComAbility().modificarDanoRecebido(dano, rodada);
+                        dano = inimigo.getComAbility().modificarDano(dano, rodada);
                     }
 
                     if (danoAntesHabilidade > 0 && dano == 0) {

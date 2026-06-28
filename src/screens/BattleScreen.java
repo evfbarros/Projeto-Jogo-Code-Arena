@@ -71,6 +71,9 @@ public class BattleScreen {
     public void upouNivel(String nomeJogador, int nivelPersonagem) {
         cabecalho(" Parabéns. " + nomeJogador + " subiu de nível\n Nível: " + nivelPersonagem);
     }
+    public void xpRecebido(String nomePersonagem, double xpRecebido) {
+        System.out.println(nomePersonagem + " recebeu +" + (int) xpRecebido + " XP.");
+    }
 
     public void atributosJogador(String nomeJogador, int vida, int ataque, int defesa, int stamina){
         System.out.println(" Atributos " +nomeJogador);

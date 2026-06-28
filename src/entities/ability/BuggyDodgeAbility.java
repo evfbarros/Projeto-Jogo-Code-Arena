@@ -12,7 +12,7 @@ public class BuggyDodgeAbility implements CombatAbility {
     }
     @Override
     public int modificarDanoRecebido(int danoBase, int rodada) {
-        if (random.nextInt(100) < 40) {
+        if (random.nextInt(100) < 30) {
             return 0;
         }
         return danoBase;

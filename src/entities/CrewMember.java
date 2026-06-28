@@ -130,15 +130,26 @@ public class CrewMember extends Character {
     //o aumento em porcentagem ainda nao e o definitivo pq temos que testar no
     //jogo, entoa so coloquei vlaores aleatorios
     public void uparAtributos() {
-        ataque = ((int) (ataque * 1.25));
-        defesa = ((int) (defesa * 1.25));
-        staminaMaxima = ((int) (staminaMaxima * 1.25));
-        stamina = staminaMaxima;
-        vidaMaxima = ((int) (vidaMaxima * 1.25));
+        vidaMaxima = ((int) (vidaMaxima * 1.15));
         vida = vidaMaxima;
-        velocidade = ((int) (velocidade * 1.25));
-    }
 
+        ataque = ((int) (ataque * 1.12));
+
+        defesa = ((int) (defesa * 1.10));
+
+        staminaMaxima = ((int) (staminaMaxima * 1.10));
+        stamina = staminaMaxima;
+
+        velocidade = ((int) (velocidade * 1.08));
+    }
+    public void ajustarNivelInicial(int nivelDesejado) {
+        while (nivelAtual < nivelDesejado) {
+            nivelAtual++;
+            xpUparNivel *= 1.5;
+            uparAtributos();
+        }
+    xpAtual = 0;
+    } // ideia é que o personagem já entre no nível médio da equipe
     public SpecialAbility getHabilidadeEspecial() {
         return habilidadeEspecial;
     }
