@@ -27,4 +27,13 @@ public class ZoroCutAbility implements SpecialAbility {
         // Se a questão não for de múltipla escolha, a habilidade não é aplicada.
         return false;
     }
+    @Override
+    public String getNome() {
+        return "Corte do Espadachim";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Zoro corta alternativas erradas em perguntas de multipla escolha, deixando a resposta correta mais facil de encontrar. Nao funciona em perguntas de verdadeiro ou falso ou completar lacuna.";
+    }
 }

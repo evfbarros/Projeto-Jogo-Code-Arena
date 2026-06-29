@@ -10,4 +10,13 @@ public class GinDemonAbility implements CombatAbility {
 
         return danoBase;
     }
+    @Override
+    public String getNome() {
+        return "Homem Demonio";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "A partir da terceira rodada, Gin entra em um estado mais agressivo e causa dano adicional.";
+    }
 }

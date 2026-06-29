@@ -40,8 +40,11 @@ public class MenuScreen {
             switch (escolha) {
                 case 1:
                     limparTerminal();
+                    mostrarIntroducao();
+                    limparTerminal();
                     campaignManager.iniciarCampanha();
                     break;
+
                 case 2:
                     limparTerminal();
                     mostrarComoJogar();
@@ -57,7 +60,61 @@ public class MenuScreen {
             }
         }
     }
+    public void mostrarIntroducao() {
+        cabecalho("PROLOGO");
 
+        System.out.println();
+        System.out.println("Em algum lugar do East Blue, existe uma pequena vila");
+        System.out.println("chamada Foosha. Foi la que nasceu Monkey D. Luffy,");
+        System.out.println("um garoto de 17 anos com um sonho grande demais para");
+        System.out.println("caber em uma ilha: tornar-se o Rei dos Piratas.");
+        System.out.println();
+
+        System.out.println("Movido por esse desejo, Luffy parte em sua primeira");
+        System.out.println("grande jornada pelo mar. Mas o oceano nao e apenas");
+        System.out.println("um caminho de liberdade. Ele tambem e cheio de perigos,");
+        System.out.println("misterios, disputas e historias esquecidas.");
+        System.out.println();
+
+        System.out.println("Ao longo da viagem, Luffy encontrara aliados, enfrentara");
+        System.out.println("piratas perigosos, desafiara capitaes da Marinha e");
+        System.out.println("descobrira que cada ilha guarda seus proprios problemas.");
+        System.out.println();
+
+        System.out.println("Neste mundo, o Governo Mundial controla grande parte");
+        System.out.println("dos mares e impoe suas regras sobre reinos, cidades");
+        System.out.println("e povos. A Marinha, seu braco militar, patrulha os");
+        System.out.println("oceanos em nome da justica, perseguindo piratas e");
+        System.out.println("mantendo a ordem.");
+        System.out.println();
+
+        System.out.println("Mas nem sempre justica e liberdade navegam na mesma");
+        System.out.println("direcao.");
+        System.out.println();
+
+        System.out.println("Para seguir em frente, nao bastara vencer batalhas.");
+        System.out.println("Cada etapa da jornada exigira conhecimento, estrategia");
+        System.out.println("e coragem.");
+        System.out.println();
+
+        System.out.println("Questoes de Historia e Geografia surgirao como desafios");
+        System.out.println("pelo caminho: rotas maritimas, povos, territorios,");
+        System.out.println("conflitos, mapas, culturas e acontecimentos que moldam");
+        System.out.println("o mundo.");
+        System.out.println();
+
+        System.out.println("Agora, a aventura começa.");
+        System.out.println();
+
+        System.out.println("Prepare-se para navegar pelo East Blue, superar inimigos,");
+        System.out.println("recrutar companheiros e provar que o conhecimento tambem");
+        System.out.println("pode ser uma arma poderosa.");
+        System.out.println();
+
+        System.out.println("════════════════════════════════════════");
+        System.out.print("\nPressione enter para iniciar a jornada: ");
+        leitor.nextLine();
+    }
     public void mostrarComoJogar() {
         System.out.println("════════════════════════════════════════");
         System.out.println("           COMO JOGAR");

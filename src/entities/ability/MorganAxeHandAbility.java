@@ -9,4 +9,13 @@ public class MorganAxeHandAbility implements CombatAbility {
         }
         return danoBase;
     }
+    @Override
+    public String getNome() {
+        return "Mao de Machado";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Morgan usa sua mao de machado para causar dano dobrado em rodadas pares.";
+    }
 }

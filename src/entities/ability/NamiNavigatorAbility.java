@@ -17,4 +17,13 @@ public class NamiNavigatorAbility implements SpecialAbility {
         // Se não for Geografia, a habilidade não funciona
         return false;
     }
+    @Override
+    public String getNome() {
+        return "Navegadora dos Mares";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Nami usa seu conhecimento de navegacao para acertar automaticamente perguntas de Geografia. A habilidade nao funciona em perguntas de Historia.";
+    }
 }

@@ -40,4 +40,13 @@ public class LuffyGuessAbility implements SpecialAbility {
         // Exemplo: chance 40 → números de 1 a 40 acertam
         return numeroSorteado <= chanceAcerto;
     }
+    @Override
+    public String getNome() {
+        return "Chute Instintivo";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Luffy tenta acertar a resposta no instinto. Funciona em perguntas de multipla escolha e verdadeiro ou falso. Nao funciona em perguntas de completar lacuna.";
+    }
 }

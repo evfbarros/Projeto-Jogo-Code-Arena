@@ -14,4 +14,13 @@ public class DonKriegGoldArmorAbility implements CombatAbility {
         }
         return danoBase;
     }
+    @Override
+    public String getNome() {
+        return "Armadura Dourada";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Don Krieg usa sua armadura para reduzir pela metade o dano recebido em rodadas pares.";
+    }
 }

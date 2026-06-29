@@ -13,11 +13,19 @@ public class JangoHypnosisAbility implements CombatAbility {
 
     @Override
     public int modificarDanoRecebido(int danoBase, int rodada) {
-        // 30% de chance de hipnotizar o atacante e evitar o dano
-        if (random.nextInt(100) < 30) {
+        if (random.nextInt(100) < 15) {
             return 0;
         }
 
         return danoBase;
+    }
+    @Override
+    public String getNome() {
+        return "Hipnose de Jango";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Jango pode hipnotizar o atacante e evitar completamente o dano recebido.";
     }
 }

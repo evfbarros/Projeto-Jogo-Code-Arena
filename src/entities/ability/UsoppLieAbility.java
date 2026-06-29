@@ -16,4 +16,13 @@ public class UsoppLieAbility implements SpecialAbility {
         // se o jogador acertou, passa a errar
         return !respostaOriginalCorreta;
     }
+    @Override
+    public String getNome() {
+        return "Mentira Convincente";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Usopp transforma uma mentira em vantagem: se a resposta estiver errada, ela passa a contar como certa. Mas cuidado: se a resposta estiver certa, ela passa a contar como errada.";
+    }
 }

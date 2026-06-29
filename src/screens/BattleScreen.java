@@ -2,6 +2,8 @@ package screens;
 
 import java.util.*;
 import entities.Attack;
+import entities.CrewMember;
+import entities.Enemy;
 
 public class BattleScreen {
     private Scanner leitor = new Scanner(System.in);
@@ -76,8 +78,21 @@ public class BattleScreen {
         cabecalho(" Parabéns. " + nomeJogador + " subiu de nível\n Nível: " + nivelPersonagem);
     }
 
-    public void xpRecebido(String nomePersonagem, double xpRecebido) {
-        System.out.println(nomePersonagem + " recebeu +" + (int) xpRecebido + " XP.");
+    public void xpRecebido(ArrayList<CrewMember> tripulacao, double xpRecebido) {
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println("              XP RECEBIDO");
+        System.out.println("========================================");
+        System.out.println();
+
+        System.out.println("Toda a tripulacao recebeu +" + (int) xpRecebido + " XP.");
+        System.out.println();
+
+        for (CrewMember personagem : tripulacao) {
+            System.out.println(personagem.getNome() + " recebeu +" + (int) xpRecebido + " XP.");
+        }
+        System.out.println();
+        System.out.println("========================================");
     }
 
     public void atributosJogador(String nomeJogador, int vida, int ataque, int defesa, int stamina) {
@@ -261,8 +276,76 @@ public class BattleScreen {
         System.out.println(padding + texto);
         System.out.println(linha);
     }
+    public void exibirHabilidadesDaBatalha(CrewMember personagem, entities.Character inimigo) {
+        separador();
+        System.out.println("        HABILIDADES DA BATALHA");
+        separador();
 
-    // vou acabar repetindo metodos como o cabecalho, linha e separador em outras
-    // classes sem fazer do jeito certo, mas e so pq eu ja comecei assim
-    // e como e coisa de terminal, nao to dando tanta imortancia, depois eu ajeito
+        System.out.println();
+        System.out.println("PERSONAGEM ESCOLHIDO");
+        System.out.println(personagem.getNome());
+
+        System.out.println();
+        linha();
+        System.out.println("HABILIDADE ESPECIAL");
+        System.out.println(personagem.getHabilidadeEspecial().getNome());
+        linha();
+        imprimirTextoQuebrado(personagem.getHabilidadeEspecial().getDescricao());
+        System.out.println();
+
+        separador();
+
+        System.out.println();
+        System.out.println("INIMIGO");
+        System.out.println(inimigo.getNome());
+
+        System.out.println();
+        linha();
+        System.out.println("HABILIDADE DE COMBATE");
+
+        if (inimigo instanceof Enemy) {
+            Enemy enemy = (Enemy) inimigo;
+
+            System.out.println(enemy.getComAbility().getNome());
+            linha();
+            imprimirTextoQuebrado(enemy.getComAbility().getDescricao());
+        } else {
+            System.out.println("Inimigo comum");
+            linha();
+            imprimirTextoQuebrado("Este inimigo nao possui uma habilidade especial de combate.");
+        }
+
+        System.out.println();
+        separador();
+    }
+    private void imprimirTextoQuebrado(String texto) {
+        int limite = 55;
+
+        String[] palavras = texto.split(" ");
+        String linhaAtual = "";
+
+        for (String palavra : palavras) {
+            if ((linhaAtual + palavra).length() > limite) {
+                System.out.println(linhaAtual);
+                linhaAtual = palavra + " ";
+            } else {
+                linhaAtual += palavra + " ";
+            }
+        }
+
+        if (!linhaAtual.isEmpty()) {
+            System.out.println(linhaAtual);
+        }
+    }
+    public void personagemSemAtaques(String nomePersonagem) {
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println("          FIM DA BATALHA");
+        System.out.println("========================================");
+        System.out.println();
+        System.out.println(nomePersonagem + " nao possui mais ataques disponiveis.");
+        System.out.println("Sem ataques restantes, nao e possivel continuar a batalha.");
+        System.out.println();
+        System.out.println("========================================");
+    }
 }

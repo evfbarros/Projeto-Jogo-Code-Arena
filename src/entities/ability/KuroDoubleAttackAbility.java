@@ -14,4 +14,13 @@ public class KuroDoubleAttackAbility implements CombatAbility {
         }
         return 1; // ataque normal
     }
+    @Override
+    public String getNome() {
+        return "Passos Silenciosos";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Kuro se move em alta velocidade e realiza dois ataques em rodadas pares.";
+    }
 }

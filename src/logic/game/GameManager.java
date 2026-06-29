@@ -160,9 +160,19 @@ public class GameManager {
             personagemEscolhido.recuperarVida(personagemEscolhido.getVidaMaxima());
             personagemEscolhido.recuperarStamina(personagemEscolhido.getStaminaMaxima());
         }
+        battleScreen.exibirHabilidadesDaBatalha(
+        pJogador.getPersonagemAtual(),pInimigo);
+        battleScreen.esperarEnter();
+        battleScreen.limparTerminal();
 
         while (pJogador.getPersonagemAtual().estaVivo() && pInimigo.estaVivo()) {
             CrewMember personagemPlayer = pJogador.getPersonagemAtual();
+            if (!personagemPlayer.temAtaquesDisponiveis()) {
+                battleScreen.personagemSemAtaques(personagemPlayer.getNome());
+                battleScreen.esperarEnter();
+                battleScreen.limparTerminal();
+                return false;
+            }
             Question questaoAtual;
 
             questaoAtual = gerenciadorPergunta.questaoSorteadaPorDistribuicao(distribuicaoPerguntas, perguntasUsadas);
@@ -228,9 +238,9 @@ public class GameManager {
                 if (!pInimigo.estaVivo()) {
                     ArrayList<CrewMember> personagensQueUparam = pJogador
                             .distribuirXPParaTripulacao(pInimigo.getXpConcedido());
-                    for (CrewMember personagem : pJogador.getTripulacao()) {
-                        battleScreen.xpRecebido(personagem.getNome(), pInimigo.getXpConcedido());
-                    }
+                            
+                    battleScreen.xpRecebido(pJogador.getTripulacao(), pInimigo.getXpConcedido());
+
                     for (CrewMember personagem : personagensQueUparam) {
                         battleScreen.upouNivel(personagem.getNome(), personagem.getNivelAtual());
 

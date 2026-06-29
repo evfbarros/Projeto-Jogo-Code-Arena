@@ -18,4 +18,13 @@ public class SanjiCookAbility implements SpecialAbility {
         // Retorna true para indicar que a habilidade foi usada com sucesso
         return true;
     }
+    @Override
+    public String getNome() {
+        return "Refeicao Revigorante";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Sanji prepara uma refeicao durante a batalha e recupera metade da vida maxima do personagem. Depois disso, o jogador ainda precisa responder a pergunta normalmente.";
+    }
 }

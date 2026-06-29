@@ -43,6 +43,8 @@ public class CrewMember extends Character {
             throw new AtaqueIndisponivelException(" Ataque indisponivel, escolha outro.");
         }
 
+        this.ataqueEscolhido = indiceAtaque;
+
         int dano = ataqueEscolhido.calcularDano(this, alvo);
         ataqueEscolhido.usar();
         return dano;
@@ -86,9 +88,9 @@ public class CrewMember extends Character {
             throw new DefesaIndisponivelException("Voce nao pode defender no momento");
         }
 
-        dano = dano - (defesa / 2);
-        if (dano < 10) {
-            dano = 10;
+        dano =(int) (dano * 0.7);
+        if (dano < 30) {
+            dano = 30;
         }
         usarDefesa();
         return dano;
@@ -151,6 +153,16 @@ public class CrewMember extends Character {
         }
         xpAtual = 0;
     } // ideia é que o personagem já entre no nível médio da equipe
+
+    public boolean temAtaquesDisponiveis() {
+        for (Attack ataque : listaAtaque) {
+            if (ataque.podeUsar()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public SpecialAbility getHabilidadeEspecial() {
         return habilidadeEspecial;

@@ -17,4 +17,13 @@ public class BuggyDodgeAbility implements CombatAbility {
         }
         return danoBase;
     }
+    @Override
+    public String getNome() {
+        return "Corpo Bara Bara";
+    }
+
+    @Override
+    public String getDescricao() {
+        return "Buggy tem chance de separar o corpo e desviar completamente do dano recebido.";
+    }
 }
