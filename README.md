@@ -1,25 +1,64 @@
-## Projeto CodeArena
+# East Blue Chronicles
 
-CodeArena é um jogo de combate em turnos inspirado no universo de One Piece, onde o progresso do jogador depende do seu conhecimento.
+**East Blue Chronicles** é um RPG de quiz por turnos inspirado no universo de *One Piece*, desenvolvido como projeto da disciplina de Linguagem de Programação Orientada a Objetos (LPOO) na Escola Politécnica da Universidade de Pernambuco (Poli UPE).
 
-Durante as batalhas, o jogador enfrenta diferentes inimigos respondendo perguntas de História e Geografia. Cada resposta certa causa dano aos seus inimigos, e as erradas dificultam o combate.
+O jogador percorre as 5 ilhas da East Blue — Shells Town, Orange Town, Vila Syrup, Baratie e Arlong Park — enfrentando inimigos em batalhas baseadas em perguntas de História e Geografia. Respostas corretas concedem ataques, respostas erradas deixam o jogador na defensiva.
 
-## Como executar 
+---
 
-JDK 11 ou superior 
+## Funcionalidades
 
-Conexão com a internet(carregar as questões do Google Sheets)
+- Batalhas por turnos com sistema de perguntas (múltipla escolha, verdadeiro/falso e abertas)
+- 5 personagens jogáveis: Luffy, Zoro, Nami, Usopp e Sanji — cada um com habilidade especial única
+- Sistema de XP e progressão de nível com melhoria de atributos
+- 5 ilhas com NPCs, mini-bosses e bosses
+- Perguntas carregadas dinamicamente via Google Sheets (CSV)
+- Dificuldade das perguntas varia por ilha
+- Sistema de defesa e desvio com usos limitados
+- Menu principal com opções de jogo, instruções e informações
 
-Baixe o arquivo .zip
+---
 
-Extraia o conteudo
+## Como executar
 
-Abra a pasta extraída na sua IDE
+**Requisitos:**
+- JDK 11 ou superior
+- Conexão com a internet (para carregar as questões do Google Sheets)
 
-Localize a classe Main.java dentro de src/main/
+**Passos:**
+1. Baixe e extraia o arquivo `.zip`
+2. Abra a pasta extraída na sua IDE (recomendado: VS Code ou IntelliJ)
+3. Localize `Main.java` em `src/main/`
+4. Execute a classe `Main`
 
-Clique em run
+---
+
+## Estrutura do projeto
+
+```
+src/
+├── main/           # Ponto de entrada (Main.java)
+├── entities/       # Personagens, ataques e habilidades
+│   └── ability/    # Interfaces e implementações de habilidades
+├── logic/
+│   ├── game/       # GameManager, CampaignManager
+│   └── quiz/       # Questões, banco de perguntas, dificuldade
+├── screens/        # Telas do terminal (Menu, Batalha, Questão, etc.)
+├── world/          # Ilhas e criação de rotas
+└── exceptions/     # Exceções customizadas
+```
+
+---
+
+## Tecnologias utilizadas
+
+- Java (JDK 11+)
+- Google Sheets como banco de questões (via CSV público)
+- Terminal como interface (sem bibliotecas gráficas)
+
+---
 
 ## Desenvolvido por
 
-Eduardo Barros e Guilherme Alves
+- Eduardo Vinícius
+- Guilherme Alves

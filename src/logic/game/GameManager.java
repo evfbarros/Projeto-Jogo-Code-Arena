@@ -117,7 +117,9 @@ public class GameManager {
             boolean habilidadeFuncionou = habilidadeEspecial.usar(personagemPlayer, questaoAtual, "");
 
             if (habilidadeFuncionou) {
-                battleScreen.habilidadeUsada(personagemPlayer.getNome());
+                battleScreen.habilidadeUsada(personagemPlayer.getNome() + " usou sua habilidade!");
+                battleScreen.esperarEnter();
+                battleScreen.limparTerminal();
                 return true;
             }
 
