@@ -33,79 +33,79 @@ public class CrewMember extends Character {
 
     @Override
     public int atacar(int indiceAtaque, Character alvo) throws AtaqueInvalidoException, AtaqueIndisponivelException {
-        if(indiceAtaque < 0 || indiceAtaque >= listaAtaque.size()){
+        if (indiceAtaque < 0 || indiceAtaque >= listaAtaque.size()) {
             throw new AtaqueInvalidoException(" Escolha um ataque valido.");
         }
-        
+
         Attack ataqueEscolhido = listaAtaque.get(indiceAtaque);
 
-        if(!ataqueEscolhido.podeUsar()){
+        if (!ataqueEscolhido.podeUsar()) {
             throw new AtaqueIndisponivelException(" Ataque indisponivel, escolha outro.");
         }
-        
+
         int dano = ataqueEscolhido.calcularDano(this, alvo);
-            ataqueEscolhido.usar();
-            return dano;
+        ataqueEscolhido.usar();
+        return dano;
     }
 
-    public void resetarAtaques(){
-        for(Attack a : listaAtaque){
+    public void resetarAtaques() {
+        for (Attack a : listaAtaque) {
             a.resetarAtaque();
         }
     }
 
     public boolean desviou() throws DesvioIndisponivelException {
-        if(!podeDesviar()){
+        if (!podeDesviar()) {
             throw new DesvioIndisponivelException("Voce nao pode desviar no momento");
         }
         double desvio = (double) velocidade / (velocidade + 150);
         double chance = Math.random();
-        
+
         usarDesvio();
         return desvio > chance;
     }
 
-    public boolean podeDesviar(){
+    public boolean podeDesviar() {
         return desviosRestantes > 0;
     }
 
-    public void usarDesvio(){
-        if(podeDesviar()){
+    public void usarDesvio() {
+        if (podeDesviar()) {
             desviosRestantes--;
         }
     }
 
-    public void resetarDesvios(){
+    public void resetarDesvios() {
         desviosRestantes = desviosMaximos;
     }
-    
+
     @Override
     public int defender(int dano) throws DefesaIndisponivelException {
-        
-        if(!podeDefender()){
+
+        if (!podeDefender()) {
             throw new DefesaIndisponivelException("Voce nao pode defender no momento");
         }
-        
+
         dano = dano - (defesa / 2);
         if (dano < 10) {
             dano = 10;
         }
         usarDefesa();
         return dano;
-        
+
     }
 
-    public boolean podeDefender(){
+    public boolean podeDefender() {
         return defesasRestantes > 0;
     }
 
-    public void usarDefesa(){
-        if(podeDefender()){
+    public void usarDefesa() {
+        if (podeDefender()) {
             defesasRestantes--;
         }
     }
 
-    public void resetarDefesa(){
+    public void resetarDefesa() {
         defesasRestantes = defesasMaximas;
     }
 
@@ -127,8 +127,8 @@ public class CrewMember extends Character {
         uparAtributos();
     }
 
-    //o aumento em porcentagem ainda nao e o definitivo pq temos que testar no
-    //jogo, entoa so coloquei vlaores aleatorios
+    // o aumento em porcentagem ainda nao e o definitivo pq temos que testar no
+    // jogo, entoa so coloquei vlaores aleatorios
     public void uparAtributos() {
         vidaMaxima = ((int) (vidaMaxima * 1.15));
         vida = vidaMaxima;
@@ -142,14 +142,16 @@ public class CrewMember extends Character {
 
         velocidade = ((int) (velocidade * 1.08));
     }
+
     public void ajustarNivelInicial(int nivelDesejado) {
         while (nivelAtual < nivelDesejado) {
             nivelAtual++;
             xpUparNivel *= 1.5;
             uparAtributos();
         }
-    xpAtual = 0;
+        xpAtual = 0;
     } // ideia é que o personagem já entre no nível médio da equipe
+
     public SpecialAbility getHabilidadeEspecial() {
         return habilidadeEspecial;
     }
@@ -190,7 +192,7 @@ public class CrewMember extends Character {
         this.xpUparNivel = xpUparNivel;
     }
 
-    public int getDefesasRestantes(){
+    public int getDefesasRestantes() {
         return defesasRestantes;
     }
 
@@ -222,7 +224,7 @@ public class CrewMember extends Character {
         this.desviosRestantes = desviosRestantes;
     }
 
-    public int getAtaqueEscolhido(){
+    public int getAtaqueEscolhido() {
         return ataqueEscolhido;
     }
 }

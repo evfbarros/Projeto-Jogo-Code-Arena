@@ -9,7 +9,7 @@ public class MenuScreen {
     public void menu(CampaignManager campaignManager) {
         int escolha = 0;
 
-        while (escolha != 4){
+        while (escolha != 4) {
             limparTerminal();
             cabecalho("EAST BLUE CHRONICLES");
 

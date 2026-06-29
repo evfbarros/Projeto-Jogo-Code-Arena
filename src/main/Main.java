@@ -26,8 +26,7 @@ public class Main {
                 jogador,
                 gerenciadorPergunta,
                 gameScreen,
-                battleScreen
-        );
+                battleScreen);
 
         MenuScreen menuScreen = new MenuScreen();
 

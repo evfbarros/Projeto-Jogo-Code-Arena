@@ -21,28 +21,28 @@ public class Enemy extends Character {
      public int atacar(int indiceAtaque, Character alvo) {
           int indiceSorteado = sorteioAtaque();
 
-          for(int i = 0; i < listaAtaque.size(); i++){
+          for (int i = 0; i < listaAtaque.size(); i++) {
                int indiceAtual = (indiceSorteado + i) % listaAtaque.size();
                Attack ataqueEscolhido = listaAtaque.get(indiceAtual);
 
-               if(ataqueEscolhido.podeUsar()){
+               if (ataqueEscolhido.podeUsar()) {
                     ataqueEscolhido.usar();
                     ataqueUsado = indiceAtual;
                     return ataqueEscolhido.calcularDano(this, alvo);
                }
           }
-          
+
           return 25;
-          //nesse metodo apenas ignorei o parametro indiceAtaque
+          // nesse metodo apenas ignorei o parametro indiceAtaque
      }
 
-     public int sorteioAtaque(){
+     public int sorteioAtaque() {
           double sorteio = Math.random();
           int indiceAtaque; // nao e escolhido, na verdade e o sorteado pq o enemy nao vai escolher de fato
 
-          if(sorteio <= 0.45){
+          if (sorteio <= 0.45) {
                indiceAtaque = 0;
-          } else if(sorteio > 0.45 && sorteio <= 0.75){
+          } else if (sorteio > 0.45 && sorteio <= 0.75) {
                indiceAtaque = 1;
           } else {
                indiceAtaque = 2;
@@ -50,7 +50,6 @@ public class Enemy extends Character {
 
           return indiceAtaque;
      }
-
 
      @Override
      public int defender(int dano) {
@@ -77,7 +76,7 @@ public class Enemy extends Character {
           this.listaAtaque = listaAtaque;
      }
 
-     public int getAtaqueUsado(){
+     public int getAtaqueUsado() {
           return ataqueUsado;
      }
 }

@@ -1,4 +1,5 @@
 package screens;
+
 import java.util.*;
 
 import logic.quiz.MultipleChoiceQuestion;
@@ -12,21 +13,22 @@ import logic.quiz.TrueFalseQuestion;
 public class QuestionScreen {
     private Scanner leitor = new Scanner(System.in);
     private String instrucaoResposta = "Digite sua resposta";
-    public void mostrarQuestao(Question questao){
+
+    public void mostrarQuestao(Question questao) {
         // Minha versão do java é mais antiga, aí tive que trocar pra não dar problema
         if (questao instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion multiplaEscolha = (MultipleChoiceQuestion) questao;
             mostrarQuestaoMultiplaEscolha(multiplaEscolha);
         } else if (questao instanceof TrueFalseQuestion) {
-            TrueFalseQuestion verdadeiroFalso = (TrueFalseQuestion) questao; 
+            TrueFalseQuestion verdadeiroFalso = (TrueFalseQuestion) questao;
             mostrarVerdadeiroFalso(verdadeiroFalso);
-        } else if(questao instanceof OpenQuestion) {
+        } else if (questao instanceof OpenQuestion) {
             OpenQuestion questaoAberta = (OpenQuestion) questao;
             mostrarQuestaoAberta(questaoAberta);
         }
     }
 
-    private void mostrarQuestaoMultiplaEscolha(MultipleChoiceQuestion questao){
+    private void mostrarQuestaoMultiplaEscolha(MultipleChoiceQuestion questao) {
         System.out.println();
         System.out.println("════════════════════════════════════════");
         System.out.println("               PERGUNTA");
@@ -38,7 +40,7 @@ public class QuestionScreen {
         System.out.println();
         System.out.println("────────────────────────────────────────");
 
-        for (String alternativa : questao.getAlternativas()){
+        for (String alternativa : questao.getAlternativas()) {
             System.out.println(" " + alternativa);
         }
 
@@ -46,7 +48,7 @@ public class QuestionScreen {
         instrucaoResposta = "Digite uma opção (A-E)";
     }
 
-   private void mostrarVerdadeiroFalso(TrueFalseQuestion questao){
+    private void mostrarVerdadeiroFalso(TrueFalseQuestion questao) {
         System.out.println();
         System.out.println("════════════════════════════════════════");
         System.out.println("               PERGUNTA");
@@ -62,7 +64,7 @@ public class QuestionScreen {
         instrucaoResposta = "Digite V ou F";
     }
 
-    private void mostrarQuestaoAberta(OpenQuestion questao){
+    private void mostrarQuestaoAberta(OpenQuestion questao) {
         System.out.println();
         System.out.println("════════════════════════════════════════");
         System.out.println("               PERGUNTA");
@@ -73,8 +75,8 @@ public class QuestionScreen {
         System.out.println("────────────────────────────────────────");
         instrucaoResposta = "Digite sua resposta";
     }
-    
-    public String leituraRespostaValida(Question questaoAtual){
+
+    public String leituraRespostaValida(Question questaoAtual) {
         String resposta;
         do {
             resposta = leitor.nextLine();
@@ -90,6 +92,7 @@ public class QuestionScreen {
         System.out.println("────────────────────────────────────────");
         System.out.print(" " + instrucaoResposta + ": ");
     }
+
     public String obterRespostaCorreta(Question questao) {
         if (questao instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion multiplaEscolha = (MultipleChoiceQuestion) questao;

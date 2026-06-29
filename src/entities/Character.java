@@ -27,7 +27,8 @@ public abstract class Character {
         this.xpConcedido = xpConcedido;
     }
 
-    public abstract int atacar(int escolhaAtaque, Character alvo) throws AtaqueInvalidoException, AtaqueIndisponivelException;
+    public abstract int atacar(int escolhaAtaque, Character alvo)
+            throws AtaqueInvalidoException, AtaqueIndisponivelException;
 
     public abstract int defender(int dano) throws DefesaIndisponivelException;
 
@@ -135,11 +136,11 @@ public abstract class Character {
         this.nome = nome;
     }
 
-    public double getXpConcedido(){
+    public double getXpConcedido() {
         return xpConcedido;
     }
 
-    public void setXpConcedido(int xpConcedido){
+    public void setXpConcedido(int xpConcedido) {
         this.xpConcedido = xpConcedido;
     }
 }

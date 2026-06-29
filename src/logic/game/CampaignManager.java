@@ -23,8 +23,10 @@ public class CampaignManager {
     private GameScreen gameScreen;
     private BattleScreen battleScreen;
     private ArrayList<Question> perguntasUsadasNaCampanha = new ArrayList<>();
+    private Stats stats = new Stats();
 
-    public CampaignManager(Player jogador, QuestionManager gerenciadorPergunta, GameScreen gameScreen, BattleScreen battleScreen) {
+    public CampaignManager(Player jogador, QuestionManager gerenciadorPergunta, GameScreen gameScreen,
+            BattleScreen battleScreen) {
         this.jogador = jogador;
         this.gerenciadorPergunta = gerenciadorPergunta;
         this.gameScreen = gameScreen;
@@ -36,22 +38,22 @@ public class CampaignManager {
 
         for (Island ilha : ilhas) {
             gameScreen.exibirIlhaAtual(ilha.getNome());
-    
+
             if (ilha.getNome().equalsIgnoreCase("Baratie")) {
                 removerNamiAntesDeBaratie();
             }
 
             boolean primeiraBatalha = true;
 
-            for (NPC npc :ilha.getInimigos()){
-                if(!primeiraBatalha){
+            for (NPC npc : ilha.getInimigos()) {
+                if (!primeiraBatalha) {
                     battleScreen.novoInimigo(npc.getNome());
                 }
                 boolean venceuInimigos = iniciarBatalha(npc, ilha, primeiraBatalha);
                 primeiraBatalha = false;
 
-                if (!venceuInimigos){
-                    gameScreen.campanhaEncerrada(npc.getNome());
+                if (!venceuInimigos) {
+                    gameScreen.campanhaEncerrada(npc.getNome(), stats);
                     return;
                 }
             }
@@ -59,10 +61,10 @@ public class CampaignManager {
             if (ilha.getMiniBoss() != null) {
                 battleScreen.novoInimigo(ilha.getMiniBoss().getNome());
                 boolean venceuMiniBoss = iniciarBatalha(ilha.getMiniBoss(), ilha, primeiraBatalha);
-                primeiraBatalha = false; 
+                primeiraBatalha = false;
 
                 if (!venceuMiniBoss) {
-                    gameScreen.campanhaEncerrada(ilha.getMiniBoss().getNome());
+                    gameScreen.campanhaEncerrada(ilha.getMiniBoss().getNome(), stats);
                     return;
                 }
             }
@@ -72,7 +74,7 @@ public class CampaignManager {
                 boolean venceuBoss = iniciarBatalha(ilha.getBoss(), ilha, true);
 
                 if (!venceuBoss) {
-                    gameScreen.campanhaEncerrada(ilha.getBoss().getNome());
+                    gameScreen.campanhaEncerrada(ilha.getBoss().getNome(), stats);
                     return;
                 }
             }
@@ -85,10 +87,11 @@ public class CampaignManager {
             }
         }
 
-        gameScreen.campanhaFinalizada();
+        gameScreen.campanhaFinalizada(stats);
+
     }
 
-    private ArrayList<Island> criarRotaCampanha() { 
+    private ArrayList<Island> criarRotaCampanha() {
         ArrayList<Island> ilhas = new ArrayList<>();
 
         ilhas.add(IslandCreator.criarShellsTown());
@@ -105,12 +108,13 @@ public class CampaignManager {
         QuestionScreen questionScreen = new QuestionScreen();
         CharacterSelectionScreen selectionScreen = new CharacterSelectionScreen();
 
-        GameManager gameManager = new GameManager(jogador, inimigo, gerenciadorPergunta, battleScreen, questionScreen, selectionScreen,
-            ilha.getDistribuicaoPerguntas() ,perguntasUsadasNaCampanha, selecionar);
+        GameManager gameManager = new GameManager(jogador, inimigo, gerenciadorPergunta, battleScreen, questionScreen,
+                selectionScreen,
+                ilha.getDistribuicaoPerguntas(), perguntasUsadasNaCampanha, selecionar, stats);
 
         boolean venceu = gameManager.iniciarJogo();
 
-        //return gameManager.iniciarJogo();
+        // return gameManager.iniciarJogo();
         return venceu;
     }
 

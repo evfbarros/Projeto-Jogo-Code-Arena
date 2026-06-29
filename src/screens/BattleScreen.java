@@ -5,6 +5,7 @@ import entities.Attack;
 
 public class BattleScreen {
     private Scanner leitor = new Scanner(System.in);
+
     private void separador() {
         System.out.println("========================================");
     }
@@ -13,16 +14,17 @@ public class BattleScreen {
         System.out.println("────────────────────────────────────────");
     }
 
-    //vou repetir e
+    // vou repetir e
     public void exibirRodada(int rodada) {
-        //separador();
+        // separador();
         linha();
         System.out.println("              RODADA " + rodada);
         linha();
-        //separador();
+        // separador();
     }
 
-    public void resultadoRodada(int rodada, boolean resultado,String nomePersonagem,int dano, String ataque, String respostaCorreta) {
+    public void resultadoRodada(int rodada, boolean resultado, String nomePersonagem, int dano, String ataque,
+            String respostaCorreta) {
         linha();
         System.out.println("         RESULTADO RODADA " + rodada);
         linha();
@@ -40,13 +42,15 @@ public class BattleScreen {
 
         linha();
     }
-    public void atributosBatalha(String nomeJogador, int vidaJogador, int vidaMaximaJogador, String nomeInimigo, int vidaInimigo, int vidaMaximaInimigo) {
+
+    public void atributosBatalha(String nomeJogador, int vidaJogador, int vidaMaximaJogador, String nomeInimigo,
+            int vidaInimigo, int vidaMaximaInimigo) {
         System.out.println(nomeJogador + "  " + vidaJogador + "/" + vidaMaximaJogador + " HP");
         System.out.println(nomeInimigo + "  " + vidaInimigo + "/" + vidaMaximaInimigo + " HP");
         linha();
-}
+    }
 
-    public void novaBatalha(String personagemPlayer, String personagemInimigo){
+    public void novaBatalha(String personagemPlayer, String personagemInimigo) {
         linha();
         System.out.println("     UMA NOVA BATALHA FOI INICIADA");
         System.out.println("      " + personagemPlayer.toUpperCase() + " VS " + personagemInimigo.toUpperCase());
@@ -71,13 +75,15 @@ public class BattleScreen {
     public void upouNivel(String nomeJogador, int nivelPersonagem) {
         cabecalho(" Parabéns. " + nomeJogador + " subiu de nível\n Nível: " + nivelPersonagem);
     }
+
     public void xpRecebido(String nomePersonagem, double xpRecebido) {
         System.out.println(nomePersonagem + " recebeu +" + (int) xpRecebido + " XP.");
     }
 
-    public void atributosJogador(String nomeJogador, int vida, int ataque, int defesa, int stamina){
-        System.out.println(" Atributos " +nomeJogador);
-        System.out.println(" Vida: " + vida + "\n Ataque : " + ataque + "\n Defesa: " + defesa + "\n Stamina: " + stamina);
+    public void atributosJogador(String nomeJogador, int vida, int ataque, int defesa, int stamina) {
+        System.out.println(" Atributos " + nomeJogador);
+        System.out.println(
+                " Vida: " + vida + "\n Ataque : " + ataque + "\n Defesa: " + defesa + "\n Stamina: " + stamina);
         linha();
     }
 
@@ -87,8 +93,9 @@ public class BattleScreen {
 
         for (int i = 0; i < listaAtaque.size(); i++) {
             Attack ataque = listaAtaque.get(i);
-            System.out.println(i + " - " + ataque.getNome()+ " | Poder: " + ataque.getPoder()+ " | Usos: " + ataque.getUsosRestantes() + "/" 
-                                + ataque.getUsosMaximos());
+            System.out.println(i + " - " + ataque.getNome() + " | Poder: " + ataque.getPoder() + " | Usos: "
+                    + ataque.getUsosRestantes() + "/"
+                    + ataque.getUsosMaximos());
         }
 
         System.out.println("──────────────────────────────────────────────────");
@@ -97,17 +104,16 @@ public class BattleScreen {
     public int escolherAtaque() {
         System.out.print("  -> ");
         int escolha = -1;
-        
 
         while (escolha < 0 || escolha > 2) {
-            try{
+            try {
                 escolha = leitor.nextInt();
                 leitor.nextLine();
-                if(escolha < 0 || escolha > 2){
+                if (escolha < 0 || escolha > 2) {
                     escolha = -1;
                     System.out.print("Escolha um ataque valido (0 a 2): ");
                 }
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.print("Escolha um ataque valido (0 a 2): ");
                 leitor.nextLine();
             }
@@ -124,14 +130,14 @@ public class BattleScreen {
         int escolha = -1;
 
         while (escolha < 0 || escolha > 2) {
-            try{
+            try {
                 escolha = leitor.nextInt();
                 leitor.nextLine();
-                if(escolha < 0 || escolha > 2){
+                if (escolha < 0 || escolha > 2) {
                     escolha = -1;
                     System.out.print("Escolha uma opcao valida (0 ou 2): ");
                 }
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.print("Escolha uma opçao valida (0 ou 2): ");
                 leitor.nextLine();
             }
@@ -139,14 +145,14 @@ public class BattleScreen {
         return escolha;
     }
 
-    public void desviou(){
+    public void desviou() {
         System.out.println("Voce conseguiu desviar e nao tomou nenhum dano.");
     }
 
-    public void naoDesviou(){
+    public void naoDesviou() {
         System.out.println("Voce falhou em desviar e tomou o dano completo.");
     }
-    
+
     public void esperarEnter() {
         System.out.print("\nPressione enter para continuar: ");
         leitor.nextLine();
@@ -177,18 +183,18 @@ public class BattleScreen {
         int escolha = -1;
 
         while (escolha < 0 || escolha > 1) {
-            try{
+            try {
                 escolha = leitor.nextInt();
                 leitor.nextLine();
-                if(escolha < 0 || escolha > 1){
+                if (escolha < 0 || escolha > 1) {
                     escolha = -1;
                     System.out.print("Escolha uma opcao valida (0 ou 1): ");
                 }
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.print("Escolha uma opçao valida (0 ou 1): ");
                 leitor.nextLine();
             }
-    }
+        }
         return escolha;
     }
 
@@ -202,7 +208,7 @@ public class BattleScreen {
         System.out.println(mensagem);
     }
 
-    public void habilidadeDeuRuim(String mensagem){
+    public void habilidadeDeuRuim(String mensagem) {
         linha();
         System.out.println(mensagem);
         linha();
@@ -234,13 +240,13 @@ public class BattleScreen {
         System.out.println(nomeInimigo + " desviou do ataque!");
     }
 
-    public void inimigoDerrotado(String nomeInimigo){
+    public void inimigoDerrotado(String nomeInimigo) {
         linha();
         System.out.println(" Você derrotou " + nomeInimigo);
         linha();
     }
 
-    public void novoInimigo(String nomeInimigo){
+    public void novoInimigo(String nomeInimigo) {
         System.out.println("────────────────────────────────────────────");
         System.out.println(" Um novo inimigo aparece: " + nomeInimigo);
         System.out.println("────────────────────────────────────────────");
@@ -256,6 +262,7 @@ public class BattleScreen {
         System.out.println(linha);
     }
 
-    //vou acabar repetindo metodos como o cabecalho, linha e separador em outras classes sem fazer do jeito certo, mas e so pq eu ja comecei assim
-    //e como e coisa de terminal, nao to dando tanta imortancia, depois eu ajeito
+    // vou acabar repetindo metodos como o cabecalho, linha e separador em outras
+    // classes sem fazer do jeito certo, mas e so pq eu ja comecei assim
+    // e como e coisa de terminal, nao to dando tanta imortancia, depois eu ajeito
 }

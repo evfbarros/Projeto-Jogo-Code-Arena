@@ -5,8 +5,8 @@ public abstract class GameObject {
     protected String descricao;
     protected boolean ativo;
 
-    public GameObject(String nome , String descricao , boolean ativo) {
-        this.nome = nome ;
+    public GameObject(String nome, String descricao, boolean ativo) {
+        this.nome = nome;
         this.descricao = descricao;
         this.ativo = ativo;
     }

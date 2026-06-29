@@ -1,6 +1,8 @@
 package screens;
 
 import entities.CrewMember;
+import logic.game.Stats;
+
 import java.util.*;
 
 public class GameScreen {
@@ -18,12 +20,34 @@ public class GameScreen {
         cabecalho(personagem.getNome() + " entrou para a tripulação!");
     }
 
-    public void campanhaEncerrada(String nomeInimigo) {
-        System.out.println("Campanha encerrada. Voce perdeu para " + nomeInimigo + ".");
+    public void campanhaEncerrada(String nomeInimigo, Stats stats) {
+        System.out.println("════════════════════════════════════════");
+        System.out.println("           FIM DE JOGO  ");
+        System.out.println("   Você foi derrotado por " + nomeInimigo + ".");
+        System.out.println("   A East Blue ainda não é sua...");
+        System.out.println("════════════════════════════════════════");
+        exibirStats(stats);
     }
 
-    public void campanhaFinalizada() {
-        System.out.println("\nPARABENS! VOCE FINALIZOU A CAMPANHA EAST BLUE!");
+    public void campanhaFinalizada(Stats stats) {
+        System.out.println("════════════════════════════════════════");
+        System.out.println("        VITÓRIA, PARABÉNS!  ");
+        System.out.println("   Você conquistou a East Blue!");
+        System.out.println("════════════════════════════════════════");
+        exibirStats(stats);
+    }
+
+    private void exibirStats(Stats stats) {
+        System.out.println();
+        System.out.println("        ESTATÍSTICAS FINAIS");
+        System.out.println("────────────────────────────────────────");
+        System.out.println("  Rodadas jogadas:      " + stats.getRodadasJogadas());
+        System.out.println("  Perguntas certas:     " + stats.getPerguntasAcertadas());
+        System.out.println("  Perguntas erradas:    " + stats.getPerguntasErradas());
+        System.out.println("  Dano total causado:   " + stats.getDanoTotalCausado());
+        System.out.println("  Dano total recebido:  " + stats.getDanoTotalRecebido());
+        System.out.println("────────────────────────────────────────");
+        esperarEnter();
     }
 
     public void cabecalho(String texto) {
