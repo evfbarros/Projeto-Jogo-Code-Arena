@@ -70,8 +70,6 @@ public class GoogleSheetsQuestionLoader {
                             gabaritoVF = 'F';
                         }
 
-                        // talvez isso aquiu esteja errado
-
                         questoes.add(
                                 new TrueFalseQuestion(
                                         enunciado,

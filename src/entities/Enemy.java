@@ -3,7 +3,6 @@ package entities;
 import java.util.ArrayList;
 
 import entities.ability.CombatAbility;
-import exceptions.DesvioIndisponivelException;
 
 public class Enemy extends Character {
      private CombatAbility habilidadeCombate;

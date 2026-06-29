@@ -129,8 +129,6 @@ public class CrewMember extends Character {
         uparAtributos();
     }
 
-    // o aumento em porcentagem ainda nao e o definitivo pq temos que testar no
-    // jogo, entoa so coloquei vlaores aleatorios
     public void uparAtributos() {
         vidaMaxima = ((int) (vidaMaxima * 1.15));
         vida = vidaMaxima;
@@ -152,7 +150,7 @@ public class CrewMember extends Character {
             uparAtributos();
         }
         xpAtual = 0;
-    } // ideia é que o personagem já entre no nível médio da equipe
+    } 
 
     public boolean temAtaquesDisponiveis() {
         for (Attack ataque : listaAtaque) {

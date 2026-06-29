@@ -29,7 +29,6 @@ public class Player {
             personagemAtual = tripulacao.get(0);
         }
     }
-    // Adicionei esse método por conta da Nami
 
     public ArrayList<CrewMember> getTripulacao() {
         return tripulacao;

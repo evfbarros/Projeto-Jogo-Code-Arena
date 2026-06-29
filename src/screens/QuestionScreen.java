@@ -6,16 +6,12 @@ import logic.quiz.MultipleChoiceQuestion;
 import logic.quiz.Question;
 import logic.quiz.TrueFalseQuestion;
 import logic.quiz.OpenQuestion;
-import logic.quiz.MultipleChoiceQuestion;
-import logic.quiz.OpenQuestion;
-import logic.quiz.TrueFalseQuestion;
 
 public class QuestionScreen {
     private Scanner leitor = new Scanner(System.in);
     private String instrucaoResposta = "Digite sua resposta";
 
     public void mostrarQuestao(Question questao) {
-        // Minha versão do java é mais antiga, aí tive que trocar pra não dar problema
         if (questao instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion multiplaEscolha = (MultipleChoiceQuestion) questao;
             mostrarQuestaoMultiplaEscolha(multiplaEscolha);

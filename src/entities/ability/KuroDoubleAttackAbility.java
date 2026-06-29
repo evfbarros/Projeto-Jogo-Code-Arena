@@ -10,9 +10,9 @@ public class KuroDoubleAttackAbility implements CombatAbility {
     @Override
     public int ataquesExtras(int rodada) {
         if (rodada % 2 == 0) {
-            return 2; // ataca 2 vezes
+            return 2; 
         }
-        return 1; // ataque normal
+        return 1; 
     }
     @Override
     public String getNome() {

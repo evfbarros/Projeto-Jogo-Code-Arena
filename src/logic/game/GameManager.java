@@ -49,11 +49,7 @@ public class GameManager {
         this.stats = stats;
     }
 
-    private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {// Modifiquei esse
-                                                                                                      // método para
-                                                                                                      // integrar todas
-                                                                                                      // as habilidades
-                                                                                                      // especiais
+    private boolean tentarUsarHabilidadeEspecial(CrewMember personagemPlayer, Question questaoAtual) {
         if (personagemPlayer.getStamina() < CUSTO_HABILIDADE_ESPECIAL) {
             battleScreen.staminaInsuficiente();
             questionScreen.mostrarQuestao(questaoAtual);
@@ -141,7 +137,7 @@ public class GameManager {
 
     }
 
-    public boolean iniciarJogo() { // Troquei por boolean para facilitar a integrar
+    public boolean iniciarJogo() { 
         int rodada = 1;
 
         boolean selecionarPersonagem = selecionar;
@@ -228,13 +224,12 @@ public class GameManager {
                         battleScreen.exibirAtaques(personagemPlayer.getListaAtaque());
                         escolhaAtaque = battleScreen.escolherAtaque();
                     }
-                    // battleScreen.ataqueIndisponivel(); nao vai precisar
                 }
 
                 if (pInimigo instanceof Enemy) {
                     Enemy inimigo = (Enemy) pInimigo;
                     dano = inimigo.getComAbility().modificarDanoRecebido(dano, rodada);
-                } // Isso é especificamente para a habilidade do Don Krieg que é defensiva
+                }
 
                 stats.registrarDanoCausado(dano);
                 pInimigo.receberDano(dano);
@@ -269,21 +264,21 @@ public class GameManager {
             } else {
                 stats.registrarErro();
 
-                int quantidadeAtaques = 1; // Por padrão, o inimigo ataca apenas uma vez
+                int quantidadeAtaques = 1; 
 
-                if (pInimigo instanceof Enemy) { // Verifica se o inimigo é um objeto da classe Enemy
-                    Enemy inimigo = (Enemy) pInimigo; // Converte Character para Enemy
-                    quantidadeAtaques = inimigo.getComAbility().ataquesExtras(rodada); // Verifica ataques extras
+                if (pInimigo instanceof Enemy) { 
+                    Enemy inimigo = (Enemy) pInimigo; 
+                    quantidadeAtaques = inimigo.getComAbility().ataquesExtras(rodada); 
                 }
 
-                int danoTotal = 0; // Guarda a soma dos danos da rodada
+                int danoTotal = 0;
 
                 String ataqueInimigo = "";
 
-                for (int i = 0; i < quantidadeAtaques; i++) { // Repete de acordo com a quantidade de ataques
+                for (int i = 0; i < quantidadeAtaques; i++) { 
                     int dano = 0;
                     try {
-                        dano = pInimigo.atacar(0, personagemPlayer); // Calcula o dano base
+                        dano = pInimigo.atacar(0, personagemPlayer); 
                         if (pInimigo instanceof Enemy) {
                             Enemy inimigo = (Enemy) pInimigo;
                             ataqueInimigo = inimigo.getListaAtaque().get(inimigo.getAtaqueUsado()).getNome();
@@ -308,19 +303,17 @@ public class GameManager {
                         battleScreen.inimigoDesviou(pInimigo.getNome());
                     }
 
-                    danoTotal += dano; // Soma ao dano total
+                    danoTotal += dano; 
                 }
 
                 battleScreen.respostaErradaEscolhaDefesa();
                 int defender = battleScreen.defender(personagemPlayer.getDefesasRestantes(),
                         personagemPlayer.getDefesasMaximas(),
-                        personagemPlayer.getDesviosRestantes(), personagemPlayer.getDesviosMaximos()); // Pergunta se o
-                                                                                                       // jogador quer
-                                                                                                       // defender
+                        personagemPlayer.getDesviosRestantes(), personagemPlayer.getDesviosMaximos()); 
 
-                if (defender == 0) { // Se escolher defender
+                if (defender == 0) { 
                     try {
-                        danoTotal = personagemPlayer.defender(danoTotal); // Reduz o dano
+                        danoTotal = personagemPlayer.defender(danoTotal); 
                         personagemPlayer.receberDano(danoTotal);
                     } catch (DefesaIndisponivelException e) {
                         System.out.println("Erro: " + e.getMessage());
@@ -330,18 +323,18 @@ public class GameManager {
                     try {
                         boolean desviou = personagemPlayer.desviou();
                         if (desviou) {
-                            battleScreen.desviou(); // toma 0 de dano
+                            battleScreen.desviou();
                             danoTotal = 0;
                         } else {
                             personagemPlayer.receberDano(danoTotal);
-                            battleScreen.naoDesviou(); // vai tomar o dano completo pq falhou em desviar
+                            battleScreen.naoDesviou(); 
                         }
                     } catch (DesvioIndisponivelException e) {
                         System.out.println("Erro: " + e.getMessage());
                         personagemPlayer.receberDano(danoTotal);
                     }
                 } else {
-                    personagemPlayer.receberDano(danoTotal); // Aplica o dano final
+                    personagemPlayer.receberDano(danoTotal); 
                 }
 
                 stats.registrarDanoRecebido(danoTotal);
@@ -355,11 +348,6 @@ public class GameManager {
                 battleScreen.esperarEnter();
                 battleScreen.limparTerminal();
             }
-            // battleScreen.atributosBatalha(personagemPlayer.getNome(),
-            // personagemPlayer.getVida(), pInimigo.getNome(),
-            // pInimigo.getVida());
-            // battleScreen.esperarEnter();
-            // battleScreen.limparTerminal();
 
             stats.registrarRodada();
             rodada++;

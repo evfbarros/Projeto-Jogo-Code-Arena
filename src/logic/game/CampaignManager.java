@@ -3,7 +3,6 @@ package logic.game;
 import java.util.ArrayList;
 
 import entities.CrewMember;
-import entities.Enemy;
 import entities.NPC;
 import entities.Player;
 import entities.Character;
@@ -113,8 +112,6 @@ public class CampaignManager {
                 ilha.getDistribuicaoPerguntas(), perguntasUsadasNaCampanha, selecionar, stats);
 
         boolean venceu = gameManager.iniciarJogo();
-
-        // return gameManager.iniciarJogo();
         return venceu;
     }
 

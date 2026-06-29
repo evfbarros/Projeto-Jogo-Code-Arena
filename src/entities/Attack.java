@@ -13,28 +13,18 @@ public class Attack {
         this.usosRestantes = usosMaximos;
     }
 
-    // Calcula o dano causado pelo ataque
     public int calcularDano(Character atacante, Character defensor) {
 
-        // Fórmula:
-        // dano = poder do ataque + metade do ataque do atacante - 1/4 da defesa do
-        // defensor
         int dano = poder + (atacante.getAtaque() / 2) - (defensor.getDefesa() / 4);
-
-        // Garante que todo ataque cause pelo menos 10 de dano
-        if (dano < 10) {
-            dano = 10;
+        if (dano < 30) {
+            dano = 30;
         }
 
         return dano;
     }
-
-    // Verifica se o ataque ainda pode ser usado
     public boolean podeUsar() {
         return usosRestantes > 0;
     }
-
-    // Reduz a quantidade de usos restantes do ataque
     public void usar() {
         if (podeUsar()) {
             usosRestantes--;

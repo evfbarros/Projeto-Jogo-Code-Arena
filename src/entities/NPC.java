@@ -10,13 +10,12 @@ public class NPC extends Character {
         int danoAtaque = ataque;
         return danoAtaque;
     }
-    // nao vai ter varios indices ataque pq so vai ter um ataque
 
     @Override
     public int defender(int dano) {
         dano = dano - (defesa / 4);
         return dano;
-        // defende menos pq sao mais fracos
+        
     }
 
 }

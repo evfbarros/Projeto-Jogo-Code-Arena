@@ -1,14 +1,11 @@
 package entities;
 
 import java.util.*;
-//Criacao inicial dos personagens principais, ver possiveis alteracoes diante da mecanica
-//do jogo e da dificuldade de enfrentar os inimigos
 import entities.ability.*;
 
 
 public class CharacterCreator {
 
-    // ERSONAGENS JOGAVEIS
     public static CrewMember personagemLuffy() {
         ArrayList<Attack> ataquesLuffy = new ArrayList<>();
         ataquesLuffy.add(new Attack("Gomu Gomu no Pistol", 50, 5));
@@ -109,7 +106,6 @@ public class CharacterCreator {
         arlong.setFalaEntrada("Este mar pertence aos homens-peixe. Humanos jamais ficarao acima de mim!");
         return arlong;
     }
-    //boss final
 
     public static Enemy personagemHelmeppo() {
         ArrayList<Attack> ataquesHelmeppo = new ArrayList<>();
@@ -120,7 +116,6 @@ public class CharacterCreator {
         helmeppo.setFalaEntrada("Voce acha que pode desafiar o filho do Capitao Morgan?");
         return helmeppo;
 }
-    // miniboss 1
     public static Enemy personagemMohji() {
         ArrayList<Attack> ataquesMohji = new ArrayList<>();
         ataquesMohji.add(new Attack("Whip Strike", 45, 5));
@@ -138,7 +133,7 @@ public class CharacterCreator {
         Enemy jango = new Enemy("Jango", 340, 170, 105, 85, 140, 120, new JangoHypnosisAbility(), ataquesJango);
         jango.setFalaEntrada("Quando eu contar ate tres, voce ja estara derrotado.");
         return jango;
-    } // miniboss 3
+    } 
     public static Enemy personagemGin() {
         ArrayList<Attack> ataquesGin = new ArrayList<>();
         ataquesGin.add(new Attack("Tonfa Strike", 50, 5));
@@ -147,7 +142,7 @@ public class CharacterCreator {
         Enemy gin = new Enemy("Gin", 400, 180, 120, 100, 145, 140, new DefaultCombatAbility(), ataquesGin);
         gin.setFalaEntrada("Eu respeito sua coragem, mas nao posso deixar voce passar.");
         return gin;
-    }// miniboss 4
+    }
     public static Enemy personagemHatchan() {
         ArrayList<Attack> ataquesHatchan = new ArrayList<>();
         ataquesHatchan.add(new Attack("Dual Sword Slash", 60, 5));
@@ -156,7 +151,7 @@ public class CharacterCreator {
         Enemy hatchan = new Enemy("Hatchan", 460, 200, 130, 115, 150, 170, new HatchanSixSwordAbility(), ataquesHatchan);
         hatchan.setFalaEntrada("Com seis espadas, eu consigo cortar qualquer caminho ate Arlong Park!");
         return hatchan;
-    } // miniboss 5
+    }
 
     public static NPC marinheirosShellsTown(String nome){
         NPC marinheiro = new NPC(nome, 150, 100, 45, 40, 70, 50);

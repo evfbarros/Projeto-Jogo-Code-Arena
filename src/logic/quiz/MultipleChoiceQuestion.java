@@ -3,8 +3,7 @@ package logic.quiz;
 import java.util.ArrayList;
 
 public class MultipleChoiceQuestion extends Question {
-    private int gabarito; // o gabarito aqui vai ser o indice do array de alternativas que correponde a
-                          // alternativa certa
+    private int gabarito;
     private ArrayList<String> alternativas;
 
     public MultipleChoiceQuestion(String enunciado, Difficulty dificuldade, String categoria,
@@ -55,38 +54,27 @@ public class MultipleChoiceQuestion extends Question {
 
     public void cortarAlternativasErradas(int quantidade) {
 
-    // Lista que vai guardar os índices das alternativas erradas
     ArrayList<Integer> indicesErrados = new ArrayList<>();
 
-    // Percorre todas as alternativas da questão
     for (int i = 0; i < alternativas.size(); i++) {
 
-        // Se o índice atual for diferente do gabarito,
-        // significa que essa alternativa está errada
         if (i != gabarito) {
             indicesErrados.add(i);
         }
     }
 
-    // Embaralha os índices das alternativas erradas
-    // para que as alternativas cortadas sejam escolhidas aleatoriamente
     java.util.Collections.shuffle(indicesErrados);
 
-    // Contador de quantas alternativas já foram removidas
     int removidas = 0;
 
-    // Percorre os índices errados já embaralhados
     for (int indice : indicesErrados) {
 
-        // Se já removeu a quantidade desejada, para o loop
         if (removidas >= quantidade) {
             break;
         }
 
-        // "Corta" a alternativa errada substituindo o texto por vazio
         alternativas.set(indice, "");
 
-        // Atualiza o contador de alternativas removidas
         removidas++;
     }
 }
