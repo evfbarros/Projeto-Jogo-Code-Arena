@@ -160,6 +160,10 @@ public class GameManager {
             personagemEscolhido.recuperarVida(personagemEscolhido.getVidaMaxima());
             personagemEscolhido.recuperarStamina(personagemEscolhido.getStaminaMaxima());
         }
+        battleScreen.exibirDialogoEntrada(pJogador.getPersonagemAtual(),pInimigo);
+        battleScreen.esperarEnter();
+        battleScreen.limparTerminal();
+
         battleScreen.exibirHabilidadesDaBatalha(
         pJogador.getPersonagemAtual(),pInimigo);
         battleScreen.esperarEnter();

@@ -14,6 +14,7 @@ public abstract class Character {
     protected int defesa;
     protected int velocidade;
     protected double xpConcedido;
+    private String falaEntrada = "Prepare-se para a batalha!";
 
     public Character(String nome, int vida, int stamina, int ataque, int defesa, int velocidade, double xpConcedido) {
         this.nome = nome;
@@ -142,5 +143,12 @@ public abstract class Character {
 
     public void setXpConcedido(int xpConcedido) {
         this.xpConcedido = xpConcedido;
+    }
+    public String getFalaEntrada() {
+        return falaEntrada;
+    }
+
+    public void setFalaEntrada(String falaEntrada) {
+        this.falaEntrada = falaEntrada;
     }
 }

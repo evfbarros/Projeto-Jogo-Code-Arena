@@ -348,4 +348,22 @@ public class BattleScreen {
         System.out.println();
         System.out.println("========================================");
     }
+    public void exibirDialogoEntrada(CrewMember personagem, entities.Character inimigo) {
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println("              DIALOGO");
+        System.out.println("========================================");
+        System.out.println();
+
+        System.out.println(inimigo.getNome() + ":");
+        System.out.println("\"" + inimigo.getFalaEntrada() + "\"");
+
+        System.out.println();
+
+        System.out.println(personagem.getNome() + ":");
+        System.out.println("\"" + personagem.getFalaEntrada() + "\"");
+
+        System.out.println();
+        System.out.println("========================================");
+    }
 }
